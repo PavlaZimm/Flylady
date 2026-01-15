@@ -186,3 +186,8 @@ export const getIdFromSlug = (slug: string) => {
   const parts = slug.split("-");
   return parts[parts.length - 1] ?? "";
 };
+
+export const getProductBySlug = async (slug: string) => {
+  const products = await getAviationProducts();
+  return products.find((product) => product.slug === slug) ?? null;
+};

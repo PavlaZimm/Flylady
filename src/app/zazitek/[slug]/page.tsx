@@ -5,6 +5,7 @@ import {
   getAviationProducts,
   getIdFromSlug,
   getProductById,
+  getProductBySlug,
 } from "@/lib/feed";
 
 type PageProps = {
@@ -30,7 +31,7 @@ export const generateMetadata = async ({
 }: PageProps): Promise<Metadata> => {
   const { slug } = await params;
   const id = getIdFromSlug(slug);
-  const product = await getProductById(id);
+  const product = (await getProductById(id)) ?? (await getProductBySlug(slug));
 
   if (!product) {
     return {
@@ -52,7 +53,7 @@ export const generateMetadata = async ({
 export default async function ProductDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const id = getIdFromSlug(slug);
-  const product = await getProductById(id);
+  const product = (await getProductById(id)) ?? (await getProductBySlug(slug));
 
   if (!product) {
     return (

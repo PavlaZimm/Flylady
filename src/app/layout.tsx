@@ -50,6 +50,9 @@ export default function RootLayout({
               </Link>
               <nav className="flex items-center gap-6 text-sm text-slate-600">
                 <Link href="/" className="hover:text-slate-900">
+                  Domů
+                </Link>
+                <Link href="/zazitky" className="hover:text-slate-900">
                   Zážitky
                 </Link>
                 <Link href="/blog" className="hover:text-slate-900">
