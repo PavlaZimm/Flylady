@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ProductSection } from "@/components/ProductSection";
+import { groupProductsByCategory } from "@/lib/categories";
 import { getAviationProducts } from "@/lib/feed";
 
 export const metadata: Metadata = {
@@ -11,79 +12,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const products = await getAviationProducts();
-
-  const normalizeText = (value: string) =>
-    value
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-
-  const matchKeywords = (productText: string, keywords: string[]) =>
-    keywords.some((keyword) =>
-      normalizeText(productText).includes(normalizeText(keyword))
-    );
-
-  const categories = [
-    {
-      id: "simulatory",
-      title: "Letecké simulátory",
-      description: "Ideální start pro pilotní nadšence a dárek pro fanoušky.",
-      keywords: ["simulator", "simulátor", "simulator letu"],
-    },
-    {
-      id: "vyhlidkove-lety",
-      title: "Vyhlídkové lety",
-      description: "Krásné výhledy a klidný let nad krajinou.",
-      keywords: ["vyhlidkov", "vyhlídkov"],
-    },
-    {
-      id: "let-stihackou",
-      title: "Let stíhačkou",
-      description: "Adrenalinový zážitek pro ty, kdo chtějí výš a rychleji.",
-      keywords: ["stihack", "stíhačk", "fighter"],
-    },
-    {
-      id: "veterny-tunel",
-      title: "Větrný tunel",
-      description: "Pocit volného pádu v bezpečí, vhodné i pro začátečníky.",
-      keywords: ["veterny tunel", "větrný tunel"],
-    },
-    {
-      id: "tandemove-seskoky",
-      title: "Tandemové seskoky",
-      description: "Skok padákem s instruktorem a porce pravého adrenalinu.",
-      keywords: ["tandem", "seskok", "skok"],
-    },
-    {
-      id: "let-vrtulnikem",
-      title: "Let vrtulníkem",
-      description: "Pohled shora, který z letadla nezažijete.",
-      keywords: ["vrtulnik", "vrtulník", "helikopt"],
-    },
-    {
-      id: "let-vzducholodi",
-      title: "Let vzducholodí",
-      description: "Elegantní zážitek s nejpomalejším výhledem na svět.",
-      keywords: ["vzducholod", "vzducholoď"],
-    },
-  ];
-
-  const assigned = new Set<string>();
-  const grouped = categories.map((category) => {
-    const matched = products.filter((product) => {
-      if (assigned.has(product.id)) return false;
-      const text = `${product.name} ${product.description} ${product.categories.join(
-        " "
-      )}`;
-      const isMatch = matchKeywords(text, category.keywords);
-      if (isMatch) assigned.add(product.id);
-      return isMatch;
-    });
-
-    return { ...category, products: matched };
-  });
-
-  const remaining = products.filter((product) => !assigned.has(product.id));
+  const { groups, remaining } = groupProductsByCategory(products);
 
   return (
     <main className="space-y-16">
@@ -119,37 +48,79 @@ export default async function Home() {
 
       <section className="rounded-3xl border border-slate-100 bg-white p-8 text-sm text-slate-600">
         <div className="grid gap-6 md:grid-cols-3">
-          <div>
+          <div className="space-y-3">
+            <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="h-5 w-5"
+                aria-hidden="true"
+              >
+                <rect x="6" y="3" width="12" height="18" rx="2" />
+                <path d="M10 17h4" />
+              </svg>
+            </div>
             <h2 className="text-lg font-semibold text-slate-900">Mobilní web</h2>
             <p>
-              Vše je navržené mobile-first, aby si vybrali i lidé, kteří hledají
-              dárky na cestách.
+              Mobile-first rozložení, takže se vybírá pohodlně i v telefonu na
+              cestách.
             </p>
           </div>
-          <div>
+          <div className="space-y-3">
+            <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="h-5 w-5"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="6" />
+                <path d="M16 16l4 4" />
+              </svg>
+            </div>
             <h2 className="text-lg font-semibold text-slate-900">SEO základ</h2>
             <p>
-              Stránky jsou optimalizované pro indexaci, rychlé načítání a
-              sdílení na sociálních sítích.
+              Připravené pro vyhledávače – rychlé načítání, meta informace a
+              sdílení.
             </p>
           </div>
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900">Jasný vizuál</h2>
+          <div className="space-y-3">
+            <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="h-5 w-5"
+                aria-hidden="true"
+              >
+                <path d="M12 3l2.9 6.1 6.7.6-5 4.4 1.5 6.6-6.1-3.3-6.1 3.3 1.5-6.6-5-4.4 6.7-.6L12 3z" />
+              </svg>
+            </div>
+            <h2 className="text-lg font-semibold text-slate-900">
+              Důvěryhodný vizuál
+            </h2>
             <p>
-              Konzistentní barvy, kontrast a čitelnost zajišťují, že nabídka je
-              přehledná a důvěryhodná.
+              Čisté barvy, jasná struktura a dostatek prostoru pro rychlé
+              rozhodnutí.
             </p>
           </div>
         </div>
       </section>
 
       <div className="space-y-16">
-        {grouped.map((group) => (
+        {groups.map((group) => (
           <ProductSection
-            key={group.id}
+            key={group.slug}
             title={group.title}
             description={group.description}
             products={group.products}
+            limit={3}
+            href={`/kategorie/${group.slug}`}
           />
         ))}
       </div>

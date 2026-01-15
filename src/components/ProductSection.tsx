@@ -9,6 +9,7 @@ type ProductSectionProps = {
   description?: string;
   products: Product[];
   limit?: number;
+  href?: string;
 };
 
 const formatPrice = (value: number | null) => {
@@ -24,9 +25,10 @@ export const ProductSection = ({
   title,
   description,
   products,
-  limit = 3,
+  limit,
+  href,
 }: ProductSectionProps) => {
-  const shown = products.slice(0, limit);
+  const shown = typeof limit === "number" ? products.slice(0, limit) : products;
 
   if (!shown.length) return null;
 
@@ -39,9 +41,19 @@ export const ProductSection = ({
             <p className="text-sm text-slate-600">{description}</p>
           ) : null}
         </div>
-        <span className="text-xs uppercase tracking-[0.2em] text-slate-400">
-          {products.length} tipů
-        </span>
+        <div className="flex items-center gap-4">
+          {href ? (
+            <Link
+              href={href}
+              className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600"
+            >
+              Zobrazit vše
+            </Link>
+          ) : null}
+          <span className="text-xs uppercase tracking-[0.2em] text-slate-400">
+            {products.length} tipů
+          </span>
+        </div>
       </div>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {shown.map((product) => (

@@ -1,12 +1,17 @@
 import type { MetadataRoute } from "next";
-import { getAviationProducts } from "@/lib/feed";
 import { getAllPosts } from "@/lib/blog";
+import { CATEGORY_CONFIG } from "@/lib/categories";
+import { getAviationProducts } from "@/lib/feed";
 
 const siteUrl = "https://flylady.cz";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getAviationProducts();
   const posts = await getAllPosts();
+  const categoryEntries = CATEGORY_CONFIG.map((category) => ({
+    url: `${siteUrl}/kategorie/${category.slug}`,
+    lastModified: new Date(),
+  }));
 
   const productEntries = products.map((product) => ({
     url: `${siteUrl}/zazitek/${product.slug}`,
@@ -27,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${siteUrl}/blog`,
       lastModified: new Date(),
     },
+    ...categoryEntries,
     ...productEntries,
     ...postEntries,
   ];
