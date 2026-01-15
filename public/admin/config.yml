@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: your-github-username/flylady
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Název", name: "title", widget: "string" }
+      - { label: "Popis", name: "description", widget: "string" }
+      - { label: "Datum", name: "date", widget: "datetime" }
+      - { label: "Obsah", name: "body", widget: "markdown" }
