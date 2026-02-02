@@ -1,34 +1,93 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
+import { OrganizationSchema, WebsiteSchema } from "@/components/StructuredData";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap", // Optimalizace pro Core Web Vitals
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const siteUrl = "https://flylady.cz";
 
+// Viewport konfigurace pro mobile optimalizaci
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: {
-    default: "Flylady.cz | Letecké zážitky",
+    default: "Flylady.cz | Letecké zážitky a dárky",
     template: "%s | Flylady.cz",
   },
   description:
-    "Letecké zážitky, tipy a inspirace pro všechny, kdo milují létání.",
+    "Darujte nezapomenutelný letecký zážitek. Vyhlídkové lety, tandemové seskoky, simulátory. 50+ ověřených zážitků s garancí spokojenosti.",
+  keywords: [
+    "letecké zážitky",
+    "vyhlídkové lety",
+    "tandemové seskoky",
+    "letecké simulátory",
+    "dárkové zážitky",
+    "let vrtulníkem",
+    "let stíhačkou",
+  ],
+  authors: [{ name: "Flylady.cz" }],
+  creator: "Flylady.cz",
+  publisher: "Flylady.cz",
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
+    locale: "cs_CZ",
     url: siteUrl,
-    title: "Flylady.cz | Letecké zážitky",
+    siteName: "Flylady.cz",
+    title: "Flylady.cz | Letecké zážitky a dárky",
     description:
-      "Letecké zážitky, tipy a inspirace pro všechny, kdo milují létání.",
+      "Darujte nezapomenutelný letecký zážitek. 50+ ověřených zážitků s garancí spokojenosti.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Flylady.cz - Letecké zážitky",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Flylady.cz | Letecké zážitky",
+    description: "Darujte nezapomenutelný letecký zážitek.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Přidat po registraci v Google Search Console
+    // google: "verification_token",
   },
 };
 
@@ -38,13 +97,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="cs">
+    <html lang="cs" className="scroll-smooth">
+      <head>
+        {/* Structured Data pro SEO */}
+        <OrganizationSchema />
+        <WebsiteSchema />
+        {/* Preconnect pro rychlejší načítání externích zdrojů */}
+        <link rel="preconnect" href="https://alis.zazitky.cz" />
+        <link rel="dns-prefetch" href="https://alis.zazitky.cz" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-slate-50 text-slate-900 antialiased`}
       >
-        <div className="min-h-screen">
+        {/* Skip link pro keyboard accessibility */}
+        <a
+          href="#main-content"
+          className="skip-link sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-white"
+        >
+          Přeskočit na hlavní obsah
+        </a>
+
+        <div className="min-h-screen flex flex-col">
           {/* Sticky header */}
-          <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+          <header
+            className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"
+            role="banner"
+          >
             <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
               <Link href="/" className="flex items-center gap-2 text-lg font-bold text-slate-900">
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white">
@@ -54,19 +132,23 @@ export default function RootLayout({
                 </span>
                 Flylady.cz
               </Link>
-              <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 sm:flex">
-                <Link href="/" className="transition hover:text-slate-900">
+              <nav
+                className="hidden items-center gap-6 text-sm font-medium text-slate-600 sm:flex"
+                role="navigation"
+                aria-label="Hlavní navigace"
+              >
+                <Link href="/" className="transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded">
                   Domů
                 </Link>
-                <Link href="/zazitky" className="transition hover:text-slate-900">
+                <Link href="/zazitky" className="transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded">
                   Zážitky
                 </Link>
-                <Link href="/blog" className="transition hover:text-slate-900">
+                <Link href="/blog" className="transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded">
                   Blog
                 </Link>
                 <Link
                   href="/zazitky"
-                  className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+                  className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 press-effect"
                 >
                   Vybrat zážitek
                 </Link>
@@ -74,15 +156,21 @@ export default function RootLayout({
               {/* Mobile menu button */}
               <Link
                 href="/zazitky"
-                className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white sm:hidden"
+                className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white sm:hidden focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 press-effect"
+                aria-label="Zobrazit zážitky"
               >
                 Zážitky
               </Link>
             </div>
           </header>
-          <div className="mx-auto max-w-6xl px-6 py-10">{children}</div>
+
+          {/* Main content */}
+          <main id="main-content" className="flex-1 mx-auto w-full max-w-6xl px-6 py-10" role="main">
+            {children}
+          </main>
+
           {/* Enhanced footer */}
-          <footer className="border-t border-slate-200 bg-white">
+          <footer className="border-t border-slate-200 bg-white" role="contentinfo">
             <div className="mx-auto max-w-6xl px-6 py-12">
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 {/* Brand */}

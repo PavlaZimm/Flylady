@@ -3,6 +3,27 @@ import Link from "next/link";
 import { ProductSection } from "@/components/ProductSection";
 import { groupProductsByCategory } from "@/lib/categories";
 import { getAviationProducts } from "@/lib/feed";
+import { FAQSchema } from "@/components/StructuredData";
+
+// FAQ data pro structured data a zobrazení
+const FAQ_DATA = [
+  {
+    question: "Jak dlouho platí voucher?",
+    answer: "Všechny vouchery platí 2 roky od zakoupení. Termín lze přeplánovat kdykoliv během platnosti.",
+  },
+  {
+    question: "Mohu změnit typ zážitku?",
+    answer: "Ano, voucher lze vyměnit za jiný zážitek ve stejné nebo vyšší hodnotě (s doplatkem).",
+  },
+  {
+    question: "Co když bude špatné počasí?",
+    answer: "Zážitek se přesune na náhradní termín bez poplatků. Bezpečnost je vždy na prvním místě.",
+  },
+  {
+    question: "Jak rychle dostanu voucher?",
+    answer: "E-mailem ihned po zaplacení. Můžete také zvolit tištěnou verzi v dárkové krabičce.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Letecké zážitky pro Flylady | Dárky, které se nezapomínají",
@@ -16,8 +37,12 @@ export default async function Home() {
   const totalProducts = products.length;
 
   return (
-    <main className="space-y-16">
-      {/* Hero sekce s trust signály */}
+    <>
+      {/* FAQ Structured Data pro SEO */}
+      <FAQSchema faqs={FAQ_DATA} />
+
+      <div className="space-y-16">
+        {/* Hero sekce s trust signály */}
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 px-6 py-16 text-white sm:px-10 lg:px-14">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
         <div className="relative max-w-3xl space-y-5">
@@ -160,36 +185,18 @@ export default async function Home() {
       </section>
 
       {/* FAQ sekce */}
-      <section className="space-y-6">
+      <section className="space-y-6" aria-labelledby="faq-heading">
         <div className="text-center">
-          <h2 className="text-2xl font-semibold text-slate-900">Časté otázky</h2>
+          <h2 id="faq-heading" className="text-2xl font-semibold text-slate-900">Časté otázky</h2>
           <p className="mt-2 text-sm text-slate-600">Vše, co potřebujete vědět před nákupem</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-slate-100 bg-white p-6">
-            <h3 className="font-semibold text-slate-900">Jak dlouho platí voucher?</h3>
-            <p className="mt-2 text-sm text-slate-600">
-              Všechny vouchery platí 2 roky od zakoupení. Termín lze přeplánovat kdykoliv během platnosti.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-100 bg-white p-6">
-            <h3 className="font-semibold text-slate-900">Mohu změnit typ zážitku?</h3>
-            <p className="mt-2 text-sm text-slate-600">
-              Ano, voucher lze vyměnit za jiný zážitek ve stejné nebo vyšší hodnotě (s doplatkem).
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-100 bg-white p-6">
-            <h3 className="font-semibold text-slate-900">Co když bude špatné počasí?</h3>
-            <p className="mt-2 text-sm text-slate-600">
-              Zážitek se přesune na náhradní termín bez poplatků. Bezpečnost je vždy na prvním místě.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-100 bg-white p-6">
-            <h3 className="font-semibold text-slate-900">Jak rychle dostanu voucher?</h3>
-            <p className="mt-2 text-sm text-slate-600">
-              E-mailem ihned po zaplacení. Můžete také zvolit tištěnou verzi v dárkové krabičce.
-            </p>
-          </div>
+          {FAQ_DATA.map((faq, index) => (
+            <div key={index} className="rounded-2xl border border-slate-100 bg-white p-6 hover-lift">
+              <h3 className="font-semibold text-slate-900">{faq.question}</h3>
+              <p className="mt-2 text-sm text-slate-600">{faq.answer}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -201,7 +208,7 @@ export default async function Home() {
         </p>
         <Link
           href="/zazitky"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 press-effect"
         >
           Zobrazit všechny zážitky
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -209,6 +216,7 @@ export default async function Home() {
           </svg>
         </Link>
       </section>
-    </main>
+      </div>
+    </>
   );
 }

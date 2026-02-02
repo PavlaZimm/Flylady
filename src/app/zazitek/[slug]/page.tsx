@@ -7,6 +7,8 @@ import {
   getProductById,
   getProductBySlug,
 } from "@/lib/feed";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ProductSchema } from "@/components/StructuredData";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -73,12 +75,21 @@ export default async function ProductDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="space-y-10">
-      <Link href="/" className="text-sm text-slate-500 hover:text-slate-900">
-        ← Zpět na výběr
-      </Link>
+    <>
+      {/* Structured Data pro SEO */}
+      <ProductSchema product={product} />
 
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="space-y-8">
+        {/* Breadcrumbs navigace */}
+        <Breadcrumbs
+          items={[
+            { name: "Domů", href: "/" },
+            { name: "Zážitky", href: "/zazitky" },
+            { name: product.name, href: `/zazitek/${product.slug}` },
+          ]}
+        />
+
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-6">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-100">
             {product.imageUrls[0] ? (
@@ -221,31 +232,32 @@ export default async function ProductDetailPage({ params }: PageProps) {
         </aside>
       </div>
 
-      {product.variants.length ? (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-slate-900">
-            Dostupné varianty
-          </h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {product.variants.map((variant) => (
-              <div
-                key={variant.id}
-                className="rounded-2xl border border-slate-100 bg-white p-5"
-              >
-                <h3 className="text-sm font-semibold text-slate-900">
-                  {variant.name}
-                </h3>
-                <div className="mt-2 flex items-center justify-between text-sm text-slate-600">
-                  <span>{variant.location ?? "—"}</span>
-                  <span className="font-semibold text-slate-900">
-                    {formatPrice(variant.priceVat)}
-                  </span>
+        {product.variants.length ? (
+          <section className="space-y-4" aria-labelledby="variants-heading">
+            <h2 id="variants-heading" className="text-xl font-semibold text-slate-900">
+              Dostupné varianty
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {product.variants.map((variant) => (
+                <div
+                  key={variant.id}
+                  className="rounded-2xl border border-slate-100 bg-white p-5 hover-lift"
+                >
+                  <h3 className="text-sm font-semibold text-slate-900">
+                    {variant.name}
+                  </h3>
+                  <div className="mt-2 flex items-center justify-between text-sm text-slate-600">
+                    <span>{variant.location ?? "—"}</span>
+                    <span className="font-semibold text-slate-900">
+                      {formatPrice(variant.priceVat)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      ) : null}
-    </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
+      </div>
+    </>
   );
 }
