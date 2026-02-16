@@ -146,6 +146,9 @@ export default function RootLayout({
                 <Link href="/blog" className="transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded">
                   Blog
                 </Link>
+                <Link href="/ebook" className="transition text-orange-600 hover:text-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded font-semibold">
+                  E-book zdarma
+                </Link>
                 <Link
                   href="/zazitky"
                   className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 press-effect"
@@ -205,6 +208,7 @@ export default function RootLayout({
                   <ul className="space-y-2 text-sm text-slate-600">
                     <li><Link href="/zazitky" className="hover:text-slate-900">Všechny zážitky</Link></li>
                     <li><Link href="/blog" className="hover:text-slate-900">Blog</Link></li>
+                    <li><Link href="/ebook" className="font-semibold text-orange-600 hover:text-orange-700">E-book zdarma</Link></li>
                   </ul>
                 </div>
 
