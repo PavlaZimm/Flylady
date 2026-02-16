@@ -184,6 +184,31 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* E-book Lead Magnet Banner */}
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 px-6 py-10 text-white sm:px-10">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzR2LTJIMjR2MmgxMnpNMzYgMjR2LTJIMjR2MmgxMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />
+        <div className="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+          <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20">
+            <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+              <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+            </svg>
+          </div>
+          <div className="flex-1">
+            <h2 className="text-xl font-bold sm:text-2xl">E-book zdarma: 5 míst v ČR z ptačí perspektivy</h2>
+            <p className="mt-1 text-white/90">
+              Stáhněte si průvodce nejkrásnějšími místy pro vyhlídkové lety. Praha, Český Krumlov, České Švýcarsko a další.
+            </p>
+          </div>
+          <Link
+            href="/ebook"
+            className="flex-shrink-0 rounded-full bg-white px-6 py-3 text-sm font-semibold text-orange-600 shadow-lg transition hover:bg-orange-50 press-effect"
+          >
+            Stáhnout zdarma
+          </Link>
+        </div>
+      </section>
+
       {/* FAQ sekce */}
       <section className="space-y-6" aria-labelledby="faq-heading">
         <div className="text-center">
