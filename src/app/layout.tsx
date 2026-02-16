@@ -256,6 +256,25 @@ export default function RootLayout({
                   </span>
                 </div>
               </div>
+
+              {/* Vytvořeno */}
+              <div className="mt-6 text-center text-xs text-slate-400">
+                <p>
+                  Vytvořila s{" "}
+                  <span className="inline-block animate-pulse text-red-400">&#10084;</span>
+                  {" "}a nepočítaně šálky kávy{" "}
+                  <span className="inline-block">&#9749;</span>
+                  {" "}
+                  <a
+                    href="https://linklady.cz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-slate-500 underline decoration-dotted underline-offset-2 transition hover:text-slate-700"
+                  >
+                    LinkLady.cz
+                  </a>
+                </p>
+              </div>
             </div>
           </footer>
         </div>
