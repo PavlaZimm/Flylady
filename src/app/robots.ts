@@ -14,7 +14,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/"],
       },
     ],
-    sitemap: "https://flylady.cz/sitemap.xml",
-    host: "https://flylady.cz",
+    sitemap: "https://www.flylady.cz/sitemap.xml",
+    host: "https://www.flylady.cz",
   };
 }

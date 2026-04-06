@@ -1,6 +1,6 @@
 import type { Product } from "@/lib/feed";
 
-const SITE_URL = "https://flylady.cz";
+const SITE_URL = "https://www.flylady.cz";
 
 type OrganizationSchemaProps = {
   name?: string;
