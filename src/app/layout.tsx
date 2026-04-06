@@ -86,8 +86,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Přidat po registraci v Google Search Console
-    // google: "verification_token",
+    google: "bEvBH9pJXtUqHEocWVnB_dF0h05vqtZka8cpYTx3q3I",
   },
 };
 
