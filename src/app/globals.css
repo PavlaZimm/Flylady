@@ -358,8 +358,53 @@ a:not([class]) {
 }
 
 /* Button press effect */
+.press-effect {
+  transition: transform 0.1s ease;
+}
+
 .press-effect:active {
   transform: scale(0.98);
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 640px) {
+  button,
+  [role="button"],
+  a[href] {
+    min-height: 44px;
+  }
+
+  input,
+  select,
+  textarea {
+    min-height: 48px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Smooth page transitions */
+.page-transition {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Link hover underline animation */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
 }
 
 /* Card shine effect on hover */

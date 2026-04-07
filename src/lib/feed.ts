@@ -150,10 +150,24 @@ const isAviationExperience = (categories: string[]) =>
     normalizeText(category).includes("letecke zazitky")
   );
 
+const fetchWithRetry = async (url: string, retries = 3): Promise<Response> => {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url, {
+        next: { revalidate: 60 * 60 },
+      });
+      if (response.ok) return response;
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      // Wait before retry (exponential backoff)
+      await new Promise((resolve) => setTimeout(resolve, 1000 * (i + 1)));
+    }
+  }
+  throw new Error("Nepodařilo se načíst XML feed po několika pokusech.");
+};
+
 const parseFeed = async (): Promise<Product[]> => {
-  const response = await fetch(FEED_URL, {
-    next: { revalidate: 60 * 60 },
-  });
+  const response = await fetchWithRetry(FEED_URL);
   if (!response.ok) {
     throw new Error("Nepodařilo se načíst XML feed.");
   }

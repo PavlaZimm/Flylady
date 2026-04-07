@@ -126,8 +126,8 @@ export default function RootLayout({
             <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
               <Link href="/" className="flex items-center gap-2 text-lg font-bold text-slate-900">
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 3l14 9-14 9V3z" />
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
                   </svg>
                 </span>
                 Flylady.cz
@@ -174,8 +174,8 @@ export default function RootLayout({
                 <div className="space-y-4">
                   <Link href="/" className="flex items-center gap-2 text-lg font-bold text-slate-900">
                     <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white">
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3l14 9-14 9V3z" />
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
                       </svg>
                     </span>
                     Flylady.cz
