@@ -60,7 +60,7 @@ export default async function CategoryPage({ params }: PageProps) {
   }
 
   const products = await getAviationProducts();
-  const { groups, remaining } = groupProductsByCategory(products);
+  const { groups } = groupProductsByCategory(products);
   const group = groups.find((item) => item.slug === slug);
   const items = group?.products ?? [];
 

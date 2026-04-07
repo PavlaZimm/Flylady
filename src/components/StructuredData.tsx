@@ -89,7 +89,7 @@ export const ProductSchema = ({ product }: ProductSchemaProps) => {
         "@type": "Organization",
         name: "Zážitky.cz",
       },
-      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+      priceValidUntil: "2027-12-31",
     },
     aggregateRating: {
       "@type": "AggregateRating",
