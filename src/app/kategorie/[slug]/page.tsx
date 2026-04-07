@@ -8,6 +8,7 @@ import {
   groupProductsByCategory,
 } from "@/lib/categories";
 import { getAviationProducts } from "@/lib/feed";
+import { getAllPosts } from "@/lib/blog";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -65,6 +66,10 @@ export default async function CategoryPage({ params }: PageProps) {
 
   // Ostatní kategorie pro cross-sell
   const otherCategories = CATEGORY_CONFIG.filter((c) => c.slug !== slug).slice(0, 4);
+
+  // Blog posts pro interní prolinkování
+  const blogPosts = await getAllPosts();
+  const recentPosts = blogPosts.slice(0, 3);
 
   return (
     <div className="space-y-10">
@@ -128,6 +133,37 @@ export default async function CategoryPage({ params }: PageProps) {
           ))}
         </div>
       </section>
+
+      {/* Blog - interní prolinkování */}
+      {recentPosts.length > 0 && (
+        <section className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold text-slate-900">Z našeho blogu</h2>
+            <Link href="/blog" className="text-sm font-medium text-slate-600 hover:text-slate-900">
+              Všechny články &rarr;
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {recentPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group rounded-2xl border border-slate-100 bg-white p-5 transition hover:border-slate-200 hover:shadow-md"
+              >
+                <p className="text-xs text-slate-500">{post.date}</p>
+                <h3 className="mt-2 font-semibold text-slate-900 group-hover:text-slate-700 line-clamp-2">
+                  {post.title}
+                </h3>
+                {post.description && (
+                  <p className="mt-2 text-sm text-slate-600 line-clamp-2">
+                    {post.description}
+                  </p>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* E-book CTA */}
       <section className="rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 p-6 text-center sm:p-8">

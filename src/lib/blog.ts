@@ -36,7 +36,11 @@ export const getAllPosts = async (): Promise<BlogPost[]> => {
         const { data, content } = matter(fileContents);
         const frontmatter = data as BlogFrontmatter;
         const processed = await remark().use(html).process(content);
-        const contentHtml = processed.toString();
+        // Wrap tables in responsive wrapper for mobile
+        const contentHtml = processed
+          .toString()
+          .replace(/<table>/g, '<div class="table-wrapper"><table>')
+          .replace(/<\/table>/g, '</table></div>');
 
         return {
           slug,
