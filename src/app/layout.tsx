@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://flylady.cz";
+const siteUrl = "https://www.flylady.cz";
 
 // Viewport konfigurace pro mobile optimalizaci
 export const viewport: Viewport = {

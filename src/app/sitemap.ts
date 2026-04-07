@@ -3,7 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { CATEGORY_CONFIG } from "@/lib/categories";
 import { getAviationProducts } from "@/lib/feed";
 
-const siteUrl = "https://flylady.cz";
+const siteUrl = "https://www.flylady.cz";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getAviationProducts();
