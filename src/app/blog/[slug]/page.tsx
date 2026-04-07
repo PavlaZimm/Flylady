@@ -41,6 +41,8 @@ export const generateMetadata = async ({
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  const allPosts = await getAllPosts();
+  const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
   if (!post) {
     return (
@@ -114,7 +116,52 @@ export default async function BlogPostPage({ params }: PageProps) {
             </svg>
           </Link>
         </div>
+
+        {/* Kategorie */}
+        <div className="rounded-2xl border border-slate-100 bg-white p-6 sm:p-8">
+          <h2 className="font-semibold text-slate-900">Prozkoumejte kategorie</h2>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link href="/kategorie/vyhlidkove-lety" className="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700 hover:bg-slate-200 transition">
+              Vyhlídkové lety
+            </Link>
+            <Link href="/kategorie/tandemove-seskoky" className="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700 hover:bg-slate-200 transition">
+              Tandemové seskoky
+            </Link>
+            <Link href="/kategorie/letecke-simulatory" className="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700 hover:bg-slate-200 transition">
+              Letecké simulátory
+            </Link>
+            <Link href="/kategorie/let-vrtulnikem" className="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700 hover:bg-slate-200 transition">
+              Let vrtulníkem
+            </Link>
+          </div>
+        </div>
       </div>
+
+      {/* Související články */}
+      {relatedPosts.length > 0 && (
+        <section className="border-t border-slate-100 pt-8">
+          <h2 className="text-xl font-semibold text-slate-900">Další články</h2>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedPosts.map((relatedPost) => (
+              <Link
+                key={relatedPost.slug}
+                href={`/blog/${relatedPost.slug}`}
+                className="group rounded-2xl border border-slate-100 bg-white p-5 transition hover:border-slate-200 hover:shadow-lg"
+              >
+                <p className="text-xs text-slate-500">{relatedPost.date}</p>
+                <h3 className="mt-2 font-semibold text-slate-900 group-hover:text-slate-700">
+                  {relatedPost.title}
+                </h3>
+                {relatedPost.description && (
+                  <p className="mt-2 text-sm text-slate-600 line-clamp-2">
+                    {relatedPost.description}
+                  </p>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   );
 }

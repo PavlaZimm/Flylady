@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import { OrganizationSchema, WebsiteSchema } from "@/components/StructuredData";
+import MobileNav from "@/components/MobileNav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -155,14 +156,8 @@ export default function RootLayout({
                   Vybrat zážitek
                 </Link>
               </nav>
-              {/* Mobile menu button */}
-              <Link
-                href="/zazitky"
-                className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white sm:hidden focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 press-effect"
-                aria-label="Zobrazit zážitky"
-              >
-                Zážitky
-              </Link>
+              {/* Mobile menu */}
+              <MobileNav />
             </div>
           </header>
 
