@@ -44,6 +44,9 @@ export const generateMetadata = async ({
   return {
     title: product.name,
     description: product.description.slice(0, 160),
+    alternates: {
+      canonical: `/zazitek/${slug}`,
+    },
     openGraph: {
       title: product.name,
       description: product.description.slice(0, 160),
