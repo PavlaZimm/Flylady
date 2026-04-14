@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "E-book zdarma: 5 míst v ČR z ptačí perspektivy",
   description:
     "Stáhněte si zdarma e-book s 5 nejkrásnějšími místy v České republice, která musíte vidět z výšky. Praha, Český Krumlov, České Švýcarsko a další.",
+  alternates: {
+    canonical: "/ebook",
+  },
 };
 
 export default function EbookPage() {

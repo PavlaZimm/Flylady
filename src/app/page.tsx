@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   title: "Letecké zážitky pro Flylady | Dárky, které se nezapomínají",
   description:
     "Darujte nezapomenutelný letecký zážitek. Vyhlídkové lety, tandemové seskoky, simulátory a další. Ověřené zážitky s garancí spokojenosti.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default async function Home() {

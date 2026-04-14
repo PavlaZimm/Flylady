@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Všechny letecké zážitky | Flylady.cz",
   description:
     "Kompletní výběr leteckých zážitků, vyhlídkových letů a leteckých dobrodružství. Více než 50+ ověřených zážitků s garancí spokojenosti.",
+  alternates: {
+    canonical: "/zazitky",
+  },
 };
 
 export default async function AllExperiencesPage() {

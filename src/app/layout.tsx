@@ -50,9 +50,6 @@ export const metadata: Metadata = {
   creator: "Flylady.cz",
   publisher: "Flylady.cz",
   metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "cs_CZ",
