@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import { OrganizationSchema, WebsiteSchema } from "@/components/StructuredData";
 import MobileNav from "@/components/MobileNav";
+import CookieConsent from "@/components/CookieConsent";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -268,6 +270,10 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+        {/* GA se načítá uvnitř CookieConsent až po souhlasu (GDPR) */}
+        <CookieConsent />
+        {/* Vercel Web Analytics: bez cookies, souhlas nepotřebuje */}
+        <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
       </body>
     </html>
   );
