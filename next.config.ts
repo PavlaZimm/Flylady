@@ -38,7 +38,7 @@ const securityHeaders = [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: https://alis.zazitky.cz https://www.zazitky.cz https://www.google-analytics.com https://www.googletagmanager.com",
+      "img-src 'self' data: https://alis.zazitky.cz https://www.zazitky.cz https://img.zazitky.cz https://www.google-analytics.com https://www.googletagmanager.com",
       "font-src 'self' data:",
       "connect-src 'self' https://alis.zazitky.cz https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
       "frame-ancestors 'self'",
@@ -56,6 +56,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "www.zazitky.cz",
+      },
+      {
+        protocol: "https",
+        hostname: "img.zazitky.cz",
       },
     ],
   },
