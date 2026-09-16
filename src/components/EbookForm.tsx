@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export const EbookForm = () => {
@@ -39,12 +40,12 @@ export const EbookForm = () => {
           <br />
           Zkontrolujte i spam složku.
         </p>
-        <a
+        <Link
           href="/zazitky"
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800"
         >
           Prohlédnout zážitky
-        </a>
+        </Link>
       </div>
     );
   }

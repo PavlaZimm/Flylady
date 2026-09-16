@@ -1,107 +1,182 @@
 import type { Product } from "@/lib/feed";
 
-export type CategoryConfig = {
-  slug: string;
-  title: string;
-  description: string;
-  seoText: string;
-  keywords: string[];
-};
+export type CategoryConfig = { slug: string; title: string; description: string; seoText: string; keywords: string[]; exclude: string[]; checklist: string[] };
 
-const normalizeText = (value: string) =>
-  value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-
-const matchKeywords = (text: string, keywords: string[]) =>
-  keywords.some((keyword) =>
-    normalizeText(text).includes(normalizeText(keyword))
-  );
+const normalizeText = (value: string) => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 export const CATEGORY_CONFIG: CategoryConfig[] = [
   {
-    slug: "letecke-simulatory",
-    title: "Letecké simulátory",
-    description: "Skvělý start pro budoucí piloty i fanoušky letectví.",
-    seoText:
-      "Letecké simulátory v Praze, Brně a dalších městech ČR jsou ideální volbou pro všechny, kdo si chtějí vyzkoušet pilotáž bez toho, aby opustili zem. Najdete tu moderní simulátory dopravních letadel Boeing 737 i vojenských strojů, realistické kokpity a zkušené instruktory. V Praze vás čeká simulátor v centru města, v Brně pak profesionální kokpit s pohyblivou plošinou. Skvělé jako dárek pro fanoušky letectví nebo netradiční zážitek na víkend.",
-    keywords: ["simulator", "simulátor", "simulator letu", "simulátor letu"],
+    "slug": "letecke-simulatory",
+    "title": "Letecký simulátor",
+    "description": "Vyzkoušejte letecký simulátor: porovnejte kokpity dopravních letadel a stíhaček, délku zážitku a ceny jednotlivých variant.",
+    "keywords": [
+      "simulator"
+    ],
+    "exclude": [],
+    "seoText": "Chcete si zkusit ovládání letadla a zůstat na zemi? Při výběru simulátoru sledujte typ kokpitu, délku vlastního pilotování a přítomnost instruktora. Rozlišujte mezi virtuální realitou, pevným kokpitem a pohyblivým simulátorem. Označení stroje samo o sobě neříká, jaký pohyb nebo výhled zařízení nabízí.",
+    "checklist": [
+      "Je cena za osobu, nebo za celý kokpit?",
+      "Kolik minut skutečně strávíte u řízení?",
+      "Je možné vzít doprovod a jaké jsou podmínky pro děti?"
+    ]
   },
   {
-    slug: "vyhlidkove-lety",
-    title: "Vyhlídkové lety",
-    description: "Krásné výhledy a klidný let nad českou krajinou.",
-    seoText:
-      "Vyhlídkové lety patří mezi nejoblíbenější letecké zážitky v České republice. Užijte si panoramata Prahy s Pražským hradem a Vltavou, romantické meandry u Českého Krumlova, gotický hrad Karlštejn z ptačí perspektivy nebo majestátní scenérie Krkonoš. Často si můžete vybrat délku i trasu letu. Jsou skvělým dárkem pro páry i rodiny a díky klidnému tempu jsou vhodné i pro úplné začátečníky.",
-    keywords: ["vyhlidkov", "vyhlídkov", "panorama", "scenic"],
+    "slug": "vyhlidkove-lety",
+    "title": "Vyhlídkové lety",
+    "description": "Vyhlídkové lety pro jednotlivce i páry. Porovnejte nabídky podle místa odletu, délky letu, počtu osob a ceny.",
+    "keywords": [
+      "vyhlidkov",
+      "romanticky let letadlem",
+      "let vetronem"
+    ],
+    "exclude": [
+      "simulator"
+    ],
+    "seoText": "U vyhlídkového letu rozhoduje letiště odletu a trasa, nikoli jen název nejbližšího města. Porovnejte délku pobytu ve vzduchu, počet cestujících a to, zda kupujete místo ve sdíleném letu, nebo celý let. Pro dárek si ověřte také možnost změnit termín a platnost poukazu.",
+    "checklist": [
+      "Odkud se skutečně odlétá a jak se na místo dostanete?",
+      "Platí uvedená cena pro jednoho, nebo pro všechny cestující?",
+      "Co se stane, když let neumožní počasí?"
+    ]
   },
   {
-    slug: "let-stihackou",
-    title: "Let stíhačkou",
-    description: "Adrenalinový zážitek pro ty, kdo chtějí výš a rychleji.",
-    seoText:
-      "Let stíhačkou je zážitek pro milovníky adrenalinu. Na letištích v okolí Hradce Králové, Kunovicích nebo u Prahy vás čeká dynamická akrobacie v legendárním L-39 Albatros, vysoké přetížení i rychlosti, které v běžném letadle nezažijete. Pokud hledáte dárek pro někoho, kdo má rád výzvy, stíhačka bude trefa do černého.",
-    keywords: ["stihack", "stíhačk", "fighter", "mig", "l-39", "albatros"],
+    "slug": "let-balonem",
+    "title": "Let balónem",
+    "description": "Let balónem pro jednoho, pro dva i soukromou skupinu. Porovnejte ceny a varianty a zjistěte, co ověřit před nákupem poukazu.",
+    "keywords": [
+      "balon"
+    ],
+    "exclude": [
+      "seskok",
+      "vzducholod",
+      "simulator"
+    ],
+    "seoText": "Sdílený let balónem a privátní let jsou dvě odlišné nabídky. U sdíleného letu kupujete místo v koši; u soukromého si ověřte počet osob zahrnutých v ceně. Místo startu, podmínky rezervace a dopravu po přistání kontrolujte v konkrétní variantě. Nespoléhejte na to, že balón poletí nad přesně vybranou památkou.",
+    "checklist": [
+      "Kolik cestujících bude v koši a je let privátní?",
+      "Je zahrnutý návrat z místa přistání?",
+      "Jak se domlouvá náhradní termín?"
+    ]
   },
   {
-    slug: "vetrny-tunel",
-    title: "Větrný tunel",
-    description: "Pocit volného pádu v bezpečí, vhodné i pro začátečníky.",
-    seoText:
-      "Větrný tunel v Praze (Hurricane Factory Letňany) nebo v Brně vám dá pocit volného pádu bez nutnosti skákat z letadla. Je ideální pro první seznámení s létáním, trénink stability a zábavu s přáteli. Skvělé i pro děti od 5 let a ty, kteří chtějí bezpečně zkusit, jaké je létat ve vzduchu. Profesionální instruktoři vás provedou celým zážitkem.",
-    keywords: ["veterny tunel", "větrný tunel", "wind tunnel"],
+    "slug": "pilotem-na-zkousku",
+    "title": "Pilotem na zkoušku",
+    "description": "Pilotem na zkoušku v letadle nebo vrtulníku: porovnejte délku pilotování, letiště, varianty a ceny zážitků s instruktorem.",
+    "keywords": [
+      "pilotem",
+      "pilotovani",
+      "pilotaz"
+    ],
+    "exclude": [
+      "simulator"
+    ],
+    "seoText": "U nabídky pilotem na zkoušku si rozlište celkovou délku programu od času u řízení. Do programu může patřit pozemní příprava i let s instruktorem. Zážitek vybírejte podle typu stroje, letiště a popisu toho, co si skutečně vyzkoušíte. Zážitkový poukaz sám o sobě není pilotní průkaz.",
+    "checklist": [
+      "Kolik času je vyhrazeno přípravě a kolik samotnému letu?",
+      "Co budete smět ovládat pod vedením instruktora?",
+      "Je v ceně doprovod, nebo pouze jeden účastník?"
+    ]
   },
   {
-    slug: "tandemove-seskoky",
-    title: "Tandemové seskoky",
-    description: "Skok padákem s instruktorem a porce pravého adrenalinu.",
-    seoText:
-      "Tandemové seskoky na letištích Most, Příbram, Prostějov nebo České Budějovice jsou nejrychlejší cestou k nezapomenutelnému zážitku. Vystoupáte do výšky 3 000–4 000 metrů a po volném pádu rychlostí přes 200 km/h se budete kochat výhledem na českou krajinu pod padákem. Instruktor se postará o vše důležité. Pokud chcete překvapit někoho opravdu silným zážitkem, tandemový seskok je sázka na jistotu.",
-    keywords: ["tandem", "seskok", "skok", "padak", "padák"],
+    "slug": "let-stihackou",
+    "title": "Let stíhačkou",
+    "description": "Let stíhačkou: porovnejte skutečné lety, typ letounu, délku programu a ceny. Podívejte se, co zkontrolovat před rezervací.",
+    "keywords": [
+      "stihack",
+      "stihaci",
+      "l-39",
+      "l-29"
+    ],
+    "exclude": [
+      "simulator"
+    ],
+    "seoText": "Skutečný let proudovým letounem se výrazně liší od simulátoru stíhačky. Při porovnání sledujte přesný typ stroje, místo konání, čas ve vzduchu a obsah předletové přípravy. Akrobatické prvky ani konkrétní přetížení nepovažujte za automatickou součást každé varianty; rozhoduje popis provozovatele.",
+    "checklist": [
+      "Jde o skutečný let, nebo o simulátor?",
+      "Jaká příprava a vybavení jsou zahrnuté?",
+      "Jaké podmínky účasti stanovuje provozovatel?"
+    ]
   },
   {
-    slug: "let-vrtulnikem",
-    title: "Let vrtulníkem",
-    description: "Pohled shora, který z letadla nezažijete.",
-    seoText:
-      "Let vrtulníkem nad Prahou, Českým Švýcarskem nebo Krkonošemi nabídne úplně jinou perspektivu než letadlo. Díky možnosti visení a nižším letovým výškám si vychutnáte detaily Pražského hradu, Pravčické brány nebo údolí Labe. Skvělá volba pro romantické lety nad zámky jižní Moravy nebo netradiční dárky k výročí.",
-    keywords: ["vrtulnik", "vrtulník", "helikopt", "helikoptera"],
+    "slug": "vetrny-tunel",
+    "title": "Větrný tunel",
+    "description": "Větrný tunel pro jednotlivce, dvojice i rodiny. Porovnejte délku létání, rozdělení času mezi účastníky a ceny variant.",
+    "keywords": [
+      "vetrny tunel",
+      "veterny tunel"
+    ],
+    "exclude": [],
+    "seoText": "Ve větrném tunelu porovnávejte především čistý čas létání na osobu. Rodinný balíček může uvádět součet minut rozdělených mezi více účastníků. Před koupí zkontrolujte instruktorovu asistenci, zapůjčení vybavení a podmínky pro děti. Záznam nebo fotografie mohou být samostatným příplatkem.",
+    "checklist": [
+      "Je počet minut uvedený na osobu, nebo za celý balíček?",
+      "Obsahuje cena instruktora a vybavení?",
+      "Jsou fotografie a video zahrnuté v ceně?"
+    ]
   },
   {
-    slug: "let-vzducholodi",
-    title: "Let vzducholodí",
-    description: "Elegantní zážitek s nejpomalejším výhledem na svět.",
-    seoText:
-      "Let vzducholodí je pomalý, tichý a neskutečně fotogenický. Vznášejte se nad českou krajinou a vychutnávejte si výhledy, které žádné jiné letadlo nenabídne. Pokud hledáte klidný zážitek s výhledem, který si chcete vychutnat bez spěchu, vzducholoď je ideální. Skvělá volba pro páry i milovníky netradičních letů.",
-    keywords: ["vzducholod", "vzducholoď", "airship"],
+    "slug": "tandemove-seskoky",
+    "title": "Tandemový seskok",
+    "description": "Tandemový seskok padákem: porovnejte místa, varianty, ceny a možnosti záznamu. Zjistěte, co ověřit před koupí poukazu.",
+    "keywords": [
+      "tandemovy seskok",
+      "tandemove seskoky"
+    ],
+    "exclude": [
+      "simulator",
+      "paragliding"
+    ],
+    "seoText": "Při výběru tandemového seskoku srovnávejte stejný obsah balíčku. Rozdíl v ceně může tvořit výška výskoku, místo konání nebo video a fotografie. Tandemový seskok, samostatný parašutistický výcvik a tandemový paragliding jsou různé zážitky. Před nákupem ověřte podmínky účasti a rezervace přímo u pořadatele.",
+    "checklist": [
+      "Je video součástí ceny, nebo se připlácí?",
+      "Jaké jsou podmínky účasti a případné příplatky?",
+      "Jak se řeší přesun termínu při nevhodném počasí?"
+    ]
   },
+  {
+    "slug": "let-vrtulnikem",
+    "title": "Let vrtulníkem",
+    "description": "Let vrtulníkem a vyhlídkové lety vrtulníkem: porovnejte místo odletu, délku, kapacitu a cenu konkrétních variant.",
+    "keywords": [
+      "vrtulnik",
+      "helikopt"
+    ],
+    "exclude": [
+      "virnik",
+      "simulator"
+    ],
+    "seoText": "U letu vrtulníkem rozlišujte vyhlídkový let a zážitek s možností pilotování. Podívejte se, zda nabídka platí pro jednoho cestujícího, dvojici nebo celý stroj. Místo odletu a délka letu jsou pro porovnání užitečnější než samotný název balíčku. Trasu a průběh letu si potvrďte při rezervaci.",
+    "checklist": [
+      "Kupujete jedno sedadlo, nebo celý let?",
+      "Kde se nachází místo odletu?",
+      "Je součástí pouze vyhlídka, nebo také pilotování?"
+    ]
+  },
+  {
+    "slug": "let-vzducholodi",
+    "title": "Let vzducholodí",
+    "description": "Prohlédněte si nabídku letu vzducholodí a před nákupem ověřte místo konání, délku letu a podmínky rezervace.",
+    "keywords": [
+      "vzducholod"
+    ],
+    "exclude": [],
+    "seoText": "Let vzducholodí vybírejte s ohledem na místo konání a dostupné termíny. U nabídky v zahraničí počítejte zvlášť s cestou a případným ubytováním, pokud nejsou výslovně uvedené v balíčku. Ověřte také jazyk instruktáže a pravidla při změně termínu.",
+    "checklist": [
+      "Kde zážitek probíhá a co zahrnuje cena?",
+      "V jakém jazyce probíhá instruktáž?",
+      "Jak dlouho poukaz platí a kdy lze rezervovat termín?"
+    ]
+  }
 ];
 
+// Use names and catalogue categories, not promotional descriptions mentioning other experiences.
+export function matchesCategory(product: Product, category: CategoryConfig) {
+  const text = normalizeText(`${product.name} ${product.categories.join(" ")}`);
+  return category.keywords.some((word) => text.includes(word)) && !category.exclude.some((word) => text.includes(word));
+}
+
 export const groupProductsByCategory = (products: Product[]) => {
-  const assigned = new Set<string>();
-
-  const groups = CATEGORY_CONFIG.map((category) => {
-    const matched = products.filter((product) => {
-      if (assigned.has(product.id)) return false;
-      const text = `${product.name} ${product.description} ${product.categories.join(
-        " "
-      )}`;
-      const isMatch = matchKeywords(text, category.keywords);
-      if (isMatch) assigned.add(product.id);
-      return isMatch;
-    });
-
-    return {
-      ...category,
-      products: matched,
-    };
-  });
-
-  const remaining = products.filter((product) => !assigned.has(product.id));
-
-  return { groups, remaining };
+  const groups = CATEGORY_CONFIG.map((category) => ({ ...category, products: products.filter((product) => matchesCategory(product, category)) }));
+  const assigned = new Set(groups.flatMap((group) => group.products.map((product) => product.id)));
+  return { groups, remaining: products.filter((product) => !assigned.has(product.id)) };
 };
-
-export const getCategoryBySlug = (slug: string) =>
-  CATEGORY_CONFIG.find((category) => category.slug === slug) ?? null;
+export const getCategoryBySlug = (slug: string) => CATEGORY_CONFIG.find((category) => category.slug === slug) ?? null;

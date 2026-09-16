@@ -1,16 +1,10 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
-export const metadata: Metadata = {
-  title: "Blog o létání | Tipy, recenze a inspirace",
-  description:
-    "Tipy na letecké zážitky, recenze vyhlídkových letů, rady pro první let a inspirace pro dárky. Vše od Flylady.",
-  alternates: {
-    canonical: "/blog",
-  },
-};
+export const revalidate = 3600;
+export const metadata = pageMetadata("Průvodce výběrem leteckých zážitků", "Praktické rady pro výběr leteckého zážitku jako dárku a co ověřit před koupí.", "/blog");
 
 export default async function BlogPage() {
   const posts = await getAllPosts();

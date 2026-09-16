@@ -3,6 +3,7 @@ import Link from "next/link";
 import { EbookForm } from "@/components/EbookForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/ebook" },
   title: "E-book zdarma: 5 míst v ČR z ptačí perspektivy",
   description:
     "Stáhněte si zdarma e-book s 5 nejkrásnějšími místy v České republice, která musíte vidět z výšky. Praha, Český Krumlov, České Švýcarsko a další.",

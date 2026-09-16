@@ -121,7 +121,7 @@ export default function MobileNav() {
             </li>
             <li>
               <Link
-                href="/kategorie/vyhlidkove-lety"
+                href="/vyhlidkove-lety"
                 onClick={closeMenu}
                 className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
               >
@@ -131,7 +131,7 @@ export default function MobileNav() {
             </li>
             <li>
               <Link
-                href="/kategorie/tandemove-seskoky"
+                href="/tandemove-seskoky"
                 onClick={closeMenu}
                 className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
               >
@@ -141,7 +141,7 @@ export default function MobileNav() {
             </li>
             <li>
               <Link
-                href="/kategorie/letecke-simulatory"
+                href="/letecke-simulatory"
                 onClick={closeMenu}
                 className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
               >
@@ -151,7 +151,7 @@ export default function MobileNav() {
             </li>
             <li>
               <Link
-                href="/kategorie/let-vrtulnikem"
+                href="/let-vrtulnikem"
                 onClick={closeMenu}
                 className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
               >

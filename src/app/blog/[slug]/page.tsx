@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { pageMetadata, absoluteUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/Breadcrumbs";
+export const revalidate = 3600;
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
@@ -47,24 +51,10 @@ export const generateMetadata = async ({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
-  if (!post) {
-    return { title: "Článek nenalezen" };
-  }
+  if (!post) notFound();
+  const metadata = pageMetadata(post.title, post.description, `/blog/${post.slug}`, post.coverImage);
+  return { ...metadata, openGraph: { ...metadata.openGraph, type: "article", ...(post.date ? { publishedTime: post.date } : {}) } };
 
-  return {
-    title: post.title,
-    description: post.description,
-    alternates: {
-      canonical: `/blog/${slug}`,
-    },
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      publishedTime: post.date,
-      images: post.coverImage ? [post.coverImage] : undefined,
-    },
-  };
 };
 
 const formatPrice = (value: number | null) => {
@@ -79,6 +69,7 @@ const formatPrice = (value: number | null) => {
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  if (!post) notFound();
   const allPosts = await getAllPosts();
   const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
@@ -90,23 +81,10 @@ export default async function BlogPostPage({ params }: PageProps) {
   const relevantProducts = relevantGroup?.products.slice(0, 3) ?? [];
   const relevantCategory = CATEGORY_CONFIG.find((c) => c.slug === relevantCategorySlug);
 
-  if (!post) {
-    return (
-      <div className="rounded-3xl border border-dashed border-slate-200 bg-white p-10 text-center">
-        <h1 className="text-2xl font-semibold">Článek nenalezen</h1>
-        <p className="mt-2 text-sm text-slate-600">Tento článek neexistuje nebo byl odstraněn.</p>
-        <Link
-          href="/blog"
-          className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white"
-        >
-          Zpět na blog
-        </Link>
-      </div>
-    );
-  }
 
   return (
     <article className="space-y-8">
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.description, mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`), inLanguage: "cs", ...(post.date ? { datePublished: post.date } : {}) }} />
       <Breadcrumbs
         items={[
           { name: "Domů", href: "/" },
@@ -141,7 +119,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </p>
             </div>
             <Link
-              href={`/kategorie/${relevantCategorySlug}`}
+              href={`/${relevantCategorySlug}`}
               className="text-sm font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-1"
             >
               Zobrazit vše
@@ -218,16 +196,16 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="rounded-2xl border border-slate-100 bg-white p-6 sm:p-8">
           <h2 className="font-semibold text-slate-900">Prozkoumejte další kategorie</h2>
           <div className="mt-4 flex flex-wrap gap-2">
-            <Link href="/kategorie/vyhlidkove-lety" className="rounded-full bg-green-50 text-green-700 px-4 py-2 text-sm font-medium hover:bg-green-100 transition">
+            <Link href="/vyhlidkove-lety" className="rounded-full bg-green-50 text-green-700 px-4 py-2 text-sm font-medium hover:bg-green-100 transition">
               Vyhlídkové lety
             </Link>
-            <Link href="/kategorie/tandemove-seskoky" className="rounded-full bg-red-50 text-red-700 px-4 py-2 text-sm font-medium hover:bg-red-100 transition">
+            <Link href="/tandemove-seskoky" className="rounded-full bg-red-50 text-red-700 px-4 py-2 text-sm font-medium hover:bg-red-100 transition">
               Tandemové seskoky
             </Link>
-            <Link href="/kategorie/letecke-simulatory" className="rounded-full bg-blue-50 text-blue-700 px-4 py-2 text-sm font-medium hover:bg-blue-100 transition">
+            <Link href="/letecke-simulatory" className="rounded-full bg-blue-50 text-blue-700 px-4 py-2 text-sm font-medium hover:bg-blue-100 transition">
               Letecké simulátory
             </Link>
-            <Link href="/kategorie/let-vrtulnikem" className="rounded-full bg-amber-50 text-amber-700 px-4 py-2 text-sm font-medium hover:bg-amber-100 transition">
+            <Link href="/let-vrtulnikem" className="rounded-full bg-amber-50 text-amber-700 px-4 py-2 text-sm font-medium hover:bg-amber-100 transition">
               Let vrtulníkem
             </Link>
           </div>

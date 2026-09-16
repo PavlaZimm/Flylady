@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ProductGrid } from "@/components/ProductGrid";
 import { getAviationProducts } from "@/lib/feed";
 
-export const metadata: Metadata = {
-  title: "Všechny letecké zážitky | Flylady.cz",
-  description:
-    "Kompletní výběr leteckých zážitků, vyhlídkových letů a leteckých dobrodružství. Více než 50+ ověřených zážitků s garancí spokojenosti.",
-};
+export const revalidate = 3600;
+export const metadata = pageMetadata("Katalog leteckých zážitků: nabídky a ceny", "Projděte nabídky letů, seskoků a simulátorů ze Zážitky.cz. Porovnejte ceny a varianty.", "/zazitky");
 
 export default async function AllExperiencesPage() {
   const products = await getAviationProducts();

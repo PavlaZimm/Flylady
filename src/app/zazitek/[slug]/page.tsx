@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
+import { CATEGORY_CONFIG, matchesCategory } from "@/lib/categories";
+export const revalidate = 3600;
 import Image from "next/image";
 import Link from "next/link";
 import {
   getAviationProducts,
-  getIdFromSlug,
-  getProductById,
   getProductBySlug,
 } from "@/lib/feed";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -32,47 +34,19 @@ export const generateMetadata = async ({
   params,
 }: PageProps): Promise<Metadata> => {
   const { slug } = await params;
-  const id = getIdFromSlug(slug);
-  const product = (await getProductById(id)) ?? (await getProductBySlug(slug));
+  const product = await getProductBySlug(slug);
 
-  if (!product) {
-    return {
-      title: "Zážitek nenalezen",
-    };
-  }
+  if (!product) notFound();
+  return pageMetadata(product.name, product.description.slice(0, 160), `/zazitek/${product.slug}`, product.imageUrls[0]);
 
-  return {
-    title: product.name,
-    description: product.description.slice(0, 160),
-    openGraph: {
-      title: product.name,
-      description: product.description.slice(0, 160),
-      images: product.imageUrls[0] ? [product.imageUrls[0]] : undefined,
-    },
-  };
 };
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const id = getIdFromSlug(slug);
-  const product = (await getProductById(id)) ?? (await getProductBySlug(slug));
+  const product = await getProductBySlug(slug);
 
-  if (!product) {
-    return (
-      <div className="rounded-3xl border border-dashed border-slate-200 bg-white p-10 text-center">
-        <h1 className="text-2xl font-semibold">Zážitek nenalezen</h1>
-        <p className="mt-2 text-sm text-slate-600">
-          Možná byl produkt odstraněn nebo změnil kategorii.
-        </p>
-        <Link
-          href="/"
-          className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white"
-        >
-          Zpět na přehled
-        </Link>
-      </div>
-    );
-  }
+  if (!product) notFound();
+  const category = CATEGORY_CONFIG.find((item) => matchesCategory(product, item));
 
   return (
     <>
@@ -97,6 +71,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 src={product.imageUrls[0]}
                 alt={product.name}
                 fill
+                preload
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 60vw"
               />
@@ -128,7 +103,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               Skladem
             </span>
             <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
-              Oblíbený zážitek
+              Nabídka Zážitky.cz
             </span>
           </div>
 
@@ -178,7 +153,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
-              <span>Platnost voucheru 2 roky</span>
+              <span>Platnost poukazu ověřte u prodejce</span>
             </div>
           </div>
 
@@ -186,7 +161,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <a
             href={product.url}
             target="_blank"
-            rel="noreferrer"
+            rel="sponsored nofollow noopener"
             className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-green-600/25 transition hover:bg-green-700"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -199,7 +174,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </a>
 
           <p className="text-center text-xs text-slate-500">
-            Bezpečný nákup přes Zážitky.cz
+            Nákup přes Zážitky.cz. Affiliate odkaz: můžeme získat provizi.
           </p>
 
           {/* Trust signály */}
@@ -208,25 +183,25 @@ export default async function ProductDetailPage({ params }: PageProps) {
               <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-              <span>Garance vrácení</span>
+              <span>Podmínky u prodejce</span>
             </div>
             <div className="flex items-center gap-2">
               <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-              <span>Doručení ihned</span>
+              <span>Doručení dle nabídky</span>
             </div>
             <div className="flex items-center gap-2">
               <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-              <span>Změna termínu</span>
+              <span>Rezervace u pořadatele</span>
             </div>
             <div className="flex items-center gap-2">
               <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-              <span>Dárková krabička</span>
+              <span>Varianty zážitku</span>
             </div>
           </div>
         </aside>
@@ -257,6 +232,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </div>
           </section>
         ) : null}
+      <section className="space-y-4 rounded-3xl bg-white p-8">
+        <h2 className="text-xl font-semibold">Než vyberete variantu</h2>
+        <p className="text-sm text-slate-600">Ceny a popis přebíráme od Zážitky.cz. Nejnižší cena nemusí patřit vaší vybrané lokalitě a délce. Aktuální cenu a podmínky ověřte u prodejce. Za nákup přes affiliate odkaz můžeme získat provizi.</p>
+        {category && <><ul className="list-disc space-y-2 pl-5">{category.checklist.map((item) => <li key={item}>{item}</li>)}</ul><Link className="inline-block underline" href={`/${category.slug}`}>Porovnat další nabídky: {category.title}</Link></>}
+      </section>
       </div>
     </>
   );

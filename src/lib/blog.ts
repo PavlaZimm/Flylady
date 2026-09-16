@@ -18,8 +18,14 @@ export type BlogPost = {
 type BlogFrontmatter = {
   title?: string;
   description?: string;
-  date?: string;
+  date?: string | Date;
   coverImage?: string;
+};
+
+const normalizeDate = (value: string | Date | undefined) => {
+  if (!value) return "";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "" : date.toISOString().slice(0, 10);
 };
 
 const getPostSlug = (fileName: string) => fileName.replace(/\.md$/, "");
@@ -46,7 +52,7 @@ export const getAllPosts = async (): Promise<BlogPost[]> => {
           slug,
           title: frontmatter.title ?? slug,
           description: frontmatter.description ?? "",
-          date: frontmatter.date ?? "",
+          date: normalizeDate(frontmatter.date),
           coverImage: frontmatter.coverImage,
           contentHtml,
         } satisfies BlogPost;

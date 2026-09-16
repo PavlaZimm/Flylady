@@ -47,6 +47,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [{ source: "/kategorie/:slug", destination: "/:slug", permanent: true }];
+  },
   images: {
     remotePatterns: [
       {
@@ -66,6 +69,7 @@ const nextConfig: NextConfig = {
   // Security headers
   async headers() {
     return [
+      { source: "/admin/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
       {
         source: "/:path*",
         headers: securityHeaders,

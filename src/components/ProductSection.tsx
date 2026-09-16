@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/feed";
@@ -22,13 +20,10 @@ const formatPrice = (value: number | null) => {
   }).format(value);
 };
 
-// Pseudonáhodné štítky pro produkty
-const getProductBadge = (product: Product, index: number) => {
-  const price = product.minPriceVat ?? 0;
-  if (price > 10000) return { text: "Premium", color: "bg-purple-500" };
-  if (index === 0) return { text: "Oblíbené", color: "bg-amber-500" };
-  if (price < 3000) return { text: "Skvělá cena", color: "bg-green-500" };
-  if (index === 1) return { text: "Top volba", color: "bg-blue-500" };
+// Štítek vychází z dostupné ceny produktu.
+const getProductBadge = (product: Product) => {
+  const price = product.minPriceVat;
+  if (price !== null && price < 3000) return { text: "Od méně než 3 000 Kč", color: "bg-green-500" };
   return null;
 };
 
@@ -78,8 +73,8 @@ export const ProductSection = ({
         </div>
       </div>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {shown.map((product, index) => {
-          const badge = getProductBadge(product, index);
+        {shown.map((product) => {
+          const badge = getProductBadge(product);
           return (
             <article
               key={product.id}
@@ -92,7 +87,7 @@ export const ProductSection = ({
                     alt={product.name}
                     fill
                     className="object-cover transition duration-300 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 360px"
                   />
                 ) : null}
                 {/* Badge */}
@@ -130,7 +125,7 @@ export const ProductSection = ({
                       <svg className="h-3.5 w-3.5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
-                      Ověřeno
+                      Zážitky.cz
                     </span>
                   </div>
                   <div className="flex items-center justify-between">

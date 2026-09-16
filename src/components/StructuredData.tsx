@@ -12,7 +12,6 @@ export const OrganizationSchema = ({ name = "Flylady.cz" }: OrganizationSchemaPr
     "@type": "Organization",
     name,
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
     description: "Letecké zážitky, tipy a inspirace pro všechny, kdo milují létání.",
     sameAs: [],
     contactPoint: {
@@ -25,7 +24,7 @@ export const OrganizationSchema = ({ name = "Flylady.cz" }: OrganizationSchemaPr
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
     />
   );
 };
@@ -45,20 +44,13 @@ export const WebsiteSchema = ({
     name,
     url: SITE_URL,
     description,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE_URL}/zazitky?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
+
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
     />
   );
 };
@@ -79,31 +71,16 @@ export const ProductSchema = ({ product }: ProductSchemaProps) => {
       "@type": "Brand",
       name: "Zážitky.cz",
     },
-    offers: {
-      "@type": "Offer",
-      url: product.url,
-      priceCurrency: "CZK",
-      price: product.minPriceVat ?? 0,
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: "Zážitky.cz",
-      },
-      priceValidUntil: "2027-12-31",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "127",
-      bestRating: "5",
-      worstRating: "1",
-    },
+    ...(product.minPriceVat !== null ? { offers: {
+      "@type": "Offer", url: product.url, priceCurrency: "CZK", price: product.minPriceVat,
+      seller: { "@type": "Organization", name: "Zážitky.cz" },
+    } } : {}),
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
     />
   );
 };
@@ -129,7 +106,7 @@ export const FAQSchema = ({ faqs }: FAQSchemaProps) => {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
     />
   );
 };
@@ -153,7 +130,7 @@ export const BreadcrumbSchema = ({ items }: BreadcrumbSchemaProps) => {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
     />
   );
 };
@@ -185,7 +162,7 @@ export const LocalBusinessSchema = ({ name = "Flylady.cz" }: LocalBusinessSchema
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
     />
   );
 };

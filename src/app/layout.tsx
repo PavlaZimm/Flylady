@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     template: "%s | Flylady.cz",
   },
   description:
-    "Darujte nezapomenutelný letecký zážitek. Vyhlídkové lety, tandemové seskoky, simulátory. 50+ ověřených zážitků s garancí spokojenosti.",
+    "Darujte nezapomenutelný letecký zážitek. Vyhlídkové lety, tandemové seskoky, simulátory. Nabídky, ceny a průvodce výběrem.",
   keywords: [
     "letecké zážitky",
     "vyhlídkové lety",
@@ -52,9 +52,6 @@ export const metadata: Metadata = {
   creator: "Flylady.cz",
   publisher: "Flylady.cz",
   metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "cs_CZ",
@@ -62,15 +59,8 @@ export const metadata: Metadata = {
     siteName: "Flylady.cz",
     title: "Flylady.cz | Letecké zážitky a dárky",
     description:
-      "Darujte nezapomenutelný letecký zážitek. 50+ ověřených zážitků s garancí spokojenosti.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Flylady.cz - Letecké zážitky",
-      },
-    ],
+      "Darujte nezapomenutelný letecký zážitek. Nabídky, ceny a průvodce výběrem.",
+
   },
   twitter: {
     card: "summary_large_image",
@@ -169,9 +159,9 @@ export default function RootLayout({
           </header>
 
           {/* Main content */}
-          <main id="main-content" className="flex-1 mx-auto w-full max-w-6xl px-6 py-10" role="main">
+          <div id="main-content" className="flex-1 mx-auto w-full max-w-6xl px-6 py-10" >
             {children}
-          </main>
+          </div>
 
           {/* Enhanced footer */}
           <footer className="border-t border-slate-200 bg-white" role="contentinfo">
@@ -194,10 +184,10 @@ export default function RootLayout({
                 <div className="space-y-4">
                   <h3 className="font-semibold text-slate-900">Kategorie</h3>
                   <ul className="space-y-2 text-sm text-slate-600">
-                    <li><Link href="/kategorie/vyhlidkove-lety" className="hover:text-slate-900">Vyhlídkové lety</Link></li>
-                    <li><Link href="/kategorie/tandemove-seskoky" className="hover:text-slate-900">Tandemové seskoky</Link></li>
-                    <li><Link href="/kategorie/letecke-simulatory" className="hover:text-slate-900">Letecké simulátory</Link></li>
-                    <li><Link href="/kategorie/let-vrtulnikem" className="hover:text-slate-900">Let vrtulníkem</Link></li>
+                    <li><Link href="/vyhlidkove-lety" className="hover:text-slate-900">Vyhlídkové lety</Link></li>
+                    <li><Link href="/tandemove-seskoky" className="hover:text-slate-900">Tandemové seskoky</Link></li>
+                    <li><Link href="/letecke-simulatory" className="hover:text-slate-900">Letecké simulátory</Link></li>
+                    <li><Link href="/let-vrtulnikem" className="hover:text-slate-900">Let vrtulníkem</Link></li>
                   </ul>
                 </div>
 
@@ -207,6 +197,7 @@ export default function RootLayout({
                   <ul className="space-y-2 text-sm text-slate-600">
                     <li><Link href="/zazitky" className="hover:text-slate-900">Všechny zážitky</Link></li>
                     <li><Link href="/blog" className="hover:text-slate-900">Blog</Link></li>
+                    <li><Link href="/o-webu" className="hover:text-slate-900">O webu a affiliate spolupráci</Link></li>
                     <li><Link href="/ebook" className="font-semibold text-orange-600 hover:text-orange-700">E-book zdarma</Link></li>
                   </ul>
                 </div>
@@ -219,19 +210,19 @@ export default function RootLayout({
                       <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
-                      100% garance spokojenosti
+                      Přehled variant a cen
                     </li>
                     <li className="flex items-center gap-2">
                       <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
-                      Platnost 2 roky
+                      Podmínky u každé nabídky
                     </li>
                     <li className="flex items-center gap-2">
                       <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
-                      Doručení ihned
+                      Nákup u prodejce
                     </li>
                     <li className="flex items-center gap-2">
                       <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">

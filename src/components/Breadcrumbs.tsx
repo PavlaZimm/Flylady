@@ -10,7 +10,8 @@ type BreadcrumbsProps = {
   items: BreadcrumbItem[];
 };
 
-export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
+export const Breadcrumbs = ({ items: input }: BreadcrumbsProps) => {
+  const items = input[0]?.href === "/" ? input : [{ name: "Domů", href: "/" }, ...input];
   const schemaItems = items.map((item) => ({
     name: item.name,
     url: item.href,
@@ -57,3 +58,7 @@ export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
     </>
   );
 };
+
+export function JsonLd({ data }: { data: Record<string, unknown> }) {
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
+}
