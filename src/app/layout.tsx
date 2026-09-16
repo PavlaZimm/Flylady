@@ -89,7 +89,14 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "bEvBH9pJXtUqHEocWVnB_dF0h05vqtZka8cpYTx3q3I",
+    // Dva tokeny, protože web má v Search Console dvě property. Druhý token
+    // vznikl v dubnu 2026, ale jeho větev se nikdy nezmergovala, takže na
+    // produkci chyběl a ověření té property padalo. Google přijímá víc
+    // ověřovacích značek na jedné stránce; každá ověří svou property.
+    google: [
+      "bEvBH9pJXtUqHEocWVnB_dF0h05vqtZka8cpYTx3q3I",
+      "4Bc0Oukhxzi3u_WnTzmJF1f5PO5IUkapUukNP1jNWd0",
+    ],
   },
 };
 
