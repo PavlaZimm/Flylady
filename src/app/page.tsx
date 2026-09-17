@@ -2,13 +2,14 @@ import Link from "next/link";
 import { ProductSection } from "@/components/ProductSection";
 import { groupProductsByCategory } from "@/lib/categories";
 import { getAviationProducts } from "@/lib/feed";
+import { getAllPosts } from "@/lib/blog";
 import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 3600;
 export const metadata = pageMetadata("Letecké zážitky: vyberte si let, seskok i simulátor", "Letecké zážitky na jednom místě. Porovnejte vyhlídkové lety, let balónem, tandemový seskok a letecký simulátor podle nabídky a ceny.", "/");
 
 export default async function Home() {
-  const products = await getAviationProducts();
+  const [products, posts] = await Promise.all([getAviationProducts(), getAllPosts()]);
   const { groups, remaining } = groupProductsByCategory(products);
   return <main className="space-y-14">
     <section className="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-700 px-6 py-16 text-white sm:px-10">
@@ -19,7 +20,7 @@ export default async function Home() {
         <Link href="/zazitky" className="inline-flex rounded-full bg-white px-6 py-3 font-semibold text-slate-900">Prohlédnout všechny zážitky</Link>
       </div>
     </section>
-    <section className="space-y-5">
+    <section id="kategorie" className="scroll-mt-24 space-y-5">
       <h2 className="text-2xl font-semibold">Jaký zážitek hledáte?</h2>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{groups.filter((group) => group.products.length).map((group) => <Link key={group.slug} href={`/${group.slug}`} className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-slate-500"><span className="block text-lg font-semibold">{group.title}</span><span className="text-sm text-slate-600">{group.description}</span></Link>)}</div>
     </section>
@@ -31,6 +32,11 @@ export default async function Home() {
         <div><h3 className="font-semibold">Termín a místo rozhodují</h3><p className="mt-2 text-sm text-slate-600">Před koupí ověřte skutečné místo odletu, platnost poukazu a pravidla změny termínu. U venkovních zážitků počítejte s vlivem počasí.</p></div>
       </div>
       <Link href="/blog/jak-vybrat-letecky-zazitek" className="inline-block font-semibold underline">Průvodce výběrem leteckého zážitku →</Link>
+    </section>
+    <section className="space-y-5">
+      <h2 className="text-2xl font-semibold">Průvodci před prvním letem</h2>
+      <div className="grid gap-5 md:grid-cols-3">{posts.slice(0, 3).map((post) => <Link key={post.slug} href={`/blog/${post.slug}`} className="rounded-2xl border border-slate-200 bg-white p-6 hover:border-slate-500"><h3 className="font-semibold">{post.title}</h3><p className="mt-2 text-sm text-slate-600">{post.description}</p></Link>)}</div>
+      <Link href="/blog" className="inline-block underline">Všechny články a místní průvodci</Link>
     </section>
     {groups.map((group) => <ProductSection key={group.slug} title={group.title} description={group.description} products={group.products} limit={3} href={`/${group.slug}`} />)}
     {remaining.length > 0 && <ProductSection title="Další letecké zážitky" products={remaining} limit={6} href="/zazitky" />}

@@ -27,15 +27,42 @@ await check('/admin/index.html', 200, (_, response) => assert.equal(response.hea
 await check('/sitemap.xml', 200, html => {
   assert.match(html, /https:\/\/www\.flylady\.cz\/zazitky/);
   assert.match(html, /https:\/\/www\.flylady\.cz\/let-balonem/);
-  assert.doesNotMatch(html, /<lastmod>|\/kategorie\//);
+  assert.doesNotMatch(html, /\/kategorie\//);
+  assert.match(html, /<lastmod>2026-09-17/);
 });
 await check('/robots.txt', 200, html => assert.match(html, /Sitemap: https:\/\/www\.flylady\.cz\/sitemap.xml/));
 console.log(`${count} HTTP SEO checks passed.`);
 await check('/', 200, html => {
   assert.equal((html.match(/name="google-site-verification"/g) || []).length, 2);
-  assert.match(html, /href="\/ebook"/);
+  assert.doesNotMatch(html, /href="\/ebook"/);
 });
 await check('/ebook', 200, html => assert.match(html, /rel="canonical" href="https:\/\/www\.flylady\.cz\/ebook"/));
 await check('/blog/vyhlidkove-lety-pribram', 200);
 await check('/blog/vyhlidkove-lety-roudnice-nad-labem', 200);
-console.log('Production features preserved: verification tokens, ebook, existing articles.');
+await check('/ebook', 200, html => {
+  assert.match(html, /name="robots" content="noindex, follow"/);
+  assert.doesNotMatch(html, /<form/);
+});
+await check('/blog/let-balonem-pro-dva-cena', 200, html => {
+  assert.match(html, /BlogPosting/);
+  assert.match(html, /href="\/let-balonem"/);
+});
+await check('/sitemap.xml', 200, html => {
+  assert.match(html, /\/blog\/let-balonem-pro-dva-cena/);
+  assert.doesNotMatch(html, /\/ebook/);
+});
+console.log(`${count} total HTTP checks passed, including the new article and unavailable ebook.`);
+
+await check('/blog/tandemovy-seskok-most', 200, html => {
+  assert.match(html, /BlogPosting/);
+  assert.match(html, /href="\/tandemove-seskoky"/);
+});
+await check('/blog/vyhlidkove-lety-pribram', 200, html => {
+  assert.match(html, /dateModified/);
+  assert.doesNotMatch(html, /Kompletní průvodce 2025/);
+});
+await check('/zazitky', 200, html => {
+  assert.match(html, /Název nebo lokalita/);
+  assert.doesNotMatch(html, /ověřených zážitků|Garance vrácení peněz/);
+});
+console.log(`${count} complete SEO and content HTTP checks passed.`);

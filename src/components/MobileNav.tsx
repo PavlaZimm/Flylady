@@ -165,17 +165,17 @@ export default function MobileNav() {
               <div className="border-t-2 border-slate-100" />
             </li>
 
-            {/* E-book CTA */}
+            {/* Průvodce výběrem */}
             <li>
               <Link
-                href="/ebook"
+                href="/blog/jak-vybrat-letecky-zazitek"
                 onClick={closeMenu}
                 className="flex items-center gap-3 rounded-xl bg-gradient-to-r from-orange-100 to-amber-100 px-4 py-4 text-orange-800 hover:from-orange-200 hover:to-amber-200 active:scale-[0.98] transition"
               >
                 <svg className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <span className="font-bold">E-book zdarma</span>
+                <span className="font-bold">Jak vybrat dárek</span>
               </Link>
             </li>
           </ul>

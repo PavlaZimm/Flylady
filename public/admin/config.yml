@@ -16,4 +16,10 @@ collections:
       - { label: "Název", name: "title", widget: "string" }
       - { label: "Popis", name: "description", widget: "string" }
       - { label: "Datum", name: "date", widget: "datetime" }
+      - { label: "Datum věcné aktualizace", name: "updated", widget: "datetime", required: false }
+      - label: "Související kategorie"
+        name: "category"
+        widget: "select"
+        required: false
+        options: ["vyhlidkove-lety", "let-balonem", "tandemove-seskoky", "letecke-simulatory", "pilotem-na-zkousku", "let-vrtulnikem", "let-stihackou", "vetrny-tunel", "let-vzducholodi"]
       - { label: "Obsah", name: "body", widget: "markdown" }

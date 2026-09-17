@@ -1,131 +1,47 @@
 ---
-title: "Vyhlídkové lety Příbram: Kompletní průvodce 2025"
-description: "Objevte krásy středních Čech z ptačí perspektivy. Vyhlídkové lety z letiště Příbram - trasy, ceny, tipy a co vás čeká ve vzduchu nad Karlštejnem, Orlíkem a Vltavou."
+title: "Vyhlídkové lety Příbram: trasy, cena a rezervace"
+description: "Jak vybrat vyhlídkový let z Příbrami: náměty tras ke Karlštejnu či Orlíku, porovnání cen pro více osob a správný kontakt pro rezervaci."
 date: "2026-04-07"
+updated: "2026-09-17"
+category: "vyhlidkove-lety"
 ---
 
-Toužíte vidět malebnou krajinu středních Čech z výšky? **Vyhlídkové lety Příbram** patří mezi nejoblíbenější letecké zážitky v České republice. Letiště Příbram nabízí ideální výchozí bod pro lety nad hrady, zámky a údolím Vltavy.
+Vyhlídkové lety z Příbrami vybírejte podle trasy, počtu cestujících a skutečného času ve vzduchu. Přání vidět Karlštejn nebo Orlík je dobrý začátek, ale musí odpovídat konkrétní nabídce. Níže najdete podklady pro domluvu, nikoli příslib stejného okruhu u všech provozovatelů.
 
-V tomto článku najdete vše, co potřebujete vědět — od nejkrásnějších tras přes aktuální ceny až po praktické tipy pro váš první let letadlem.
+## Na koho se obrátit při rezervaci
 
-## Letiště Příbram — ideální místo pro vyhlídkový let
+[Oficiální kontakty letiště Příbram](https://lkpm.cz/kontakty/) uvádějí samostatné poskytovatele vyhlídkových letů, Sky Academy a OKAir. Správa letiště výslovně upozorňuje, že její hlavní telefon neslouží k informacím o vyhlídkových letech ani seskocích. Pokud máte poukaz od jiného prodejce, použijte postup a kontakt uvedené na něm. Kontakty jsme ověřili 17. září 2026.
 
-Letiště Příbram, známé také jako **Letiště Dlouhá Lhota** (ICAO kód LKPM), se nachází přibližně 6 km severovýchodně od města Příbram. Díky své poloze ve středních Čechách je perfektním výchozím bodem pro vyhlídkové lety nad:
+Pro cestu si vyžádejte bod srazu od pořadatele. Nestačí zadat pouze město Příbram: potřebujete vědět, kde zaparkovat a do které části letiště přijít. Pokyny pro doprovod si zjistěte zvlášť.
 
-- Historickými hrady a zámky (Karlštejn, Zvíkov, Orlík)
-- Údolím řeky Vltavy
-- Přírodními památkami jako Malá a Velká Amerika
-- Vodními nádržemi Orlík a Slapy
+## Jaké trasy lze z Příbrami vybírat
 
-Letiště má travnatou dráhu a provozuje motorové letouny vhodné pro 1–3 pasažéry. Lety jsou dostupné celoročně, počasí dovolí.
+Nabídka na webu letiste-pribram.cz uvádí jako náměty například okruh směrem k Orlíku a Zvíkovu, let ke Karlštejnu a delší výlet směrem na Křivoklátsko. Berte je jako příklady konkrétního poskytovatele. Aktuální rozsah si ověřte přímo v jeho [přehledu tras z Příbrami](https://www.letiste-pribram.cz/tipy-vyhlidkove-lety-letiste-pribram/).
 
-## Nejoblíbenější trasy vyhlídkových letů z Příbrami
+Při výběru si napište jeden hlavní cíl a jeden náhradní. Pořadateli tak můžete položit konkrétní otázku: „Chceme vidět Karlštejn, jaký let pro dva nám to umožní a kolik bude stát dohromady?“ Odpověď je pro rozhodnutí užitečnější než obecný příslib letu nad hrady a zámky.
 
-### 1. Karlštejn a Velká Amerika (30 minut)
+Počet minut nepřevádějte sami na seznam památek. Zjistěte, co je zahrnuté ve zvoleném okruhu a zda je případná změna trasy možná. Domluvu řešte před koupí, pokud je konkrétní místo hlavním důvodem výletu.
 
-Nejprodávanější trasa! Za pouhých 30 minut ve vzduchu uvidíte:
+## Cena pro jednoho, pro dva nebo za celý let
 
-- **Hrad Karlštejn** — gotický klenot založený Karlem IV.
-- **Malou a Velkou Ameriku** — bývalé vápencové lomy připomínající americké kaňony
-- Malebnou krajinu Českého krasu
+Na porovnání nabídek si připravte tři údaje: celkovou cenu, počet zahrnutých cestujících a délku letu. U dvojice porovnávejte cenu za oba při stejné délce, ne nejnižší částku za osobu s cenou celé skupiny.
 
-Tato trasa je ideální pro první vyhlídkový let — není příliš dlouhá, ale nabízí fantastické výhledy.
+Ptejte se také, zda budete let sdílet s dalšími cestujícími a jaké jsou podmínky obsazení. Nízká cena sama neříká, jestli kupujete samostatné místo, nebo soukromý let. Aktuální ceník potvrďte u vybrané varianty; starší tabulka bez konkrétního poskytovatele a obsahu balíčku není spolehlivým podkladem pro objednávku.
 
-### 2. Vltavská kaskáda (45–60 minut)
+V katalogu [vyhlídkových letů](/vyhlidkove-lety) najdete nabídky Zážitky.cz z různých míst. Příbram musí být uvedená u zvolené varianty; článek neznamená, že každý zobrazený let odlétá odsud.
 
-Pro ty, kdo chtějí vidět více, doporučujeme trasu podél Vltavy:
+## Co domluvit před příjezdem
 
-- **Hrad Zvíkov** — nejstarší královský hrad v Čechách
-- **Zámek Orlík** — romantický zámek na břehu přehrady
-- **Orlická přehrada** — jedna z největších vodních nádrží v ČR
-- **Slapská přehrada** — oblíbené rekreační místo
+- Přesný čas a místo srazu, parkování a pravidla pro doprovod.
+- Celkovou délku programu včetně přípravy, ne jen čas letu.
+- Způsob oznámení změny kvůli počasí a sjednání náhradního termínu.
+- Podmínky účasti pro všechny cestující a případná omezení varianty.
+- Možnosti usazení a fotografování, pokud jsou pro vás důležité.
 
-Let pokračuje přes Davle a Vrané nad Vltavou až ke Zbraslavi, odkud za dobrého počasí spatříte panorama Prahy.
+Neplánujte výlet podle předpokladu, že lze na místě libovolně prodloužit let nebo změnit trasu. Pokud let darujete, předejte spolu s poukazem i informace pro rezervaci a datum jeho platnosti.
 
-### 3. Svatá Hora a okolí (20–30 minut)
+## Porovnejte i jiný výchozí bod
 
-Kratší trasa vhodná pro rodiny s dětmi:
+Pokud vás více láká Říp a Podřipsko, přečtěte si průvodce [vyhlídkovými lety z Roudnice nad Labem](/blog/vyhlidkove-lety-roudnice-nad-labem). Když chcete především ovládat letadlo, porovnejte nabídky [pilotem na zkoušku](/pilotem-na-zkousku) se samotnou vyhlídkou.
 
-- **Svatá Hora** — barokní poutní areál nad Příbramí
-- **Hornické muzeum** — připomínka bohaté historie těžby
-- Okolní lesy a rybníky Brdské vrchoviny
-
-## Ceny vyhlídkových letů Příbram 2025
-
-Aktuální ceník pro vyhlídkové lety z letiště Příbram:
-
-| Délka letu | 1 osoba | 2 osoby | 3 osoby |
-|------------|---------|---------|---------|
-| 20 minut   | 4 900 Kč | 5 900 Kč | 6 900 Kč |
-| 30 minut   | 6 400 Kč | 7 600 Kč | 8 800 Kč |
-| 60 minut   | 10 400 Kč | 12 000 Kč | 13 700 Kč |
-
-**Tip:** Lety pro 2–3 osoby vychází výrazně levněji na osobu. Ideální dárek pro páry nebo partu kamarádů!
-
-Od 1. 1. 2025 je platnost dárkových poukazů **12 měsíců** od zakoupení.
-
-## Pro koho je vyhlídkový let vhodný?
-
-Vyhlídkové lety z Příbrami jsou vhodné prakticky pro každého:
-
-- **Milovníky historie** — hrady Karlštejn, Zvíkov a zámek Orlík z nové perspektivy
-- **Romantiky** — let pro dva je nezapomenutelný dárek k výročí nebo narozeninám
-- **Rodiny s dětmi** — kratší 20minutové lety zvládnou i menší děti
-- **Fotografy** — unikátní záběry krajiny z ptačí perspektivy
-- **Dobrodruhy** — první krok k dalším leteckým zážitkům
-
-### Zdravotní omezení
-
-Let letadlem není vhodný pro osoby:
-- S vážnými srdečními problémy
-- Těhotné ženy (konzultujte s lékařem)
-- Pod vlivem alkoholu nebo drog
-
-Běžná klaustrofobie většinou není překážkou — kabina je prostorná a výhledy uklidňující.
-
-## Praktické tipy pro váš vyhlídkový let
-
-### Před letem
-
-1. **Rezervujte s předstihem** — zejména o víkendech a svátcích
-2. **Sledujte počasí** — let může být přesunut kvůli nepřízni počasí
-3. **Oblečte se pohodlně** — v kabině může být teplo i chladno
-4. **Vezměte si sluneční brýle** — slunce ve výšce intenzivně svítí
-
-### Během letu
-
-- **Fotoaparát nebo telefon** s nabitou baterií
-- **Sedněte si k oknu** — pokud letíte sami, sedněte vedle pilota
-- **Komunikujte s pilotem** — můžete si trasu upravit dle přání
-
-### Po letu
-
-Trasu letu si domluvíte přímo na letišti s pilotem. Je jen na vás, kam poletíte — pilot vám rád poradí s výběrem podle vašich preferencí.
-
-## Vyhlídkový let jako dárek
-
-Hledáte originální dárek k narozeninám, výročí nebo pod stromeček? **Dárkový poukaz na vyhlídkový let** je zážitek, který obdarovaný nezapomene.
-
-Výhody dárkového poukazu:
-- Platnost 12 měsíců — dostatek času na realizaci
-- Flexibilní termín — obdarovaný si vybere sám
-- Možnost změny trasy — domluva přímo s pilotem
-
-## Další letecké zážitky v okolí Příbrami
-
-Pokud vás vyhlídkový let nadchne, můžete vyzkoušet i další letecké aktivity:
-
-- **Let větroněm** — tichý let bez motoru, čistý zážitek z plachtění
-- **Tandemový seskok** — pro odvážné milovníky adrenalinu
-- **Pilotování letadla** — zkuste si řídit letadlo sami pod dohledem instruktora
-- **Let balónem** — pomalý a romantický let nad krajinou
-
-## Závěr
-
-**Vyhlídkové lety z letiště Příbram** nabízejí jedinečnou příležitost vidět krásy středních Čech z ptačí perspektivy. Ať už toužíte po romantickém letu pro dva, hledáte originální dárek, nebo chcete prostě zažít něco nového — let letadlem nad Karlštejnem, Vltavou a okolními hrady vás nadchne.
-
-Neváhejte a rezervujte si svůj vyhlídkový let ještě dnes!
-
----
-
-*Zajímají vás další letecké zážitky? Prohlédněte si naši nabídku [vyhlídkových letů](/kategorie/vyhlidkove-lety) nebo si stáhněte [zdarma e-book](/ebook) s tipy na nejkrásnější místa v ČR z ptačí perspektivy.*
+Článek je průvodce nákupním rozhodnutím, nikoli osobní recenze. Informace o zdrojích katalogu a financování najdete [na stránce o Flylady.cz](/o-webu).

@@ -143,8 +143,8 @@ export default function RootLayout({
                 <Link href="/blog" className="transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded">
                   Blog
                 </Link>
-                <Link href="/ebook" className="transition text-orange-600 hover:text-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded font-semibold">
-                  E-book zdarma
+                <Link href="/blog/jak-vybrat-letecky-zazitek" className="transition text-orange-600 hover:text-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded font-semibold">
+                  Jak vybrat dárek
                 </Link>
                 <Link
                   href="/zazitky"
@@ -198,7 +198,7 @@ export default function RootLayout({
                     <li><Link href="/zazitky" className="hover:text-slate-900">Všechny zážitky</Link></li>
                     <li><Link href="/blog" className="hover:text-slate-900">Blog</Link></li>
                     <li><Link href="/o-webu" className="hover:text-slate-900">O webu a affiliate spolupráci</Link></li>
-                    <li><Link href="/ebook" className="font-semibold text-orange-600 hover:text-orange-700">E-book zdarma</Link></li>
+                    <li><Link href="/blog/jak-vybrat-letecky-zazitek" className="font-semibold text-orange-600 hover:text-orange-700">Jak vybrat dárek</Link></li>
                   </ul>
                 </div>
 

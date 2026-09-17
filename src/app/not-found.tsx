@@ -32,17 +32,17 @@ export default function NotFound() {
         </Link>
       </div>
 
-      {/* E-book CTA */}
+      {/* Průvodce výběrem */}
       <div className="mt-12 w-full max-w-lg rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 p-6 text-center">
-        <p className="font-semibold text-slate-900">Mezitím si stáhněte e-book zdarma</p>
+        <p className="font-semibold text-slate-900">Přečtěte si průvodce výběrem zážitku</p>
         <p className="mt-1 text-sm text-slate-600">
-          5 míst v ČR, která musíte vidět z ptačí perspektivy
+          Praktické rady, co porovnat před koupí leteckého zážitku.
         </p>
         <Link
-          href="/ebook"
+          href="/blog/jak-vybrat-letecky-zazitek"
           className="mt-4 inline-flex rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-orange-600 press-effect"
         >
-          Stáhnout e-book
+          Přečíst průvodce
         </Link>
       </div>
     </div>

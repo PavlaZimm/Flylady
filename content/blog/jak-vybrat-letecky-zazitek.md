@@ -2,6 +2,7 @@
 title: "Letecké zážitky jako dárek: jak vybrat a co porovnat"
 description: "Vyberte letecký zážitek podle přání obdarovaného. Praktický průvodce porovnáním ceny, času, počtu osob a podmínek poukazu."
 date: "2026-09-16"
+updated: "2026-09-17"
 ---
 
 U leteckého zážitku nevybíráte pouze stroj. Rozhodujete se mezi výhledem, ovládáním letadla a intenzivním dobrodružstvím. Začněte tím, co si obdarovaný skutečně přeje, a teprve potom porovnávejte cenu. Tento průvodce je pomůcka k výběru, nikoli recenze osobně vyzkoušených zážitků.
@@ -35,6 +36,10 @@ Název zážitku může odkazovat na oblast, nad kterou se létá. Zjistěte př
 Před zaplacením zjistěte dobu platnosti, postup rezervace a možnosti změny nebo výměny. Nespoléhejte na to, že zakoupený poukaz automaticky zaručuje konkrétní sobotu. Pokud darujete zážitek k pevnému datu, ověřte dostupnost termínu předem.
 
 U venkovních aktivit se ptejte, co se stane při nevhodném počasí: kdo vás informuje, jak se sjednává náhradní termín a jak změna souvisí s platností poukazu. Věkové, výškové a další podmínky účasti se řídí konkrétním provozovatelem, proto je nepřenášejte z jiné nabídky.
+
+Podrobnější srovnání najdete v článku [Let balónem pro dva: cena a rozdíl mezi sdíleným a soukromým letem](/blog/let-balonem-pro-dva-cena).
+
+Pokud vybíráte seskok v severních Čechách, projděte si také [průvodce tandemovým seskokem v Mostě](/blog/tandemovy-seskok-most).
 
 ## Kde začít s výběrem
 

@@ -22,7 +22,7 @@ export default async function AllExperiencesPage() {
             Všechny letecké zážitky
           </h1>
           <p className="mt-2 max-w-2xl text-slate-300">
-            Vybírejte z <strong className="text-white">{products.length}+ ověřených zážitků</strong> — vyhlídkové lety, tandemové seskoky, letecké simulátory a další. Všechny s garancí spokojenosti.
+            Vybírejte z <strong className="text-white">{products.length} zážitků v katalogu</strong> — vyhlídkové lety, tandemové seskoky, letecké simulátory a další. Cenu a podmínky vybrané varianty ověřte u prodejce.
           </p>
         </div>
       </header>

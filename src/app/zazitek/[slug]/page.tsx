@@ -59,6 +59,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           items={[
             { name: "Domů", href: "/" },
             { name: "Zážitky", href: "/zazitky" },
+            ...(category ? [{ name: category.title, href: `/${category.slug}` }] : []),
             { name: product.name, href: `/zazitek/${product.slug}` },
           ]}
         />
@@ -99,9 +100,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <aside className="flex flex-col gap-5 rounded-3xl border border-slate-100 bg-white p-8 shadow-sm lg:sticky lg:top-24">
           {/* Badge */}
           <div className="flex items-center gap-2">
-            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
-              Skladem
-            </span>
             <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
               Nabídka Zážitky.cz
             </span>
@@ -121,7 +119,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           {/* Cena */}
           <div className="rounded-2xl bg-slate-50 p-4">
             <div className="flex items-baseline justify-between">
-              <span className="text-sm text-slate-600">Cena od</span>
+              <span className="text-sm text-slate-600">{product.minPriceVat === null ? "Cena" : "Cena od"}</span>
               <div className="text-right">
                 <span className="text-2xl font-bold text-slate-900">
                   {formatPrice(product.minPriceVat)}
@@ -167,7 +165,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            Koupit zážitek
+            Koupit na Zážitky.cz
             <svg className="h-4 w-4 transition group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
@@ -210,7 +208,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         {product.variants.length ? (
           <section className="space-y-4" aria-labelledby="variants-heading">
             <h2 id="variants-heading" className="text-xl font-semibold text-slate-900">
-              Dostupné varianty
+              Varianty z nabídky prodejce
             </h2>
             <div className="grid gap-4 md:grid-cols-2">
               {product.variants.map((variant) => (

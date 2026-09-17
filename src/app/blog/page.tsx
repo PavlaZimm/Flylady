@@ -1,6 +1,6 @@
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, formatPostDate } from "@/lib/blog";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const revalidate = 3600;
@@ -21,8 +21,8 @@ export default async function BlogPage() {
       <header className="space-y-3">
         <h1 className="text-3xl font-bold text-slate-900">Blog Flylady</h1>
         <p className="max-w-2xl text-slate-600">
-          Novinky, tipy na létání a videa z dronu.
-          Inspirujte se a vyberte ten pravý zážitek.
+          Praktické srovnání leteckých zážitků, místní průvodci a otázky před koupí poukazu.
+          Vyberte si místo, porovnejte varianty a připravte se na rezervaci.
         </p>
       </header>
 
@@ -34,10 +34,10 @@ export default async function BlogPage() {
               className="group rounded-3xl border border-slate-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <p className="text-xs uppercase tracking-[0.15em] text-slate-400">
-                {post.date}
+                {post.updated ? `Aktualizováno ${formatPostDate(post.updated)}` : post.date ? formatPostDate(post.date) : "Průvodce"}
               </p>
               <h2 className="mt-2 text-xl font-semibold text-slate-900 transition group-hover:text-slate-700">
-                {post.title}
+                <Link href={`/blog/${post.slug}`} className="hover:underline">{post.title}</Link>
               </h2>
               <p className="mt-2 text-sm text-slate-600 line-clamp-3">{post.description}</p>
               <Link
@@ -57,30 +57,6 @@ export default async function BlogPage() {
           <p className="text-slate-600">Zatím žádné články. Brzy přidáme nový obsah!</p>
         </div>
       )}
-
-      {/* E-book banner */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 px-6 py-10 text-white sm:px-10">
-        <div className="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
-          <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20">
-            <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-              <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-            </svg>
-          </div>
-          <div className="flex-1">
-            <h2 className="text-xl font-bold sm:text-2xl">E-book: 5 míst z ptačí perspektivy</h2>
-            <p className="mt-1 text-white/90">
-              Stáhněte si zdarma průvodce nejkrásnějšími místy pro vyhlídkové lety v ČR.
-            </p>
-          </div>
-          <Link
-            href="/ebook"
-            className="flex-shrink-0 rounded-full bg-white px-6 py-3 text-sm font-semibold text-orange-600 shadow-lg transition hover:bg-orange-50 press-effect"
-          >
-            Stáhnout zdarma
-          </Link>
-        </div>
-      </section>
 
       {/* CTA na zážitky */}
       <section className="rounded-2xl border border-slate-100 bg-white p-6 text-center sm:p-8">

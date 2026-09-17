@@ -13,12 +13,7 @@ export const OrganizationSchema = ({ name = "Flylady.cz" }: OrganizationSchemaPr
     name,
     url: SITE_URL,
     description: "Letecké zážitky, tipy a inspirace pro všechny, kdo milují létání.",
-    sameAs: [],
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer service",
-      availableLanguage: "Czech",
-    },
+    "@id": `${SITE_URL}/#organization`,
   };
 
   return (
@@ -41,6 +36,8 @@ export const WebsiteSchema = ({
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    publisher: { "@id": `${SITE_URL}/#organization` },
     name,
     url: SITE_URL,
     description,
@@ -67,10 +64,6 @@ export const ProductSchema = ({ product }: ProductSchemaProps) => {
     description: product.description,
     image: product.imageUrls[0],
     url: `${SITE_URL}/zazitek/${product.slug}`,
-    brand: {
-      "@type": "Brand",
-      name: "Zážitky.cz",
-    },
     ...(product.minPriceVat !== null ? { offers: {
       "@type": "Offer", url: product.url, priceCurrency: "CZK", price: product.minPriceVat,
       seller: { "@type": "Organization", name: "Zážitky.cz" },
