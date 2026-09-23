@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, truncateText } from "@/lib/seo";
 import { CATEGORY_CONFIG, matchesCategory } from "@/lib/categories";
 export const revalidate = 3600;
 import Image from "next/image";
@@ -37,7 +37,7 @@ export const generateMetadata = async ({
   const product = await getProductBySlug(slug);
 
   if (!product) notFound();
-  return pageMetadata(product.name, product.description.slice(0, 160), `/zazitek/${product.slug}`, product.imageUrls[0]);
+  return pageMetadata(product.name, truncateText(product.description), `/zazitek/${product.slug}`, product.imageUrls[0]);
 
 };
 

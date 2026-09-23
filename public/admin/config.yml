@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-github-username/flylady
+  repo: PavlaZimm/Flylady
   branch: main
 
 media_folder: "public/uploads"
@@ -22,4 +22,5 @@ collections:
         widget: "select"
         required: false
         options: ["vyhlidkove-lety", "let-balonem", "tandemove-seskoky", "letecke-simulatory", "pilotem-na-zkousku", "let-vrtulnikem", "let-stihackou", "vetrny-tunel", "let-vzducholodi"]
+      - { label: "Úvodní obrázek", name: "coverImage", widget: "image", required: false }
       - { label: "Obsah", name: "body", widget: "markdown" }

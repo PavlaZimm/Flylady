@@ -145,9 +145,10 @@ const mapItem = (item: RawItem): Product => {
 };
 
 export const isAviationExperience = (categories: string[]) =>
-  categories.some((category) =>
-    normalizeText(category).includes("letecke zazitky")
-  );
+  categories.some((category) => {
+    const text = normalizeText(category);
+    return text.includes("letecke zazitky") || text.includes("letecke simulatory");
+  });
 
 export const parseFeedXml = (xml: string): Product[] => {
   const data = parser.parse(xml);

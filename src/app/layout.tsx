@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { OrganizationSchema, WebsiteSchema } from "@/components/StructuredData";
 import MobileNav from "@/components/MobileNav";
 import CookieConsent from "@/components/CookieConsent";
@@ -9,14 +9,9 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  // latin-ext obsahuje česká písmena (č, ř, ž…); bez něj se kreslí náhradním fontem
+  subsets: ["latin", "latin-ext"],
   display: "swap", // Optimalizace pro Core Web Vitals
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
 });
 
 const siteUrl = "https://www.flylady.cz";
@@ -106,7 +101,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://alis.zazitky.cz" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-slate-50 text-slate-900 antialiased`}
+        className={`${geistSans.variable} bg-slate-50 text-slate-900 antialiased`}
       >
         {/* Skip link pro keyboard accessibility */}
         <a

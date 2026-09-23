@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseFeedXml, addUtmParams } from '../src/lib/feed-parser.ts';
+import { parseFeedXml, addUtmParams, isAviationExperience } from '../src/lib/feed-parser.ts';
 import { getCategoryBySlug, matchesCategory, groupProductsByCategory } from '../src/lib/categories.ts';
-import { pageMetadata } from '../src/lib/seo.ts';
+import { pageMetadata, truncateText } from '../src/lib/seo.ts';
 
 const xml = `<SHOP><SHOPITEM><ID>0015</ID><PRODUCT>Tandemový seskok</PRODUCT><URL>https://www.zazitky.cz/seskok?partner=existing</URL><CATEGORYTEXT>Letecké zážitky</CATEGORYTEXT><VARIANT><VARIANTID>001</VARIANTID><PRICE>1000</PRICE><PRICE_VAT>1 210,00</PRICE_VAT></VARIANT><VARIANT><VARIANTID>002</VARIANTID><PRICE_VAT>0</PRICE_VAT></VARIANT></SHOPITEM></SHOP>`;
 
@@ -57,4 +57,15 @@ test('metadata canonical and social URL refer to the same page', () => {
 test('broad supplier categories do not make airships balloons or gyrocopters helicopters', () => {
   assert.equal(matches(product('Exkluzivní let vzducholodí', ['Letecké zážitky | Lety balónem']), 'let-balonem'), false);
   assert.equal(matches(product('Pilotem vírníku na zkoušku', ['Letecké zážitky | Lety vrtulníkem']), 'let-vrtulnikem'), false);
+});
+test('simulators listed only under "Letecké simulátory" stay in the aviation catalogue', () => {
+  assert.equal(isAviationExperience(['Simulátory | Letecké simulátory']), true);
+  assert.equal(isAviationExperience(['Gurmánské zážitky']), false);
+});
+test('meta descriptions are cut on a word boundary', () => {
+  const text = 'slovo '.repeat(40);
+  const cut = truncateText(text);
+  assert.ok(cut.length <= 160);
+  assert.ok(cut.endsWith('slovo…'));
+  assert.equal(truncateText('Krátký popis.'), 'Krátký popis.');
 });
