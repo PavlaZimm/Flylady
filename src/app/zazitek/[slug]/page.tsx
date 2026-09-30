@@ -12,6 +12,9 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ProductSchema } from "@/components/StructuredData";
 import { getProductRegions, regionLabel } from "@/lib/regions";
+import { ProductPriceGuide } from "@/components/ProductPriceGuide";
+import { ProductCopySection } from "@/components/ProductCopySection";
+import { getProductCopy, stripLinks } from "@/lib/product-copy";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -38,7 +41,7 @@ export const generateMetadata = async ({
   const product = await getProductBySlug(slug);
 
   if (!product) notFound();
-  return pageMetadata(product.name, truncateText(product.description), `/zazitek/${product.slug}`, product.imageUrls[0]);
+  return pageMetadata(product.name, truncateText(stripLinks(getProductCopy(product.id)?.lead ?? product.description)), `/zazitek/${product.slug}`, product.imageUrls[0]);
 
 };
 
@@ -49,6 +52,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   if (!product) notFound();
   const category = CATEGORY_CONFIG.find((item) => matchesCategory(product, item));
   const regions = getProductRegions(product);
+  const copy = getProductCopy(product.id);
 
   return (
     <>
@@ -118,7 +122,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             )}
           </div>
 
-          <p className="text-sm leading-relaxed text-slate-600">{product.description}</p>
+          <p className="text-sm leading-relaxed text-slate-600">{copy ? stripLinks(copy.lead) : product.description}</p>
 
           {/* Cena */}
           <div className="rounded-2xl bg-slate-50 p-4">
@@ -218,12 +222,19 @@ export default async function ProductDetailPage({ params }: PageProps) {
         </aside>
       </div>
 
+        {copy && <ProductCopySection copy={copy} name={product.name} />}
+
+        <ProductPriceGuide product={product} updatedAt={new Date()} />
+
         {product.variants.length ? (
-          <section className="space-y-4" aria-labelledby="variants-heading">
-            <h2 id="variants-heading" className="text-xl font-semibold text-slate-900">
-              Varianty z nabídky prodejce
-            </h2>
-            <div className="grid gap-4 md:grid-cols-2">
+          <details className="group space-y-4" aria-labelledby="variants-heading" open={product.variants.length <= 8}>
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-slate-900">
+              <h2 id="variants-heading" className="text-xl font-semibold text-slate-900">
+                Všechny varianty z nabídky prodejce ({product.variants.length})
+              </h2>
+              <span className="text-sm font-normal text-slate-500 group-open:hidden">Zobrazit</span>
+            </summary>
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
               {product.variants.map((variant) => (
                 <div
                   key={variant.id}
@@ -241,7 +252,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 </div>
               ))}
             </div>
-          </section>
+          </details>
         ) : null}
       <section className="space-y-4 rounded-3xl bg-white p-8">
         <h2 className="text-xl font-semibold">Než vyberete variantu</h2>
