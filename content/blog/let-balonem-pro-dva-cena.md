@@ -61,7 +61,7 @@ Cenu za dvě místa ve sdíleném letu uvádějí SkyBalloon (8 200 Kč, tedy 4 
 
 ### Platnost poukazu a zrušený let
 
-U všech čtyř nabídek letu balónem na Zážitky.cz platí poukaz 12 měsíců. Zážitky.cz k nim uvádějí výměnu zážitku zdarma (podle obchodních podmínek jednou), vrácení do 60 dnů a možnost dokoupit pojištění storna. Za silného větru, deště nebo sněhové přeháňky se neletí a let se přesune na jiný den.
+U všech čtyř nabídek letu balónem na Zážitky.cz platí poukaz 12 měsíců. Výměnu zážitku nabízejí Zážitky.cz zdarma, podle obchodních podmínek ale jen jednou. Vrácení poukazu je možné v zákonné lhůtě 14 dní. Delší lhůta, na kterou odkazuje odznak „vrácení do 60 dnů“, je placená volba (podle ceníku 30 dní za 69 až 199 Kč a 60 dní za 89 až 269 Kč podle ceny zážitku) a podle podmínek ji nejde koupit po rezervaci termínu. Placeným doplňkem je i pojištění storna. Za silného větru, deště nebo sněhové přeháňky se neletí a let se přesune na jiný den.
 
 Podle [blogu Zážitky.cz s častými otázkami](https://www.zazitky.cz/blog/faq-let-balonem) se poukaz po zrušení rezervovaného letu kvůli počasí znovu aktivuje pro novou rezervaci, i když mezitím vypršel, a při opakovaném nezdaru ho Zážitky.cz prodlouží. [Obchodní podmínky](https://www.zazitky.cz/obchodni-podminky) to výslovně neslibují. Podle čl. 5.7 máte při zrušení termínu kvůli počasí nárok na náhradní termín, případně na odstoupení. Podle čl. 5.6 se ale platnost poukazu, u kterého jste termín ještě nedomluvili, kvůli vyšší moci neprodlužuje. Termín si proto rezervujte s rezervou před koncem platnosti a případné prodloužení si nechte potvrdit písemně.
 
