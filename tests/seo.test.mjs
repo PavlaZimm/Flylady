@@ -69,3 +69,28 @@ test('meta descriptions are cut on a word boundary', () => {
   assert.ok(cut.endsWith('slovo…'));
   assert.equal(truncateText('Krátký popis.'), 'Krátký popis.');
 });
+test('regions come from feed categories, deduplicated and in fixed order', async () => {
+  const { getProductRegions, groupByRegion } = await import('../src/lib/regions.ts');
+  const p = product('Let balónem', ['Letecké zážitky', 'Jihomoravský', 'Praha', 'Královehradecký', 'Dárky pro dva', 'Praha']);
+  assert.deepEqual(getProductRegions(p).map((r) => r.name), ['Praha', 'Královéhradecký kraj', 'Jihomoravský kraj']);
+  const q = { ...product('Tunel', ['Praha']), id: 'q' };
+  assert.deepEqual(groupByRegion([p, q]).map((g) => [g.region.name, g.products.length]), [['Praha', 2], ['Královéhradecký kraj', 1], ['Jihomoravský kraj', 1]]);
+});
+test('category stats pick the cheapest and priciest variant and sort rows by price', async () => {
+  const { summarizeCategory, variantLabel } = await import('../src/lib/category-stats.ts');
+  const v = (name, priceVat) => ({ id: name, name, price: null, priceVat, location: null });
+  const a = { ...product('Let balónem', ['Praha']), id: 'a', variants: [v('Let balónem, 1 osoba, 1 hodina', 4990), v('Let balónem, 2 osoby, 1 hodina', 8990)] };
+  const b = { ...product('Privátní let', ['Jihomoravský']), id: 'b', variants: [v('Privátní let, 2 osoby', 12990), v('Privátní let, bez ceny', null)] };
+  const stats = summarizeCategory([b, a]);
+  assert.equal(stats.minPrice, 4990);
+  assert.equal(stats.maxPrice, 12990);
+  assert.equal(stats.variantCount, 3);
+  assert.equal(stats.cheapest.label, '1 osoba, 1 hodina');
+  assert.deepEqual(stats.rows.map((r) => r.product.id), ['a', 'b']);
+  assert.equal(variantLabel(a, 'Jiný název, 1 osoba'), 'Jiný název, 1 osoba');
+});
+test('scenic flights exclude paragliding and fighter jets tagged as scenic by the supplier', () => {
+  assert.equal(matches(product('Tandemový paragliding', ['Letecké zážitky | Vyhlídkové lety']), 'vyhlidkove-lety'), false);
+  assert.equal(matches(product('Let stíhačkou L-39 Albatros', ['Letecké zážitky | Vyhlídkové lety']), 'vyhlidkove-lety'), false);
+  assert.equal(matches(product('Vyhlídkový let - Pálava', ['Letecké zážitky | Vyhlídkové lety']), 'vyhlidkove-lety'), true);
+});

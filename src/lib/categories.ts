@@ -30,7 +30,9 @@ export const CATEGORY_CONFIG: CategoryConfig[] = [
       "let vetronem"
     ],
     "exclude": [
-      "simulator"
+      "simulator",
+      "paragliding",
+      "stihack"
     ],
     "seoText": "U vyhlídkového letu rozhoduje letiště odletu a trasa, nikoli jen název nejbližšího města. Porovnejte délku pobytu ve vzduchu, počet cestujících a to, zda kupujete místo ve sdíleném letu, nebo celý let. Pro dárek si ověřte také možnost změnit termín a platnost poukazu.",
     "checklist": [

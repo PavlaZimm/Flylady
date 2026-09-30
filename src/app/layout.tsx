@@ -114,7 +114,7 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           {/* Sticky header */}
           <header
-            className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"
+            className="sticky top-0 z-50 border-b border-slate-100 bg-white/95"
             role="banner"
           >
             <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
@@ -179,10 +179,12 @@ export default function RootLayout({
                 <div className="space-y-4">
                   <h3 className="font-semibold text-slate-900">Kategorie</h3>
                   <ul className="space-y-2 text-sm text-slate-600">
-                    <li><Link href="/vyhlidkove-lety" className="hover:text-slate-900">Vyhlídkové lety</Link></li>
                     <li><Link href="/tandemove-seskoky" className="hover:text-slate-900">Tandemové seskoky</Link></li>
+                    <li><Link href="/let-balonem" className="hover:text-slate-900">Let balónem</Link></li>
+                    <li><Link href="/vetrny-tunel" className="hover:text-slate-900">Větrný tunel</Link></li>
                     <li><Link href="/letecke-simulatory" className="hover:text-slate-900">Letecké simulátory</Link></li>
                     <li><Link href="/let-vrtulnikem" className="hover:text-slate-900">Let vrtulníkem</Link></li>
+                    <li><Link href="/vyhlidkove-lety" className="hover:text-slate-900">Vyhlídkové lety</Link></li>
                   </ul>
                 </div>
 

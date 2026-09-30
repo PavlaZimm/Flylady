@@ -3,6 +3,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+// Nejhledanější kategorie (Marketing Miner, 09/2026) první.
+const MENU_CATEGORIES = [
+  { href: "/tandemove-seskoky", label: "Tandemové seskoky", dot: "bg-red-500" },
+  { href: "/let-balonem", label: "Let balónem", dot: "bg-purple-500" },
+  { href: "/vetrny-tunel", label: "Větrný tunel", dot: "bg-sky-500" },
+  { href: "/letecke-simulatory", label: "Letecké simulátory", dot: "bg-blue-500" },
+  { href: "/let-vrtulnikem", label: "Let vrtulníkem", dot: "bg-amber-500" },
+  { href: "/vyhlidkove-lety", label: "Vyhlídkové lety", dot: "bg-green-500" },
+];
+
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -119,46 +129,18 @@ export default function MobileNav() {
             <li className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-500">
               Kategorie
             </li>
-            <li>
-              <Link
-                href="/vyhlidkove-lety"
-                onClick={closeMenu}
-                className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
-              >
-                <span className="h-2 w-2 rounded-full bg-green-500"></span>
-                Vyhlídkové lety
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/tandemove-seskoky"
-                onClick={closeMenu}
-                className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
-              >
-                <span className="h-2 w-2 rounded-full bg-red-500"></span>
-                Tandemové seskoky
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/letecke-simulatory"
-                onClick={closeMenu}
-                className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
-              >
-                <span className="h-2 w-2 rounded-full bg-blue-500"></span>
-                Letecké simulátory
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/let-vrtulnikem"
-                onClick={closeMenu}
-                className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
-              >
-                <span className="h-2 w-2 rounded-full bg-amber-500"></span>
-                Let vrtulníkem
-              </Link>
-            </li>
+            {MENU_CATEGORIES.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
+                >
+                  <span className={`h-2 w-2 rounded-full ${item.dot}`}></span>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
 
             {/* Divider */}
             <li className="py-3">

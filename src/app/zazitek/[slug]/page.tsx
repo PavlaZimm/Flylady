@@ -11,6 +11,7 @@ import {
 } from "@/lib/feed";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ProductSchema } from "@/components/StructuredData";
+import { getProductRegions, regionLabel } from "@/lib/regions";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -47,6 +48,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
   if (!product) notFound();
   const category = CATEGORY_CONFIG.find((item) => matchesCategory(product, item));
+  const regions = getProductRegions(product);
 
   return (
     <>
@@ -109,9 +111,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               {product.name}
             </h1>
-            <p className="mt-2 text-sm text-slate-500">
-              {product.categories.slice(0, 2).join(" · ")}
-            </p>
+            {category && (
+              <p className="mt-2 text-sm text-slate-500">
+                Kategorie: <Link href={`/${category.slug}`} className="underline underline-offset-2 hover:text-slate-900">{category.title}</Link>
+              </p>
+            )}
           </div>
 
           <p className="text-sm leading-relaxed text-slate-600">{product.description}</p>
@@ -130,6 +134,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
           {/* Detaily */}
           <div className="space-y-2.5 text-sm">
+            {regions.length > 0 ? (
+              <div className="flex items-start gap-3 text-slate-600">
+                <svg className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>{regions.length === 1 ? "Kraj" : "Kraje"}: {regions.map(regionLabel).join(", ")}</span>
+              </div>
+            ) : null}
             {product.location ? (
               <div className="flex items-center gap-3 text-slate-600">
                 <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
