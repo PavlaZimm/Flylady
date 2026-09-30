@@ -2,7 +2,7 @@ import { cache } from "react";
 import { unstable_cache } from "next/cache";
 import { parseFeedXml, isAviationExperience, type Product } from "@/lib/feed-parser";
 export type { Product, ProductVariant } from "@/lib/feed-parser";
-export { addUtmParams } from "@/lib/feed-parser";
+export { buildAffiliateUrl } from "@/lib/feed-parser";
 
 const FEED_URL = "https://alis.zazitky.cz/data/exports/zazitky-pap-all.xml";
 
@@ -26,7 +26,7 @@ export const getAviationProducts = cache(unstable_cache(async () => {
   const products = (await getAllProducts()).filter((product) => isAviationExperience(product.categories));
   if (!products.length) throw new Error("XML feed neobsahuje letecké zážitky.");
   return products;
-}, ["aviation-catalog-v2"], { revalidate: 3600 }));
+}, ["aviation-catalog-v3"], { revalidate: 3600 }));
 
 export const getProductById = async (id: string) => {
   const products = await getAviationProducts();

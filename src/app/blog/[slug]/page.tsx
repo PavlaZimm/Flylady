@@ -5,8 +5,15 @@ import { pageMetadata, absoluteUrl } from "@/lib/seo";
 import { Breadcrumbs, JsonLd } from "@/components/Breadcrumbs";
 import { ProductSection } from "@/components/ProductSection";
 import { getAllPosts, getPostBySlug, getRelatedPosts, formatPostDate } from "@/lib/blog";
-import { getAviationProducts } from "@/lib/feed";
+import { buildAffiliateUrl, getAviationProducts } from "@/lib/feed";
 import { getCategoryBySlug, matchesCategory } from "@/lib/categories";
+
+// Odkazy na Zážitky.cz v článcích vedou přes partnerský klik a jsou označené jako placené.
+const withAffiliateLinks = (html: string) =>
+  html.replace(/<a href="(https?:\/\/(?:www\.)?zazitky\.cz\/[^"]*)">/g, (_, href: string) => {
+    const url = buildAffiliateUrl(href.replace(/&#x26;|&amp;/g, "&"));
+    return `<a href="${url.replace(/&/g, "&amp;")}" rel="sponsored nofollow noopener" target="_blank">`;
+  });
 
 export const revalidate = 3600;
 type PageProps = { params: Promise<{ slug: string }> };
@@ -48,7 +55,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <p className="text-lg text-slate-600">{post.description}</p>
       {category && <Link href={`/${category.slug}`} className="inline-block font-semibold underline">Nabídky: {category.title}</Link>}
     </header>
-    <div className="blog-content max-w-3xl text-slate-700" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+    <div className="blog-content max-w-3xl text-slate-700" dangerouslySetInnerHTML={{ __html: withAffiliateLinks(post.contentHtml) }} />
     {category && <ProductSection title={`Související nabídky: ${category.title}`} description="Nabídky pro celou kategorii. Místo konání ověřte u konkrétní varianty." products={products} limit={3} href={`/${category.slug}`} />}
     {related.length > 0 && <section className="space-y-5 border-t border-slate-100 pt-8">
       <h2 className="text-2xl font-semibold">Další průvodci výběrem</h2>

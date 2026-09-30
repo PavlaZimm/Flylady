@@ -1,10 +1,9 @@
 import { XMLParser } from "fast-xml-parser";
 
-const UTM_PARAMS = {
-  utm_source: "flylady.cz",
-  utm_medium: "affiliate",
-  utm_campaign: "letecke-zazitky",
-};
+// Partnerský program Zážitky.cz běží přes eHUB; click.php zapíše klik a přesměruje na desturl.
+const AFFILIATE_CLICK_URL = "https://ehub.cz/system/scripts/click.php";
+const AFFILIATE_PARAMS = { a_aid: "3cd17e7c", a_bid: "c22fc1d9" };
+const AFFILIATE_HOSTS = ["zazitky.cz", "www.zazitky.cz"];
 
 const parser = new XMLParser({
   ignoreAttributes: false,
@@ -47,7 +46,10 @@ export type Product = {
   id: string;
   name: string;
   description: string;
+  /** Affiliate odkaz přes eHUB (tlačítko „Koupit“). */
   url: string;
+  /** Přímá adresa zážitku u prodejce (strukturovaná data). */
+  sellerUrl: string;
   imageUrls: string[];
   categories: string[];
   variants: ProductVariant[];
@@ -83,17 +85,24 @@ const buildSlug = (name: string, id: string) => {
   return `${base}-${id}`;
 };
 
-export const addUtmParams = (url: string) => {
+const parseHttpUrl = (url: string) => {
   try {
     const parsed = new URL(url);
-    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") return "";
-    Object.entries(UTM_PARAMS).forEach(([key, value]) => {
-      parsed.searchParams.set(key, value);
-    });
-    return parsed.toString();
+    return parsed.protocol === "https:" || parsed.protocol === "http:" ? parsed : null;
   } catch {
-    return "";
+    return null;
   }
+};
+
+/** Odkaz na Zážitky.cz obalí partnerským klikem eHUB; jiné domény vrátí beze změny, nebezpečné URL jako "". */
+export const buildAffiliateUrl = (url: string) => {
+  const parsed = parseHttpUrl(url);
+  if (!parsed) return "";
+  if (!AFFILIATE_HOSTS.includes(parsed.hostname)) return parsed.toString();
+  const link = new URL(AFFILIATE_CLICK_URL);
+  Object.entries(AFFILIATE_PARAMS).forEach(([key, value]) => link.searchParams.set(key, value));
+  link.searchParams.set("desturl", parsed.toString());
+  return link.toString();
 };
 
 const mapVariants = (variants: RawVariant[]): ProductVariant[] =>
@@ -132,7 +141,8 @@ const mapItem = (item: RawItem): Product => {
     id,
     name,
     description: (item.DESCRIPTION ?? "").replace(/&nbsp;/g, " "),
-    url: addUtmParams(item.URL ?? ""),
+    url: buildAffiliateUrl(item.URL ?? ""),
+    sellerUrl: parseHttpUrl(item.URL ?? "")?.toString() ?? "",
     imageUrls: images,
     categories,
     variants,

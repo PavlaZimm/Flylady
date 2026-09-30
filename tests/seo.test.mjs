@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseFeedXml, addUtmParams, isAviationExperience } from '../src/lib/feed-parser.ts';
+import { parseFeedXml, buildAffiliateUrl, isAviationExperience } from '../src/lib/feed-parser.ts';
 import { getCategoryBySlug, matchesCategory, groupProductsByCategory } from '../src/lib/categories.ts';
 import { pageMetadata, truncateText } from '../src/lib/seo.ts';
 
@@ -16,12 +16,17 @@ test('XML preserves identifiers and parses integer and localized VAT prices', ()
   assert.equal(p.slug, 'tandemovy-seskok-0015');
   assert.deepEqual(p.categories, ['Letecké zážitky']);
 });
-test('affiliate tracking preserves existing partner attribution and rejects unsafe URLs', () => {
-  const link = new URL(parseFeedXml(xml)[0].url);
-  assert.equal(link.searchParams.get('partner'), 'existing');
-  assert.equal(link.searchParams.get('utm_medium'), 'affiliate');
-  assert.equal(addUtmParams('javascript:alert(1)'), '');
-  assert.equal(addUtmParams('not a URL'), '');
+test('buy links go through the eHUB click tracker to the exact experience and reject unsafe URLs', () => {
+  const [p] = parseFeedXml(xml);
+  const link = new URL(p.url);
+  assert.equal(link.origin + link.pathname, 'https://ehub.cz/system/scripts/click.php');
+  assert.equal(link.searchParams.get('a_aid'), '3cd17e7c');
+  assert.equal(link.searchParams.get('a_bid'), 'c22fc1d9');
+  assert.equal(link.searchParams.get('desturl'), 'https://www.zazitky.cz/seskok?partner=existing');
+  assert.equal(p.sellerUrl, 'https://www.zazitky.cz/seskok?partner=existing');
+  assert.equal(buildAffiliateUrl('https://example.com/a'), 'https://example.com/a');
+  assert.equal(buildAffiliateUrl('javascript:alert(1)'), '');
+  assert.equal(buildAffiliateUrl('not a URL'), '');
 });
 test('invalid feed fails instead of replacing the catalogue with an empty success', () => {
   assert.throws(() => parseFeedXml('<html>Unavailable</html>'));

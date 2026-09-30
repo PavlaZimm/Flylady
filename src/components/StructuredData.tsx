@@ -65,7 +65,7 @@ export const ProductSchema = ({ product }: ProductSchemaProps) => {
     image: product.imageUrls[0],
     url: `${SITE_URL}/zazitek/${product.slug}`,
     ...(product.minPriceVat !== null ? { offers: {
-      "@type": "Offer", url: product.url, priceCurrency: "CZK", price: product.minPriceVat,
+      "@type": "Offer", url: product.sellerUrl, priceCurrency: "CZK", price: product.minPriceVat,
       seller: { "@type": "Organization", name: "Zážitky.cz" },
     } } : {}),
   };
