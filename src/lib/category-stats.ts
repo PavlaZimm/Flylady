@@ -6,6 +6,8 @@ export type CategoryStats = {
   variantCount: number;
   minPrice: number | null;
   maxPrice: number | null;
+  /** Medián nejnižších cen jednotlivých nabídek („polovina nabídek začíná do …“). */
+  medianPrice: number | null;
   cheapest: { product: Product; label: string | null } | null;
   priciest: { product: Product; label: string | null } | null;
   rows: PriceRow[];
@@ -44,7 +46,11 @@ export function summarizeCategory(products: Product[]): CategoryStats {
     return { product, minPrice: low?.priceVat ?? null, variantCount: variants.length, cheapestLabel: low ? variantLabel(product, low.name) : null };
   }).sort((a, b) => (a.minPrice ?? Infinity) - (b.minPrice ?? Infinity) || a.product.name.localeCompare(b.product.name, "cs"));
 
-  return { offerCount: products.length, variantCount, minPrice, maxPrice, cheapest, priciest, rows };
+  const starts = rows.map((row) => row.minPrice).filter((price): price is number => price !== null);
+  const middle = Math.floor(starts.length / 2);
+  const medianPrice = !starts.length ? null : starts.length % 2 ? starts[middle] : Math.round((starts[middle - 1] + starts[middle]) / 2);
+
+  return { offerCount: products.length, variantCount, minPrice, maxPrice, medianPrice, cheapest, priciest, rows };
 }
 
 export const formatCzk = (value: number) => new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 }).format(value);

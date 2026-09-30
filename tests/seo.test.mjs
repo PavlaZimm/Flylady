@@ -75,11 +75,16 @@ test('meta descriptions are cut on a word boundary', () => {
   assert.equal(truncateText('Krátký popis.'), 'Krátký popis.');
 });
 test('regions come from feed categories, deduplicated and in fixed order', async () => {
-  const { getProductRegions, groupByRegion } = await import('../src/lib/regions.ts');
+  const { getProductRegions, groupByRegion, commonPlace } = await import('../src/lib/regions.ts');
   const p = product('Let balónem', ['Letecké zážitky', 'Jihomoravský', 'Praha', 'Královehradecký', 'Dárky pro dva', 'Praha']);
   assert.deepEqual(getProductRegions(p).map((r) => r.name), ['Praha', 'Královéhradecký kraj', 'Jihomoravský kraj']);
   const q = { ...product('Tunel', ['Praha']), id: 'q' };
   assert.deepEqual(groupByRegion([p, q]).map((g) => [g.region.name, g.products.length]), [['Praha', 2], ['Královéhradecký kraj', 1], ['Jihomoravský kraj', 1]]);
+  assert.equal(commonPlace(groupByRegion([q]), 1), 'Praha');
+  assert.equal(commonPlace(groupByRegion([q, { ...q, id: 'x', categories: [] }]), 2), null);
+  assert.equal(commonPlace(groupByRegion([p, q]), 2), null);
+  const brno = { ...product('Tunel', ['Jihomoravský']), id: 'b' };
+  assert.equal(commonPlace(groupByRegion([brno]), 1), null);
 });
 test('category stats pick the cheapest and priciest variant and sort rows by price', async () => {
   const { summarizeCategory, variantLabel } = await import('../src/lib/category-stats.ts');
@@ -89,6 +94,7 @@ test('category stats pick the cheapest and priciest variant and sort rows by pri
   const stats = summarizeCategory([b, a]);
   assert.equal(stats.minPrice, 4990);
   assert.equal(stats.maxPrice, 12990);
+  assert.equal(stats.medianPrice, Math.round((4990 + 12990) / 2));
   assert.equal(stats.variantCount, 3);
   assert.equal(stats.cheapest.label, '1 osoba, 1 hodina');
   assert.deepEqual(stats.rows.map((r) => r.product.id), ['a', 'b']);

@@ -47,4 +47,10 @@ export const groupByRegion = (products: Product[]): RegionGroup[] => {
   return REGIONS.filter((region) => byRegion.has(region)).map((region) => ({ region, products: byRegion.get(region)! }));
 };
 
+/** „Praha“, pokud jsou všechny nabídky jen v Praze; jinak null. Kraj ≠ město, proto jiné kraje do titulku nedáváme. */
+export const commonPlace = (groups: RegionGroup[], offerCount: number) => {
+  const [only] = groups;
+  return groups.length === 1 && only.region.name === "Praha" && only.products.length === offerCount ? "Praha" : null;
+};
+
 export const regionLabel = (region: Region) => (region.country === "SK" ? `${region.name} (Slovensko)` : region.name);

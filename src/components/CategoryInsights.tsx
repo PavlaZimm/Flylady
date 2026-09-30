@@ -30,7 +30,7 @@ const REGION_HEADING: Record<string, string> = {
 
 const formatDate = (date: Date) => new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long", timeZone: "Europe/Prague" }).format(date);
 
-export function CategoryInsights({ category, stats, regions, updatedAt }: { category: CategoryConfig; stats: CategoryStats; regions: RegionGroup[]; updatedAt: Date }) {
+export function CategoryInsights({ category, stats, regions, place, updatedAt }: { category: CategoryConfig; stats: CategoryStats; regions: RegionGroup[]; place?: string | null; updatedAt: Date }) {
   if (!stats.offerCount || stats.minPrice === null) return null;
   const subject = SUBJECT[category.slug] ?? category.title.toLowerCase();
   const offers = `${stats.offerCount} ${plural(stats.offerCount, "zážitek", "zážitky", "zážitků")}`;
@@ -39,12 +39,19 @@ export function CategoryInsights({ category, stats, regions, updatedAt }: { cate
   return <>
     <section id="ceny" className="scroll-mt-24 space-y-5 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
       <h2 className="text-2xl font-semibold">Kolik stojí {subject}?</h2>
-      <p className="max-w-3xl leading-relaxed text-slate-700">
-        {subject.charAt(0).toUpperCase() + subject.slice(1)} teď na Zážitky.cz pořídíte od <strong>{formatCzk(stats.minPrice)}</strong>
-        {stats.cheapest && <> (nejlevnější varianta: {stats.cheapest.product.name}{stats.cheapest.label ? `, ${stats.cheapest.label}` : ""})</>}.
-        {stats.maxPrice !== null && stats.maxPrice > stats.minPrice && stats.priciest && <> Nejdražší varianta stojí {formatCzk(stats.maxPrice)} ({stats.priciest.product.name}{stats.priciest.label ? `, ${stats.priciest.label}` : ""}).</>}
-        {" "}V nabídce {stats.offerCount >= 2 && stats.offerCount <= 4 ? "jsou" : "je"} {offers} s {variants}. Ceny jednotlivých nabídek porovnáte v tabulce.
+      {/* Přímá odpověď do ~45 slov (formát pro úryvek na nulté pozici), podrobnosti až v dalším odstavci. */}
+      <p className="max-w-3xl text-lg leading-relaxed text-slate-800">
+        {subject.charAt(0).toUpperCase() + subject.slice(1)}{place ? ` ${place}` : ""} stojí na Zážitky.cz od <strong>{formatCzk(stats.minPrice)}</strong>
+        {stats.cheapest?.label && ` (${stats.cheapest.label})`}
+        {stats.maxPrice !== null && stats.maxPrice > stats.minPrice && <> do {formatCzk(stats.maxPrice)}</>}.
+        {" "}V nabídce {stats.offerCount >= 2 && stats.offerCount <= 4 ? "jsou" : "je"} {offers} s {variants}
+        {stats.offerCount >= 3 && stats.medianPrice !== null && <> a polovina nabídek začíná do {formatCzk(stats.medianPrice)}</>}.
       </p>
+      {stats.cheapest && <p className="max-w-3xl leading-relaxed text-slate-600">
+        Nejlevnější variantu má nabídka {stats.cheapest.product.name}
+        {stats.maxPrice !== null && stats.maxPrice > stats.minPrice && stats.priciest && <>, nejdražší {stats.priciest.product.name}{stats.priciest.label ? ` (${stats.priciest.label})` : ""}</>}.
+        {" "}Ceny všech nabídek porovnáte v tabulce.
+      </p>}
       <div className="table-wrapper overflow-x-auto">
         <table className="w-full min-w-[520px] border-collapse text-left text-sm">
           <caption className="sr-only">{category.title}: přehled cen jednotlivých nabídek</caption>
