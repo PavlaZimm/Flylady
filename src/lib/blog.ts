@@ -4,6 +4,7 @@ import { cache } from "react";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import gfm from "remark-gfm";
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -38,7 +39,7 @@ export const getAllPosts = cache(async (): Promise<BlogPost[]> => {
   const posts = await Promise.all(files.filter((file) => file.endsWith(".md")).map(async (file) => {
     const { data, content } = matter(await fs.readFile(path.join(BLOG_DIR, file), "utf-8"));
     const frontmatter = data as BlogFrontmatter;
-    const processed = await remark().use(html).process(content);
+    const processed = await remark().use(gfm).use(html).process(content);
     const date = normalizeDate(frontmatter.date);
     const updated = normalizeDate(frontmatter.updated);
     return {

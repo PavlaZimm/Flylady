@@ -1,0 +1,79 @@
+# Výpis feedu Zážitky.cz, stažen 30. 9. 2026
+
+## BALÓNY
+- **Let balónem - Vysoké Tatry** (https://www.zazitky.cz/let-balonem-vysoke-tatry) | ceny s DPH 7190–27990 Kč | 4 variant | kraje: Prešovský
+  - popis: Vysoké Tatry tak blízko, až se vám zatají dech. Vzneste se v horkovzdušném balónu s výhledem na zasněžené štíty, hluboká údolí i nekonečnou horskou krajinu. Ticho, výhledy, které se nedají vyfotit, a momenty, kdy se svět na chvíli zastaví. Pokud milujete hory, tohle vás dostane!
+  - varianty (unikátní názvy, max 8): Let balónem - Vysoké Tatry, 1 osoba / Let balónem - Vysoké Tatry, 2 osoby / Let balónem - Vysoké Tatry, 3 osoby / Let balónem - Vysoké Tatry, 4 osoby
+- **Privátní let balónem s ubytováním** (https://www.zazitky.cz/privatni-let-balonem-ubytovani) | ceny s DPH 15490–15490 Kč | 1 variant | kraje: Jihočeský
+  - popis: Sníte o romantickém zážitku, který vás vezme za hranice všednosti? Chcete někoho opravdu okouzlit? Překvapte ho a vezměte ho nad krajinu v soukromém balónu – jen vy dva, pilot, ticho a výhledy. Ale nejen to – čeká vás také noc v útulném apartmánu.&nbsp;Vše bez starostí, s odvozem i křtem vzduchoplavců. Ráno nad mlhou, nebo večer při západu slunce? Volba je na vás. Stačí nasednout – a nechat se uná
+  - varianty (unikátní názvy, max 8): Privátní let balónem s ubytováním, 2 osoby
+- **Let balónem pro dva** (https://www.zazitky.cz/let-balonem-pro-dva) | ceny s DPH 5700–17990 Kč | 83 variant | kraje: Jihočeský, Středočeský, Zlínský, Olomoucký, Moravskoslezský, Trnavský, Plzeňský, Karlovarský, Vysočina, Prešovský, Košický, Nitrianský, Ústecký, Jihomoravský, Královehradecký, Trenčianský, Pardubický
+  - popis: Vyzkoušejte si tento jedinečný zážitek v oblacích. Jakmile se budete vznášet ve vzduchu, obklopí vás ticho a klid. Z ptačí perspektivy můžete obdivovat dechberoucí panoramatický pohled na krajinu a přírodu. Zažijte let balónem ve dvou a vytvořte tak jedinečnou společnou vzpomínku na celý život. :)
+  - varianty (unikátní názvy, max 8): Let balónem pro dva, 2 osoby, 1 hodina, Hromadný let / Let balónem pro dva, 2 osoby, 1 hodina, Privátní let
+- **Exkluzivní let vzducholodí** (https://www.zazitky.cz/let-vzducholodi) | ceny s DPH 9299–26999 Kč | 4 variant | kraje: Jihomoravský, Středočeský
+  - popis: Když se zadíváte na oblohu, málokdy vás překvapí letadlo, které je v dnešní době běžným dopravním prostředkem. Občas zahlédnete i vznášející se balón s mávajícími pasažéry. Oboje jste již vyzkoušeli a teď si lámete hlavu, jaký další vzrušující vzdušný zážitek vyzkoušet? Pokud máte pocit, že byste si rádi doplnili své vzduchozážitkové portfolio, nabízíme vám unikátní možnost podniknout vyhlídkový l
+  - varianty (unikátní názvy, max 8): Exkluzivní let vzducholodí, 1 osoba, 30 minut / Exkluzivní let vzducholodí, 2–3 osoby, 30 minut
+- **Privátní let největším balónem pro 24 pasažérů** (https://www.zazitky.cz/privatni-let-nejvetsim-balonem) | ceny s DPH 87980–87980 Kč | 1 variant | kraje: Bratislavský, Středočeský
+  - popis: Největší balón z naší flotily může letět jen pro vás. S výškou 37 metrů a šířkou 30 metrů bude jeden z největších létajících objektů, které jste v životě viděli. Do balónu s objemem 13000 m3 se vejde až 24 pasažérů. Protože balónové létání je spojením romantiky a dobrodružství, čeká vás zážitek jako nikdy předtím. Uvidíte pole, lesy, hrady či města z perspektivy, ze které jste je ještě nikdy nevid
+  - varianty (unikátní názvy, max 8): Privátní let největším balónem pro 24 pasažérů, 24 osob, 1 hodina
+- **Let největším balónem** (https://www.zazitky.cz/let-nejvetsim-balonem) | ceny s DPH 3490–13960 Kč | 16 variant | kraje: Moravskoslezský, Vysočina, Ústecký, Královehradecký, Pardubický, Jihočeský, Středočeský
+  - popis: Vstupte na palubu největšího balónu v naší flotile. S výškou 37 metrů a šířkou 30 metrů bude jeden z největších létajících objektů, které jste v životě viděli. Do balónu s objemem 13000 m3, respektive do jeho obřího koše se vejde 24 pasažérů. Protože balónové létání je spojením romantiky a dobrodružství, čeká vás zážitek jako nikdy předtím. Uvidíte pole, lesy, hrady či města z perspektivy, ze kter
+  - varianty (unikátní názvy, max 8): Let největším balónem, 1 osoba, 1 hodina / Let největším balónem, 2 osoby, 1 hodina / Let největším balónem, 3 osoby, 1 hodina / Let největším balónem, 4 osoby, 1 hodina
+- **Exkluzivní let balónem nad Alpami** (https://www.zazitky.cz/let-balonem-nad-alpami) | ceny s DPH 8400–16800 Kč | 2 variant | kraje: Bratislavský
+  - popis: Máte-li rádi hory a dobrodružství, je pro vás tento let v horkovzdušném balónu jako stvořený. Zařaďte se po bok pár desítek lidí, kteří měli možnost z balónového koše obdivovat majestátnost alpských vrcholků i údolí. Sledujte lyžaře na sjezdovkách, zasněžené silničky a vesnice a užijte si hory trochu jinak. A po přeletu alpských vrcholků třeba přistanete rovnou na sjezdovce :).
+  - varianty (unikátní názvy, max 8): Exkluzivní let balónem nad Alpami, 1 osoba, 1,5 hodiny / Exkluzivní let balónem nad Alpami, 2 osoby, 1,5 hodiny
+- **Pobyt na zámku a romantický let balónem ve dvou** (https://www.zazitky.cz/pobyt-na-zamku-romanticky-let-balonem) | ceny s DPH 20800–21800 Kč | 2 variant | kraje: Vysočina
+  - popis: Pokud hledáte způsob, jak své lásce vyrazit dech, nenajdete nic lepšího. Vezměte svou drahou polovičku do nebe, ukažte ji krásu mraků a pohled na krajinu z ptačí perspektivy. Oslavte výročí, požádejte ji o ruku nebo si jen užijte chvíli ve dvou. V balóně budete mít soukromí, protože tam budete jen vy dva a pilot. K tomu zažijete tři dny a dvě noci v prostředí zámku, který je citlivě zrekonstruovan
+  - varianty (unikátní názvy, max 8): Pobyt na zámku a romantický let balónem ve dvou, 2 osoby, 3 dny
+- **Pobyt na zámku s polopenzí a let horkovzdušným balónem** (https://www.zazitky.cz/pobyt-na-zamku-let-balonem) | ceny s DPH 14800–15800 Kč | 2 variant | kraje: Vysočina
+  - popis: Jedinečná příležitost podívat se na naši krásnou krajinu přesně tak, jak ji vidí představitelé ptačí říše. Pěkně z nebe, z výšky a ještě si užít to krásné ticho, které při letu balónem bere dech. K tomu zažijete tři dny a dvě noci v prostředí zámku, který je citlivě zrekonstruovaný a dopřeje vám komfort hodný králů.
+  - varianty (unikátní názvy, max 8): Pobyt na zámku s polopenzí a let horkovzdušným balónem, 2 osoby, 3 dny
+- **Let balónem nad Českým Krumlovem** (https://www.zazitky.cz/let-balonem-nad-ceskym-krumlovem) | ceny s DPH 3190–12760 Kč | 4 variant | kraje: Jihočeský
+  - popis: Těžko najdete úchvatnější město v jižních Čechách než je Český Krumlov. A protože z výšky je pohled na něj naprosto okouzlující, máme pro vás připravený nezapomenutelný zážitek. Vydejte se v horkovzdušném balonu vzhůru do oblak a vychutnejte si pohled na Český Krumlov tak, jak ho ještě neznáte.
+  - varianty (unikátní názvy, max 8): Let balónem nad Českým Krumlovem, 1 osoba, 1 hodina, klasický balón / Let balónem nad Českým Krumlovem, 2 osoby, 1 hodina, klasický balón / Let balónem nad Českým Krumlovem, 3 osoby, 1 hodina, klasický balón / Let balónem nad Českým Krumlovem, 4 osoby, 1 hodina, klasický balón
+- **Svatba v balónu** (https://www.zazitky.cz/svatba-v-balonu) | ceny s DPH 28980–28980 Kč | 1 variant | kraje: Bratislavský, Jihočeský, Středočeský
+  - popis: Svatba na úřadě je klasika. V kostele to má atmosféru. Na zahradě nebo na pláži je to čím dál víc in. Ale co teprve svatba v oblacích? Prožijte svůj velký den v nebeských výšinách a řekněte si své ano vysoko nad zemí. V koši budete pouze vy dva, vaši svědci, oddávající a pilot, který vás vynese do absolutního ticha. Před vámi se rozprostře svět, jak ho neznáte a kde se romantika dá krájet. Pomysle
+  - varianty (unikátní názvy, max 8): Svatba v balónu, 7 osob, 3 hodiny
+- **Rodinný let balónem** (https://www.zazitky.cz/rodinny-let-balonem) | ceny s DPH 20870–23870 Kč | 42 variant | kraje: Zlínský, Olomoucký, Bratislavský, Moravskoslezský, Trnavský, Plzeňský, Karlovarský, Vysočina, Nitrianský, Ústecký, Jihomoravský, Královehradecký, Trenčianský, Pardubický, Jihočeský, Středočeský
+  - popis: Vzhůru do oblak s celou rodinou.
+  - varianty (unikátní názvy, max 8): Rodinný let balónem, 4 osoby, 1 hodina
+- **Privátní let balónem** (https://www.zazitky.cz/privatni-let-balonem) | ceny s DPH 14490–28870 Kč | 168 variant | kraje: Zlínský, Olomoucký, Bratislavský, Žilinský, Moravskoslezský, Trnavský, Plzeňský, Karlovarský, Vysočina, Prešovský, Košický, Nitrianský, Ústecký, Jihomoravský, Královehradecký, Trenčianský, Pardubický, Jihočeský, Středočeský
+  - popis: Vyleťte si s přáteli do oblak.
+  - varianty (unikátní názvy, max 8): Privátní let balónem, 2 osoby, 1 hodina / Privátní let balónem, 3 osoby, 1 hodina / Privátní let balónem, 4 osoby, 1 hodina / Privátní let balónem, 5 osob, 1 hodina
+- **Soukromý let balónem pro dva** (https://www.zazitky.cz/soukromy-let-balonem-pro-dva) | ceny s DPH 14490–19870 Kč | 42 variant | kraje: Zlínský, Olomoucký, Bratislavský, Žilinský, Moravskoslezský, Trnavský, Plzeňský, Karlovarský, Vysočina, Prešovský, Košický, Liberecký, Nitrianský, Ústecký, Jihomoravský, Královehradecký, Trenčianský, Pardubický, Jihočeský, Středočeský
+  - popis: Zažijte romantiku v horkovzdušném balónu jen ve dvou.
+  - varianty (unikátní názvy, max 8): Soukromý let balónem pro dva, 2 osoby, 1 hodina
+- **Let balónem** (https://www.zazitky.cz/let-balonem) | ceny s DPH 2850–12760 Kč | 164 variant | kraje: Trenčianský, Pardubický, Jihočeský, Středočeský, Zlínský, Olomoucký, Trnavský, Moravskoslezský, Plzeňský, Karlovarský, Vysočina, Prešovský, Košický, Liberecký, Nitrianský, Ústecký, Jihomoravský, Královehradecký
+  - popis: Jen pomocí plamene se vzneste do oblak a podívejte na svět z ptačí perspektivy.
+  - varianty (unikátní názvy, max 8): Let balónem, 1 osoba, 1 hodina, dospělí / Let balónem, 2 osoby, 1 hodina, dospělí / Let balónem, 3 osoby, 1 hodina, dospělí / Let balónem, 4 osoby, 1 hodina, dospělí
+## PILOTOVÁNÍ
+- **Vyhlídkový let ve sportovním letounu s možností pilotáže** (https://www.zazitky.cz/vyhlidkovy-let-ve-sportovnim-letounu-s-moznosti-pilotaze) | ceny s DPH 2590–4690 Kč | 3 variant | kraje: Středočeský
+  - popis: Nastupte do sportovního letounu, nechte zemi pod sebou a zažijte pocit volnosti, který nabízí jen skutečné létání. Před vámi se otevřou jedinečné výhledy na krajinu a po vašem boku bude sedět zkušený pilot. A pokud budete chtít, můžete si splnit sen o řízení letadla.
+  - varianty (unikátní názvy, max 8): Vyhlídkový let ve sportovním letounu s možností pilotáže, 1 osoba, 30 minut / Vyhlídkový let ve sportovním letounu s možností pilotáže, 1 osoba, 40 minut / Vyhlídkový let ve sportovním letounu s možností pilotáže, 1 osoba, 60 minut
+- **Na hodinu pilotem** (https://www.zazitky.cz/na-hodinu-pilotem) | ceny s DPH 6390–6390 Kč | 1 variant | kraje: Středočeský
+  - popis: Zapomeňte na simulátory! Splňte si sen o létání a usedněte za knipl moderního sportovního letounu. Pod dohledem zkušeného instruktora si vyzkoušíte opravdovou pilotáž, převezmete řízení do vlastních rukou a zažijete neopakovatelný pocit, který znají jen ti, kdo se někdy s letadlem odlepili od země.
+  - varianty (unikátní názvy, max 8): Na hodinu pilotem, 1 osoba, 1 hodina
+- **Staňte se pilotem stíhačky F35** (https://www.zazitky.cz/stante-se-pilotem-stihacky-f35) | ceny s DPH 2850–7150 Kč | 6 variant | kraje: Praha
+  - popis: Milujete Top Gun a vždycky jste chtěli vědět, jaké to je sedět v kokpitu stíhačky? Tohle je vaše šance. Usedněte do realistického simulátoru inspirovaného stíhačkou F-35 a zažijte misi, kde rozhodují rychlé reflexy, přesnost a chladná hlava. Čeká vás volný přelet, akrobatické manévry, vzdušný souboj s cvičnými drony i útok na pozemní cíle. Tenhle adrenalinový zážitek vás přiblíží světu elitních pi
+  - varianty (unikátní názvy, max 8): Staňte se pilotem stíhačky F35, 1 osoba, 30 minut / Staňte se pilotem stíhačky F35, 1 osoba, 45 minut / Staňte se pilotem stíhačky F35, 1 osoba, 60 minut / Staňte se pilotem stíhačky F35, 1 osoba, 90 minut / Staňte se pilotem stíhačky F35, 2 osoby, 60 minut / Staňte se pilotem stíhačky F35, 2 osoby, 90 minut
+- **Pilotem sportovního letadla** (https://www.zazitky.cz/let-sportovni-letadlo) | ceny s DPH 8190–9190 Kč | 4 variant | kraje: Praha, Moravskoslezský
+  - popis: Vzneste se do oblak a pozorujte své blízké z výšky. Vyzkoušejte si s letadlem stoupat, klesat nebo zatáčet. Vše pod dohledem zkušeného pilota!
+  - varianty (unikátní názvy, max 8): Pilotem sportovního letadla, 1 osoba, 30 minut / Pilotem sportovního letadla, 1 osoba, 30 minut, Bristell B32 / Pilotem sportovního letadla, 1 osoba, 40 minut / Pilotem sportovního letadla, 1 osoba, 40 minut, Bristell B32
+- **Pilotem vírníku na zkoušku** (https://www.zazitky.cz/pilotem-virniku-na-zkousku) | ceny s DPH 4190–7190 Kč | 2 variant | kraje: Královehradecký
+  - popis: Ani vrtulník, ani letadlo, něco mezi. Vírník je dvoumístný letoun, který je opatřen rotujícími nosnými plochami, které se roztáčejí nabíhajícím větrem. K tomu mu dopomáhá klasický tlačný motor s vrtulí. Užijte si jedinečnou kombinaci adrenalinu a pomalého vyhlídkového letu, během kterého si budete moci užít všechny krásy okolí.
+  - varianty (unikátní názvy, max 8): Pilotem vírníku na zkoušku, 1 osoba, 30 minut / Pilotem vírníku na zkoušku, 1 osoba, 60 minut
+- **Pilotem malého letounu na zkoušku - privátní let** (https://www.zazitky.cz/pilotem-maleho-letounu-na-zkousku-privatni-let) | ceny s DPH 4900–9900 Kč | 3 variant | kraje: Praha, Jihomoravský, Moravskoslezský
+  - popis: Vyzkoušejte si alespoň na chvíli pozici druhého pilota ultralehkého letounu. Pomozte pilotovi při plánování letu, zakreslení trasy, nastavení palubních přístrojů a ověření meteorologických podmínek. Vyžádejte si povolení ke startu, naposledy zkontrolujte přístroje a vzhůru k nebesům. Vydejte se vstříc největšímu vzdušnému dobrodružství vašeho života!
+  - varianty (unikátní názvy, max 8): Pilotem malého letounu na zkoušku - privátní let, 1 osoba, 30 minut
+- **Pilotem na zkoušku - privátní let** (https://www.zazitky.cz/pilotem-na-zkousku-privatni-let) | ceny s DPH 6900–11900 Kč | 8 variant | kraje: Praha, Moravskoslezský, Plzeňský, Karlovarský, Ústecký, Jihomoravský, Královehradecký, Jihočeský, Středočeský
+  - popis: Dopřejte si privátní lekci létání v oblacích.
+  - varianty (unikátní názvy, max 8): Pilotem na zkoušku - privátní let, 1 osoba, 20 minut
+- **Pilotem malého letounu na zkoušku** (https://www.zazitky.cz/pilotem-maleho-letounu-na-zkousku) | ceny s DPH 3900–7900 Kč | 3 variant | kraje: Praha, Jihomoravský, Moravskoslezský
+  - popis: Zkuste si pilotovat skutečný ultralight.
+  - varianty (unikátní názvy, max 8): Pilotem malého letounu na zkoušku, 1 osoba, 20 minut
+- **Pilotem vrtulníku na zkoušku** (https://www.zazitky.cz/pilotem-vrtulniku-na-zkousku) | ceny s DPH 11900–17900 Kč | 2 variant | kraje: Praha, Jihomoravský, Královehradecký, Středočeský
+  - popis: Splňte si svůj sen a pomozte pilotovat helikoptéru.
+  - varianty (unikátní názvy, max 8): Pilotem vrtulníku na zkoušku, 1 osoba, 30 minut
+- **Pilotem letounu na zkoušku** (https://www.zazitky.cz/pilotem-letounu-na-zkousku) | ceny s DPH 8900–10900 Kč | 3 variant | kraje: Praha, Moravskoslezský, Plzeňský, Jihomoravský, Královehradecký, Jihočeský
+  - popis: Vyzkoušejte si, zda máte nervy na to být pilotem.
+  - varianty (unikátní názvy, max 8): Pilotem letounu na zkoušku, 1 osoba, 3 hodiny
