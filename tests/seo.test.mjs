@@ -105,3 +105,28 @@ test('scenic flights exclude paragliding and fighter jets tagged as scenic by th
   assert.equal(matches(product('Let stíhačkou L-39 Albatros', ['Letecké zážitky | Vyhlídkové lety']), 'vyhlidkove-lety'), false);
   assert.equal(matches(product('Vyhlídkový let - Pálava', ['Letecké zážitky | Vyhlídkové lety']), 'vyhlidkove-lety'), true);
 });
+test('variant names are split into persons, duration and options and summarized by price', async () => {
+  const { parseVariant, summarizeVariants, describeVariant } = await import('../src/lib/variants.ts');
+  const v = (name, priceVat) => ({ id: name, name, price: null, priceVat, location: null });
+  const p = { name: 'Let balónem pro dva', variants: [
+    v('Let balónem pro dva, 2 osoby, 1 hodina, Hromadný let', 5700),
+    v('Let balónem pro dva, 2 osoby, 1 hodina, Privátní let', 14490),
+    v('Let balónem pro dva, 2–3 osoby, 30 minut', 9299),
+    v('Let balónem pro dva, 1,5 hodiny, bez záznamu', 7000),
+    v('Let balónem pro dva, bez ceny', null),
+  ] };
+  const one = parseVariant(p, p.variants[2]);
+  assert.equal(one.persons, '2–3 osoby'); assert.equal(one.personsSort, 2); assert.equal(one.durationSort, 30);
+  assert.equal(parseVariant(p, p.variants[3]).durationSort, 90);
+  assert.equal(parseVariant(p, p.variants[4]), null);
+  const s = summarizeVariants(p);
+  assert.equal(s.count, 4); assert.equal(s.min, 5700); assert.equal(s.max, 14490);
+  assert.equal(describeVariant(s.cheapest), '2 osoby, 1 hodina, Hromadný let');
+  assert.deepEqual(s.byPersons.map((g) => [g.label, g.from, g.to, g.count]), [['2 osoby', 5700, 14490, 2], ['2–3 osoby', 9299, 9299, 1]]);
+  assert.deepEqual(s.byDuration.map((g) => g.label), ['30 minut', '1 hodina', '1,5 hodiny']);
+  assert.deepEqual(s.byOption.map((g) => g.label), ['Hromadný let', 'bez záznamu', 'Privátní let']);
+  const jump = summarizeVariants({ name: 'Seskok', variants: [v('Seskok, 1 osoba, 3000 m, Platnost do 31.5.2027', 3989), v('Seskok, 1 osoba, 3000 m, bez záznamu', 4890), v('Seskok, 1 osoba, 4000 m, bez záznamu', 5990)] });
+  assert.deepEqual(jump.byHeight.map((g) => [g.label, g.from, g.to]), [['3000 m', 3989, 4890], ['4000 m', 5990, 5990]]);
+  assert.deepEqual(jump.byOption.map((g) => g.label), ['bez záznamu']);
+  assert.equal(summarizeVariants({ name: 'X', variants: [v('X, bez ceny', null)] }), null);
+});
