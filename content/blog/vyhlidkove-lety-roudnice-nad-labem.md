@@ -4,6 +4,11 @@ description: "Vyhlídkový let z Roudnice nad Labem: kde hledat nabídku, co ov�
 date: "2026-04-07"
 updated: "2026-09-17"
 category: "vyhlidkove-lety"
+coverImage: "/fotky/aeroklub-roudnice-ultralehky-letoun.webp"
+coverAlt: "Ultralehký letoun před hangárem Aeroklubu Roudnice nad Labem"
+coverCaption: "Ultralehký letoun před hangárem Aeroklubu Roudnice nad Labem, 31. 5. 2026. Foto: vlastní archiv Flylady.cz. Ilustrační snímek letiště, nikoli konkrétní nabídky."
+coverWidth: 1600
+coverHeight: 900
 ---
 
 U vyhlídkového letu z Roudnice nad Labem začněte místem odletu a tím, co chcete vidět. Název oblasti na poukazu sám o sobě nezaručuje konkrétní trasu. Vybranou památku, délku letu a počet cestujících si nechte potvrdit před nákupem.

@@ -1,8 +1,9 @@
 import type { Product } from "@/lib/feed";
+import type { Photo } from "@/components/PhotoFigure";
 
 /** Redakční sekce kategorie: nadpis ve tvaru otázky, pod ním odstavce (první = přímá odpověď). Odkazy v Markdown tvaru [text](/url). */
 export type CategoryGuideSection = { heading: string; paragraphs: string[]; table?: { caption: string; head: string[]; rows: string[][] } };
-export type CategoryConfig = { slug: string; title: string; description: string; seoText: string; keywords: string[]; exclude: string[]; checklist: string[]; guide?: CategoryGuideSection[]; sources?: { label: string; url: string }[] };
+export type CategoryConfig = { slug: string; title: string; description: string; seoText: string; keywords: string[]; exclude: string[]; checklist: string[]; guide?: CategoryGuideSection[]; sources?: { label: string; url: string }[]; photo?: Photo };
 
 const normalizeText = (value: string) => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
@@ -24,6 +25,7 @@ export const CATEGORY_CONFIG: CategoryConfig[] = [
   },
   {
     "slug": "vyhlidkove-lety",
+    "photo": { "src": "/fotky/aeroklub-roudnice-ultralehky-letoun.webp", "alt": "Ultralehký letoun před hangárem Aeroklubu Roudnice nad Labem", "caption": "Ultralehký letoun před hangárem Aeroklubu Roudnice nad Labem, 31. 5. 2026. Foto: vlastní archiv Flylady.cz. Ilustrační snímek letiště, nikoli konkrétní nabídky.", "width": 1600, "height": 900 },
     "title": "Vyhlídkové lety",
     "description": "Vyhlídkové lety pro jednotlivce i páry. Porovnejte nabídky podle místa odletu, délky letu, počtu osob a ceny.",
     "keywords": [
@@ -64,6 +66,7 @@ export const CATEGORY_CONFIG: CategoryConfig[] = [
   },
   {
     "slug": "pilotem-na-zkousku",
+    "photo": { "src": "/fotky/hangar-7-salcburk-piper-super-cub.webp", "alt": "Žlutý Piper Super Cub na plovácích v Hangar-7 v Salcburku", "caption": "Piper Super Cub na plovácích, muzejní exponát v Hangar-7 v Salcburku, 5. 7. 2026. Foto: vlastní archiv Flylady.cz. Ilustrační, stroje v nabídkách se liší.", "width": 1600, "height": 900 },
     "title": "Pilotem na zkoušku",
     "description": "Pilotem na zkoušku v letadle, vrtulníku či vírníku: porovnejte čas u řízení, letiště, podmínky a ceny zážitků s instruktorem.",
     "keywords": [
@@ -207,6 +210,7 @@ export const CATEGORY_CONFIG: CategoryConfig[] = [
   },
   {
     "slug": "let-stihackou",
+    "photo": { "src": "/fotky/air-park-zruc-stihaci-letouny.webp", "alt": "Vyřazené stíhací letouny s československými a slovenskými znaky v Air Parku Zruč", "caption": "Vyřazené stíhací letouny v Air Parku Zruč, 8. 3. 2026. Foto: vlastní archiv Flylady.cz. Muzejní exponáty, nikoli letouny z nabídek.", "width": 1600, "height": 737 },
     "title": "Let stíhačkou",
     "description": "Let stíhačkou: porovnejte skutečné lety, typ letounu, délku programu a ceny. Podívejte se, co zkontrolovat před rezervací.",
     "keywords": [
@@ -262,6 +266,7 @@ export const CATEGORY_CONFIG: CategoryConfig[] = [
   },
   {
     "slug": "let-vrtulnikem",
+    "photo": { "src": "/fotky/hangar-7-salcburk-bojovy-vrtulnik.webp", "alt": "Bojový vrtulník v barvách Red Bull vystavený v Hangar-7 v Salcburku", "caption": "Bojový vrtulník, muzejní exponát v Hangar-7 v Salcburku, 5. 7. 2026. Foto: vlastní archiv Flylady.cz. Ilustrační; vyhlídkové lety létají na civilních vrtulnících.", "width": 1600, "height": 900 },
     "title": "Let vrtulníkem",
     "description": "Let vrtulníkem a vyhlídkové lety vrtulníkem: porovnejte místo odletu, délku, kapacitu a cenu konkrétních variant.",
     "keywords": [

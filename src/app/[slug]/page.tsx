@@ -9,6 +9,7 @@ import { pageMetadata, truncateText } from "@/lib/seo";
 import { formatCzk, plural, summarizeCategory } from "@/lib/category-stats";
 import { CategoryInsights } from "@/components/CategoryInsights";
 import { CategoryGuide } from "@/components/CategoryGuide";
+import { PhotoFigure } from "@/components/PhotoFigure";
 import { commonPlace, groupByRegion } from "@/lib/regions";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -22,10 +23,10 @@ export async function generateMetadata({ params }: PageProps) {
   const stats = summarizeCategory(products);
   const place = commonPlace(groupByRegion(products), stats.offerCount);
   const heading = place ? `${category.title} ${place}` : category.title;
-  if (stats.minPrice === null) return pageMetadata(`${category.title}: nabídky a jak vybrat`, category.description, `/${slug}`);
+  if (stats.minPrice === null) return pageMetadata(`${category.title}: nabídky a jak vybrat`, category.description, `/${slug}`, category.photo?.src);
   const offers = `${stats.offerCount} ${plural(stats.offerCount, "nabídka", "nabídky", "nabídek")}`;
   const suffix = `Ceny od ${formatCzk(stats.minPrice)}, ${offers}.`;
-  return pageMetadata(`${heading}: ceny od ${formatCzk(stats.minPrice)}, ${offers}`, `${truncateText(category.description, 159 - suffix.length)} ${suffix}`, `/${slug}`);
+  return pageMetadata(`${heading}: ceny od ${formatCzk(stats.minPrice)}, ${offers}`, `${truncateText(category.description, 159 - suffix.length)} ${suffix}`, `/${slug}`, category.photo?.src);
 }
 export default async function CategoryPage({ params }: PageProps) {
   const { slug } = await params;
@@ -39,6 +40,7 @@ export default async function CategoryPage({ params }: PageProps) {
   return <main className="space-y-10">
     <Breadcrumbs items={[{ name: "Zážitky", href: "/zazitky" }, { name: category.title, href: `/${slug}` }]} />
     <header className="max-w-3xl space-y-4"><h1 className="text-3xl font-semibold">{category.title}{place && ` ${place}`}</h1><p>{category.description}</p><p className="text-slate-600">{category.seoText}</p>{stats.minPrice !== null && <p className="flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium"><a href="#ceny" className="underline">Ceny od {formatCzk(stats.minPrice)}</a><span className="text-slate-500">{stats.offerCount} {plural(stats.offerCount, "nabídka", "nabídky", "nabídek")}</span>{regions.length > 0 && <a href="#kraje" className="underline">Přehled podle krajů</a>}</p>}</header>
+    {category.photo && <PhotoFigure photo={category.photo} className="max-w-3xl" />}
     {products.length ? <ProductSection title="Nabídky a ceny" products={products} /> : <p>V této kategorii teď nemáme dostupnou nabídku. Projděte si <Link href="/zazitky" className="underline">další zážitky</Link>.</p>}
     <CategoryInsights category={category} stats={stats} regions={regions} place={place} updatedAt={new Date()} />
     <CategoryGuide category={category} />
