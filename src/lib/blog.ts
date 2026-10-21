@@ -16,6 +16,10 @@ export type BlogPost = {
   updated: string;
   category?: string;
   coverImage?: string;
+  coverAlt?: string;
+  coverCaption?: string;
+  coverWidth?: number;
+  coverHeight?: number;
   contentHtml: string;
 };
 
@@ -26,6 +30,10 @@ type BlogFrontmatter = {
   updated?: string | Date;
   category?: string;
   coverImage?: string;
+  coverAlt?: string;
+  coverCaption?: string;
+  coverWidth?: number;
+  coverHeight?: number;
 };
 
 const normalizeDate = (value: string | Date | undefined) => {
@@ -50,6 +58,10 @@ export const getAllPosts = cache(async (): Promise<BlogPost[]> => {
       updated: updated && (!date || updated >= date) ? updated : "",
       category: frontmatter.category,
       coverImage: frontmatter.coverImage,
+      coverAlt: frontmatter.coverAlt,
+      coverCaption: frontmatter.coverCaption,
+      coverWidth: frontmatter.coverWidth,
+      coverHeight: frontmatter.coverHeight,
       contentHtml: processed.toString().replace(/<table>/g, '<div class="table-wrapper"><table>').replace(/<\/table>/g, "</table></div>"),
     } satisfies BlogPost;
   }));

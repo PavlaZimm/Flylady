@@ -7,6 +7,7 @@ import { ProductSection } from "@/components/ProductSection";
 import { getAllPosts, getPostBySlug, getRelatedPosts, formatPostDate } from "@/lib/blog";
 import { buildAffiliateUrl, getAviationProducts } from "@/lib/feed";
 import { getCategoryBySlug, matchesCategory } from "@/lib/categories";
+import { PhotoFigure } from "@/components/PhotoFigure";
 
 // Odkazy na Zážitky.cz v článcích vedou přes partnerský klik a jsou označené jako placené.
 const withAffiliateLinks = (html: string) =>
@@ -55,6 +56,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <p className="text-lg text-slate-600">{post.description}</p>
       {category && <Link href={`/${category.slug}`} className="inline-block font-semibold underline">Nabídky: {category.title}</Link>}
     </header>
+    {post.coverImage && post.coverAlt && post.coverCaption && post.coverWidth && post.coverHeight && <PhotoFigure className="max-w-3xl" priority photo={{ src: post.coverImage, alt: post.coverAlt, caption: post.coverCaption, width: post.coverWidth, height: post.coverHeight }} />}
     <div className="blog-content max-w-3xl text-slate-700" dangerouslySetInnerHTML={{ __html: withAffiliateLinks(post.contentHtml) }} />
     {category && <ProductSection title={`Související nabídky: ${category.title}`} description="Nabídky pro celou kategorii. Místo konání ověřte u konkrétní varianty." products={products} limit={3} href={`/${category.slug}`} />}
     {related.length > 0 && <section className="space-y-5 border-t border-slate-100 pt-8">
