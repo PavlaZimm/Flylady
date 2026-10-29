@@ -3,7 +3,8 @@ import { getAllPosts } from "@/lib/blog";
 import { CATEGORY_CONFIG } from "@/lib/categories";
 import { getAviationProducts } from "@/lib/feed";
 import { absoluteUrl } from "@/lib/seo";
-export const revalidate = 3600;
+// Read the shared hourly catalogue snapshot on each request; do not cache stale routes separately.
+export const revalidate = 0;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [products, posts] = await Promise.all([getAviationProducts(), getAllPosts()]);
   return [

@@ -4,7 +4,8 @@ import { parseFeedXml, isAviationExperience, type Product } from "@/lib/feed-par
 export type { Product, ProductVariant } from "@/lib/feed-parser";
 export { buildAffiliateUrl } from "@/lib/feed-parser";
 
-const FEED_URL = "https://alis.zazitky.cz/data/exports/zazitky-pap-all.xml";
+// Server-only override also lets integration checks use an isolated fixture feed.
+const FEED_URL = process.env.FLYLADY_FEED_URL ?? "https://alis.zazitky.cz/data/exports/zazitky-pap-all.xml";
 
 export const getAllProducts = async (): Promise<Product[]> => {
   // The raw feed exceeds Next's 2 MB cache-entry limit. Cache the filtered data below.
@@ -22,11 +23,19 @@ export const getAllProducts = async (): Promise<Product[]> => {
   return parseFeedXml(await response.text()).sort((a, b) => a.name.localeCompare(b.name, "cs"));
 };
 
-export const getAviationProducts = cache(unstable_cache(async () => {
+async function loadAviationCatalog() {
   const products = (await getAllProducts()).filter((product) => isAviationExperience(product.categories));
   if (!products.length) throw new Error("XML feed neobsahuje letecké zážitky.");
-  return products;
-}, ["aviation-catalog-v3"], { revalidate: 3600 }));
+  return { products, fetchedAt: new Date().toISOString() };
+}
+
+// unstable_cache includes callback.toString() in its key. Turbopack minifies the
+// route-handler and RSC copies differently, which otherwise creates TWO caches.
+// A bound callback has the same native identity string in both bundles. The
+// explicit version/source key owns invalidation: bump it when parsing changes.
+export const getAviationCatalog = cache(unstable_cache(loadAviationCatalog.bind(null), ["aviation-catalog-v4", FEED_URL], { revalidate: 3600 }));
+
+export const getAviationProducts = cache(async () => (await getAviationCatalog()).products);
 
 export const getProductById = async (id: string) => {
   const products = await getAviationProducts();

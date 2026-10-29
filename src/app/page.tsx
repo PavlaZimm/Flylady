@@ -5,13 +5,14 @@ import { getAviationProducts } from "@/lib/feed";
 import { getAllPosts } from "@/lib/blog";
 import { pageMetadata } from "@/lib/seo";
 
-export const revalidate = 3600;
+// Read the shared hourly catalogue snapshot on each request; do not cache stale routes separately.
+export const revalidate = 0;
 export const metadata = pageMetadata("Letecké zážitky: vyberte si let, seskok i simulátor", "Letecké zážitky na jednom místě. Porovnejte vyhlídkové lety, let balónem, tandemový seskok a letecký simulátor podle nabídky a ceny.", "/");
 
 export default async function Home() {
   const [products, posts] = await Promise.all([getAviationProducts(), getAllPosts()]);
   const { groups, remaining } = groupProductsByCategory(products);
-  return <main className="space-y-14">
+  return <div className="space-y-14">
     <section className="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-700 px-6 py-16 text-white sm:px-10">
       <div className="max-w-3xl space-y-5">
         <p className="text-sm uppercase tracking-widest">Inspirace pro váš příští let</p>
@@ -41,5 +42,5 @@ export default async function Home() {
     {groups.map((group) => <ProductSection key={group.slug} title={group.title} description={group.description} products={group.products} limit={3} href={`/${group.slug}`} />)}
     {remaining.length > 0 && <ProductSection title="Další letecké zážitky" products={remaining} limit={6} href="/zazitky" />}
     <section className="space-y-3 text-sm text-slate-600"><h2 className="text-xl font-semibold text-slate-900">Jak funguje Flylady.cz</h2><p>Flylady.cz je affiliate katalog. Nabídky, popisy a ceny přebíráme z feedu Zážitky.cz a doplňujeme je průvodci výběrem. Nejde o vlastní testy ani porovnání celého trhu. Objednávku dokončíte u prodejce; za nákup přes náš odkaz můžeme získat provizi.</p><Link href="/o-webu" className="inline-block underline">Více o nabídkách a financování webu</Link></section>
-  </main>;
+  </div>;
 }

@@ -313,3 +313,9 @@ export const groupProductsByCategory = (products: Product[]) => {
   return { groups, remaining: products.filter((product) => !assigned.has(product.id)) };
 };
 export const getCategoryBySlug = (slug: string) => CATEGORY_CONFIG.find((category) => category.slug === slug) ?? null;
+
+// A specific experience type takes precedence over the broad scenic-flight group.
+const PRIMARY_CATEGORY_ORDER = ["letecke-simulatory", "tandemove-seskoky", "let-vzducholodi", "let-balonem", "pilotem-na-zkousku", "let-stihackou", "vetrny-tunel", "let-vrtulnikem", "vyhlidkove-lety"];
+export const getPrimaryCategory = (product: Product) => PRIMARY_CATEGORY_ORDER
+  .map(getCategoryBySlug)
+  .find((category) => category !== null && matchesCategory(product, category)) ?? null;

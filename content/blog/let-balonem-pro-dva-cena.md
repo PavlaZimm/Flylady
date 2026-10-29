@@ -1,6 +1,6 @@
 ---
 title: "Kolik stojí let balónem 2026? Ceník a let pro dva"
-description: "Kolik stojí let balónem pro dva? Ceníky 13 provozovatelů k 30. 9. 2026: sdílený let od 2 950 Kč za osobu, soukromý pro dva od 13 990 Kč."
+description: "Jak vybrat sdílený nebo soukromý let balónem pro dva. Aktuální nabídky z katalogu a srovnání ceníků 13 provozovatelů k 30. 9. 2026."
 date: "2026-09-17"
 updated: "2026-09-30"
 category: "let-balonem"

@@ -52,6 +52,7 @@ export const metadata: Metadata = {
     locale: "cs_CZ",
     url: siteUrl,
     siteName: "Flylady.cz",
+    images: [{ url: "/opengraph-image", alt: "Flylady.cz — Letecké zážitky" }],
     title: "Flylady.cz | Letecké zážitky a dárky",
     description:
       "Darujte nezapomenutelný letecký zážitek. Nabídky, ceny a průvodce výběrem.",
@@ -59,6 +60,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/opengraph-image"],
     title: "Flylady.cz | Letecké zážitky",
     description: "Darujte nezapomenutelný letecký zážitek.",
   },
@@ -154,9 +156,9 @@ export default function RootLayout({
           </header>
 
           {/* Main content */}
-          <div id="main-content" className="flex-1 mx-auto w-full max-w-6xl px-6 py-10" >
+          <main id="main-content" tabIndex={-1} className="flex-1 mx-auto w-full max-w-6xl px-6 py-10" >
             {children}
-          </div>
+          </main>
 
           {/* Enhanced footer */}
           <footer className="border-t border-slate-200 bg-white" role="contentinfo">
@@ -195,6 +197,7 @@ export default function RootLayout({
                     <li><Link href="/zazitky" className="hover:text-slate-900">Všechny zážitky</Link></li>
                     <li><Link href="/blog" className="hover:text-slate-900">Blog</Link></li>
                     <li><Link href="/o-webu" className="hover:text-slate-900">O webu a affiliate spolupráci</Link></li>
+                    <li><a href="https://linklady.cz/kontakt" className="hover:text-slate-900">Kontakt na provozovatelku</a></li>
                     <li><Link href="/blog/jak-vybrat-letecky-zazitek" className="font-semibold text-orange-600 hover:text-orange-700">Jak vybrat dárek</Link></li>
                   </ul>
                 </div>
@@ -235,6 +238,7 @@ export default function RootLayout({
               <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-8 text-sm text-slate-500 sm:flex-row">
                 <span>© {new Date().getFullYear()} Flylady.cz — Affiliate partner Zážitky.cz</span>
                 <div className="flex items-center gap-4">
+                  <CookieConsent />
                   <span className="flex items-center gap-1.5">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -265,8 +269,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
-        {/* GA se načítá uvnitř CookieConsent až po souhlasu (GDPR) */}
-        <CookieConsent />
+
         {/* Vercel Web Analytics: bez cookies, souhlas nepotřebuje */}
         <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
       </body>
