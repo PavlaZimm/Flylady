@@ -71,7 +71,7 @@ export function CategoryInsights({ category, stats, regions, place, updatedAt }:
           </tbody>
         </table>
       </div>
-      <p className="text-xs text-slate-500">Ceny včetně DPH podle nabídky Zážitky.cz, stav k {formatDate(updatedAt)}. Přehled se aktualizuje každou hodinu. Konečnou cenu ověřte u prodejce.</p>
+      <p className="text-xs text-slate-500">Ceny včetně DPH podle nabídky Zážitky.cz, data naposledy načtena {formatDate(updatedAt)}. O obnovení zdroje se pokoušíme přibližně každou hodinu. Konečnou cenu ověřte u prodejce.</p>
     </section>
 
     {regions.length > 0 && <section id="kraje" className="scroll-mt-24 space-y-5">

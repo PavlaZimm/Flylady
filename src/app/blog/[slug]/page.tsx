@@ -5,8 +5,9 @@ import { pageMetadata, absoluteUrl } from "@/lib/seo";
 import { Breadcrumbs, JsonLd } from "@/components/Breadcrumbs";
 import { ProductSection } from "@/components/ProductSection";
 import { getAllPosts, getPostBySlug, getRelatedPosts, formatPostDate } from "@/lib/blog";
-import { buildAffiliateUrl, getAviationProducts } from "@/lib/feed";
+import { buildAffiliateUrl, getAviationCatalog } from "@/lib/feed";
 import { getCategoryBySlug, matchesCategory } from "@/lib/categories";
+import { CurrentBalloonPrices } from "@/components/CurrentBalloonPrices";
 import { PhotoFigure } from "@/components/PhotoFigure";
 
 // Odkazy na Zážitky.cz v článcích vedou přes partnerský klik a jsou označené jako placené.
@@ -16,7 +17,8 @@ const withAffiliateLinks = (html: string) =>
     return `<a href="${url.replace(/&/g, "&amp;")}" rel="sponsored nofollow noopener" target="_blank">`;
   });
 
-export const revalidate = 3600;
+// Read the shared hourly catalogue snapshot on each request; do not cache stale routes separately.
+export const revalidate = 0;
 type PageProps = { params: Promise<{ slug: string }> };
 export const generateStaticParams = async () => (await getAllPosts()).map((post) => ({ slug: post.slug }));
 
@@ -32,7 +34,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound();
   const related = getRelatedPosts(post, await getAllPosts());
   const category = post.category ? getCategoryBySlug(post.category) : null;
-  const products = category ? (await getAviationProducts()).filter((product) => matchesCategory(product, category)) : [];
+  const catalog = category ? await getAviationCatalog() : null;
+  const products = category && catalog ? catalog.products.filter((product) => matchesCategory(product, category)) : [];
 
   return <article className="space-y-8">
     <JsonLd data={{
@@ -57,6 +60,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       {category && <Link href={`/${category.slug}`} className="inline-block font-semibold underline">Nabídky: {category.title}</Link>}
     </header>
     {post.coverImage && post.coverAlt && post.coverCaption && post.coverWidth && post.coverHeight && <PhotoFigure className="max-w-3xl" priority photo={{ src: post.coverImage, alt: post.coverAlt, caption: post.coverCaption, width: post.coverWidth, height: post.coverHeight }} />}
+    {post.slug === "let-balonem-pro-dva-cena" && catalog && <CurrentBalloonPrices products={catalog.products} fetchedAt={catalog.fetchedAt} />}
     <div className="blog-content max-w-3xl text-slate-700" dangerouslySetInnerHTML={{ __html: withAffiliateLinks(post.contentHtml) }} />
     {category && <ProductSection title={`Související nabídky: ${category.title}`} description="Nabídky pro celou kategorii. Místo konání ověřte u konkrétní varianty." products={products} limit={3} href={`/${category.slug}`} />}
     {related.length > 0 && <section className="space-y-5 border-t border-slate-100 pt-8">

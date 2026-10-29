@@ -3,14 +3,15 @@ import Link from "next/link";
 import { ProductGrid } from "@/components/ProductGrid";
 import { getAviationProducts } from "@/lib/feed";
 
-export const revalidate = 3600;
+// Read the shared hourly catalogue snapshot on each request; do not cache stale routes separately.
+export const revalidate = 0;
 export const metadata = pageMetadata("Katalog leteckých zážitků: nabídky a ceny", "Projděte nabídky letů, seskoků a simulátorů ze Zážitky.cz. Porovnejte ceny a varianty.", "/zazitky");
 
 export default async function AllExperiencesPage() {
   const products = await getAviationProducts();
 
   return (
-    <main className="space-y-10">
+    <div className="space-y-10">
       {/* Hero header */}
       <header className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 px-6 py-10 text-white sm:px-10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
@@ -50,6 +51,6 @@ export default async function AllExperiencesPage() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

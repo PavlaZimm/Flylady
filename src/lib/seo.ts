@@ -11,7 +11,7 @@ export const truncateText = (text: string, max = 160) => {
   return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[\s,.;:–-]+$/, "")}…`;
 };
 
-export function pageMetadata(title: string, description: string, path: string, image?: string): Metadata {
+export function pageMetadata(title: string, description: string, path: string, image = absoluteUrl("/opengraph-image")): Metadata {
   return {
     title,
     description,
@@ -19,8 +19,8 @@ export function pageMetadata(title: string, description: string, path: string, i
     openGraph: {
       type: "website", locale: "cs_CZ", siteName: "Flylady.cz",
       title, description, url: absoluteUrl(path),
-      ...(image ? { images: [{ url: image, alt: title }] } : {}),
+      images: [{ url: image, alt: title }],
     },
-    twitter: { card: image ? "summary_large_image" : "summary", title, description, ...(image ? { images: [image] } : {}) },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }

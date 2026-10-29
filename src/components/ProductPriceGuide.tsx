@@ -46,6 +46,6 @@ export function ProductPriceGuide({ product, updatedAt }: { product: Product; up
     <div className="grid gap-6 lg:grid-cols-2">
       {tables.map((table) => <GroupTable key={table.caption} {...table} />)}
     </div>
-    <p className="text-xs text-slate-500">Ceny včetně DPH podle nabídky Zážitky.cz, stav k {date}. Sloupec Cena ukazuje nejnižší a nejvyšší cenu mezi variantami dané řádky. Konečnou cenu vybrané varianty ověřte u prodejce.</p>
+    <p className="text-xs text-slate-500">Ceny včetně DPH podle nabídky Zážitky.cz, data naposledy načtena {date}. Sloupec Cena ukazuje nejnižší a nejvyšší cenu mezi variantami dané řádky. Konečnou cenu vybrané varianty ověřte u prodejce.</p>
   </section>;
 }

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { pageMetadata, truncateText } from "@/lib/seo";
-import { CATEGORY_CONFIG, matchesCategory } from "@/lib/categories";
-export const revalidate = 3600;
+import { getPrimaryCategory } from "@/lib/categories";
+// Read the shared hourly catalogue snapshot on each request; do not cache stale routes separately.
+export const revalidate = 0;
 import Image from "next/image";
 import Link from "next/link";
 import {
-  getAviationProducts,
+  getAviationCatalog,
   getProductBySlug,
 } from "@/lib/feed";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -14,7 +15,10 @@ import { ProductSchema } from "@/components/StructuredData";
 import { getProductRegions, regionLabel } from "@/lib/regions";
 import { ProductPriceGuide } from "@/components/ProductPriceGuide";
 import { ProductCopySection } from "@/components/ProductCopySection";
-import { getProductCopy, stripLinks } from "@/lib/product-copy";
+import { ADDITIONAL_PRODUCT_COPY } from "@/lib/additional-product-copy";
+import { getProductCopy as getBaseProductCopy, stripLinks } from "@/lib/product-copy";
+
+const getProductCopy = (id: string) => ADDITIONAL_PRODUCT_COPY[id] ?? getBaseProductCopy(id);
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -27,11 +31,6 @@ const formatPrice = (value: number | null) => {
     currency: "CZK",
     maximumFractionDigits: 0,
   }).format(value);
-};
-
-export const generateStaticParams = async () => {
-  const products = await getAviationProducts();
-  return products.map((product) => ({ slug: product.slug }));
 };
 
 export const generateMetadata = async ({
@@ -47,10 +46,11 @@ export const generateMetadata = async ({
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const { products, fetchedAt } = await getAviationCatalog();
+  const product = products.find((item) => item.slug === slug);
 
   if (!product) notFound();
-  const category = CATEGORY_CONFIG.find((item) => matchesCategory(product, item));
+  const category = getPrimaryCategory(product);
   const regions = getProductRegions(product);
   const copy = getProductCopy(product.id);
 
@@ -224,7 +224,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
         {copy && <ProductCopySection copy={copy} name={product.name} />}
 
-        <ProductPriceGuide product={product} updatedAt={new Date()} />
+        <ProductPriceGuide product={product} updatedAt={new Date(fetchedAt)} />
 
         {product.variants.length ? (
           <details className="group space-y-4" aria-labelledby="variants-heading" open={product.variants.length <= 8}>
