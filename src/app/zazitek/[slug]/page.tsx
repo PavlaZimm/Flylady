@@ -13,6 +13,7 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ProductSchema } from "@/components/StructuredData";
 import { getProductRegions, regionLabel } from "@/lib/regions";
+import { describeVariant, summarizeVariants } from "@/lib/variants";
 import { ProductPriceGuide } from "@/components/ProductPriceGuide";
 import { ProductCopySection } from "@/components/ProductCopySection";
 import { ADDITIONAL_PRODUCT_COPY } from "@/lib/additional-product-copy";
@@ -53,6 +54,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
   const category = getPrimaryCategory(product);
   const regions = getProductRegions(product);
   const copy = getProductCopy(product.id);
+  const cheapest = summarizeVariants(product)?.cheapest;
+  const cheapestLabel = cheapest ? [describeVariant(cheapest), cheapest.variant.location].filter(Boolean).join(" · ") : "";
 
   return (
     <>
@@ -71,7 +74,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         />
 
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-6">
+        <div className="order-2 lg:order-1">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-100">
             {product.imageUrls[0] ? (
               <Image
@@ -85,26 +88,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
               />
             ) : null}
           </div>
-          {product.imageUrls.length > 1 ? (
-            <div className="grid gap-4 sm:grid-cols-3">
-              {product.imageUrls.slice(1, 4).map((url) => (
-                <div
-                  key={url}
-                  className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100"
-                >
-                  <Image
-                    src={url}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 50vw, 20vw"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : null}
         </div>
-        <aside className="flex flex-col gap-5 rounded-3xl border border-slate-100 bg-white p-8 shadow-sm lg:sticky lg:top-24">
+        <aside className="order-1 flex flex-col gap-5 self-start rounded-3xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8 lg:order-2 lg:sticky lg:top-24">
           {/* Badge */}
           <div className="flex items-center gap-2">
             <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
@@ -136,6 +121,30 @@ export default async function ProductDetailPage({ params }: PageProps) {
               </div>
             </div>
           </div>
+
+          {cheapestLabel && <p className="-mt-3 text-xs leading-relaxed text-slate-600">Nejnižší cena platí pro: {cheapestLabel}. Cenu své varianty ověřte u prodejce.</p>}
+          {product.variants.length > 0 && <a href="#varianty" className="inline-flex min-h-11 items-center text-sm font-medium text-slate-700 underline underline-offset-4">Porovnat varianty a ceny ({product.variants.length})</a>}
+
+          {/* Hlavní CTA */}
+          <a
+            href={product.url}
+            data-affiliate-placement="product_main"
+            target="_blank"
+            rel="sponsored nofollow noopener"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-700 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-green-600/25 transition hover:bg-green-800"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            Koupit na Zážitky.cz
+            <svg className="h-4 w-4 transition group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+
+          <p className="text-center text-xs text-slate-500">
+            Nákup přes Zážitky.cz. Affiliate odkaz: můžeme získat provizi.
+          </p>
 
           {/* Detaily */}
           <div className="space-y-2.5 text-sm">
@@ -173,26 +182,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Hlavní CTA */}
-          <a
-            href={product.url}
-            target="_blank"
-            rel="sponsored nofollow noopener"
-            className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-700 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-green-600/25 transition hover:bg-green-800"
-          >
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            Koupit na Zážitky.cz
-            <svg className="h-4 w-4 transition group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-
-          <p className="text-center text-xs text-slate-500">
-            Nákup přes Zážitky.cz. Affiliate odkaz: můžeme získat provizi.
-          </p>
-
           {/* Trust signály */}
           <div className="grid grid-cols-2 gap-3 border-t border-slate-100 pt-5 text-xs text-slate-600">
             <div className="flex items-center gap-2">
@@ -223,41 +212,60 @@ export default async function ProductDetailPage({ params }: PageProps) {
         </aside>
       </div>
 
+        {product.imageUrls.length > 1 ? (
+          <div className="grid grid-cols-3 gap-3">
+            {product.imageUrls.slice(1, 4).map((url) => (
+              <div
+                key={url}
+                className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100"
+              >
+                <Image
+                  src={url}
+                  alt={product.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 30vw, 350px"
+                />
+              </div>
+            ))}
+          </div>
+        ) : null}
+
         {copy && <ProductCopySection copy={copy} name={product.name} />}
 
         <ProductPriceGuide product={product} updatedAt={new Date(fetchedAt)} />
 
         {product.variants.length ? (
-          <details className="group space-y-4" aria-labelledby="variants-heading" open={product.variants.length <= 8}>
+          <details id="varianty" className="group scroll-mt-24 space-y-4" aria-labelledby="variants-heading" open={product.variants.length <= 8}>
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-slate-900">
               <h2 id="variants-heading" className="text-xl font-semibold text-slate-900">
                 Všechny varianty z nabídky prodejce ({product.variants.length})
               </h2>
               <span className="text-sm font-normal text-slate-500 group-open:hidden">Zobrazit</span>
             </summary>
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <dl className="mt-4 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white px-5">
               {product.variants.map((variant) => (
                 <div
                   key={variant.id}
-                  className="rounded-2xl border border-slate-100 bg-white p-5 hover-lift"
+                  className="grid gap-2 py-4 sm:grid-cols-[1fr_auto] sm:gap-5"
                 >
-                  <h3 className="text-sm font-semibold text-slate-900">
-                    {variant.name}
-                  </h3>
-                  <div className="mt-2 flex items-center justify-between text-sm text-slate-600">
-                    <span>{variant.location ?? "—"}</span>
-                    <span className="font-semibold text-slate-900">
-                      {formatPrice(variant.priceVat)}
-                    </span>
-                  </div>
+                  <dt className="text-sm text-slate-700">
+                    {variant.name}{variant.location ? ` · ${variant.location}` : ""}
+                  </dt>
+                  <dd className="whitespace-nowrap text-sm font-semibold text-slate-900">
+                    {formatPrice(variant.priceVat)}
+                  </dd>
                 </div>
               ))}
-            </div>
+            </dl>
+            <p className="text-sm text-slate-600">Vybranou lokalitu, délku a počet osob zvolíte v nabídce prodejce. Odkaz otevře nabídku zážitku, nikoli předvolenou variantu.</p>
+            <a href={product.url} target="_blank" rel="sponsored nofollow noopener" data-affiliate-placement="product_variants" className="inline-flex min-h-11 items-center justify-center rounded-full bg-green-700 px-6 py-3 text-sm font-semibold text-white hover:bg-green-800">Vybrat variantu na Zážitky.cz</a>
           </details>
         ) : null}
       <section className="space-y-4 rounded-3xl bg-white p-8">
         <h2 className="text-xl font-semibold">Než vyberete variantu</h2>
         <p className="text-sm text-slate-600">Ceny a popis přebíráme od Zážitky.cz. Nejnižší cena nemusí patřit vaší vybrané lokalitě a délce. Aktuální cenu a podmínky ověřte u prodejce. Za nákup přes affiliate odkaz můžeme získat provizi.</p>
+        <a href={product.url} target="_blank" rel="sponsored nofollow noopener" data-affiliate-placement="product_end" className="inline-flex min-h-11 items-center justify-center rounded-full bg-green-700 px-6 py-3 text-sm font-semibold text-white hover:bg-green-800">Ověřit cenu a termín na Zážitky.cz</a>
         {category && <><ul className="list-disc space-y-2 pl-5">{category.checklist.map((item) => <li key={item}>{item}</li>)}</ul><Link className="inline-block underline" href={`/${category.slug}`}>Porovnat další nabídky: {category.title}</Link></>}
       </section>
       </div>

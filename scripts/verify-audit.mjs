@@ -17,7 +17,7 @@ const items = [
   ['7110', 'Vyzkoušejte si řízení letadla', 'Letecké zážitky | Pilotování', 1990],
   ...editorialProducts.map(({ id, name }) => [id, name, 'Simulátory | Letecké simulátory', 1000]), // Synthetic test prices.
 ];
-const xml = '<SHOP>' + items.map(([id, name, category, price]) => `<SHOPITEM><ID>${id}</ID><PRODUCT>${name}</PRODUCT><DESCRIPTION>Izolovaná testovací nabídka</DESCRIPTION><URL>https://www.zazitky.cz/test-${id}</URL><IMGURL>/fotky/aeroklub-roudnice-ultralehky-letoun.webp</IMGURL><CATEGORYTEXT>${category}</CATEGORYTEXT><CATEGORYTEXT>Ústecký</CATEGORYTEXT>${[1, 2, 3].map(n => `<VARIANT><VARIANTID>${id}-${n}</VARIANTID><PRODUCTNAMEEXT>${name}, ${n} osoby, 1 hodina</PRODUCTNAMEEXT><PRICE_VAT>${price * n}</PRICE_VAT></VARIANT>`).join('')}</SHOPITEM>`).join('') + '</SHOP>';
+const xml = '<SHOP>' + items.map(([id, name, category, price]) => `<SHOPITEM><ID>${id}</ID><PRODUCT>${name}</PRODUCT><DESCRIPTION>Izolovaná testovací nabídka</DESCRIPTION><URL>https://www.zazitky.cz/test-${id}</URL><IMGURL>/fotky/aeroklub-roudnice-ultralehky-letoun.webp</IMGURL><CATEGORYTEXT>${category}</CATEGORYTEXT><CATEGORYTEXT>Ústecký</CATEGORYTEXT>${Array.from({ length: id === '16' ? 164 : 3 }, (_, i) => i + 1).map(n => `<VARIANT><VARIANTID>${id}-${n}</VARIANTID><PRODUCTNAMEEXT>${name}, ${n} osoby, 1 hodina</PRODUCTNAMEEXT><PRICE_VAT>${price * n}</PRICE_VAT></VARIANT>`).join('')}</SHOPITEM>`).join('') + '</SHOP>';
 let feedReads = 0;
 const feed = createServer((req, res) => { feedReads++; res.writeHead(200, { 'Content-Type': 'application/xml' }); res.end(xml); });
 await new Promise(resolve => feed.listen(0, '127.0.0.1', resolve));
@@ -71,6 +71,16 @@ try {
   assert.doesNotMatch(pages.get('/zazitky'), /Např\. balón nebo Most/);
   assert.match(pages.get('/o-webu'), /https:\/\/linklady.cz\/kontakt/);
   assert.match(product, /Nastavení cookies/);
+  assert.match(product, /href="#varianty"/, 'Direct jump to the comparison');
+  assert.match(product, /<details id="varianty"[^>]*>/, 'Server-rendered variants remain addressable');
+  assert.doesNotMatch(product.match(/<details id="varianty"[^>]*>/)[0], / open(?:=|\s|>)/, 'Large variant list starts collapsed');
+  const variantList = product.match(/<details id="varianty"[\s\S]*?<\/details>/)[0];
+  assert.equal((variantList.match(/<dt(?:\s|>)/g) ?? []).length, 164, 'All variants remain in the initial HTML');
+  for (const placement of ['product_main', 'product_variants', 'product_end']) {
+    assert.match(product, new RegExp(`data-affiliate-placement="${placement}"`));
+  }
+  assert.match(product, /Nejnižší cena platí pro:/, 'Minimum price is tied to its variant');
+  assert.match(product, /id="mobile-menu"[^>]*inert=""/, 'Closed menu cannot capture keyboard focus');
   const article = pages.get('/blog/let-balonem-pro-dva-cena');
   assert.match(article, /Aktuální nabídky pro dva z katalogu/);
   assert.match(article, /Srovnání provozovatelů níže jsme ověřili 30\. 10\. 2026/);

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
-import { CONSENT_KEY, GA_ID, applyAnalyticsConsent, clearAnalyticsCookies, readConsent, trackEvent, type Consent } from "@/lib/analytics";
+import { CONSENT_KEY, GA_ID, affiliateClickParameters, applyAnalyticsConsent, clearAnalyticsCookies, readConsent, trackEvent, type Consent } from "@/lib/analytics";
 
 export default function CookieConsent() {
   const [consent, setConsent] = useState<Consent>(null);
@@ -35,14 +35,18 @@ export default function CookieConsent() {
 
   useEffect(() => {
     const recordClick = (event: MouseEvent) => {
+      if (event.type === "auxclick" && event.button !== 1) return;
       const target = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[rel~="sponsored"]') : null;
       if (!target) return;
-      const url = new URL(target.href);
-      if (url.hostname !== "ehub.cz" || url.pathname !== "/system/scripts/click.php") return;
-      trackEvent("affiliate_click", { destination_host: "zazitky.cz" });
+      const parameters = affiliateClickParameters(target.href, target.dataset.affiliatePlacement);
+      if (parameters) trackEvent("affiliate_click", parameters);
     };
     document.addEventListener("click", recordClick);
-    return () => document.removeEventListener("click", recordClick);
+    document.addEventListener("auxclick", recordClick);
+    return () => {
+      document.removeEventListener("click", recordClick);
+      document.removeEventListener("auxclick", recordClick);
+    };
   }, []);
 
   const closeSettings = () => {

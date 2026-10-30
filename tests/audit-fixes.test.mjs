@@ -3,7 +3,18 @@ import assert from 'node:assert/strict';
 import { getPrimaryCategory } from '../src/lib/categories.ts';
 import { pageMetadata } from '../src/lib/seo.ts';
 import { ADDITIONAL_PRODUCT_COPY } from '../src/lib/additional-product-copy.ts';
-import { CONSENT_KEY, applyAnalyticsConsent, trackEvent } from '../src/lib/analytics.ts';
+import { CONSENT_KEY, affiliateClickParameters, applyAnalyticsConsent, trackEvent } from '../src/lib/analytics.ts';
+
+test('affiliate events identify CTA positions without leaking partner IDs or arbitrary data attributes', () => {
+  const href = 'https://ehub.cz/system/scripts/click.php?a_aid=private-partner&desturl=https%3A%2F%2Fwww.zazitky.cz%2Ftest';
+  for (const placement of ['product_main', 'product_variants', 'product_end']) {
+    assert.deepEqual(affiliateClickParameters(href, placement), { destination_host: 'zazitky.cz', link_position: placement });
+  }
+  assert.equal(affiliateClickParameters(href, 'visitor@example.com').link_position, 'content');
+  for (const invalid of ['invalid', 'http://ehub.cz/system/scripts/click.php', 'https://ehub.cz.example.com/system/scripts/click.php', 'https://ehub.cz/other']) {
+    assert.equal(affiliateClickParameters(invalid), null);
+  }
+});
 
 test('primary category prefers balloons/helicopters and keeps fighter simulators on the ground', () => {
   const product = (name, categories) => ({ name, categories });
