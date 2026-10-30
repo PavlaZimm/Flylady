@@ -73,7 +73,7 @@ try {
   assert.match(product, /Nastavení cookies/);
   const article = pages.get('/blog/let-balonem-pro-dva-cena');
   assert.match(article, /Aktuální nabídky pro dva z katalogu/);
-  assert.match(article, /historický průzkum k 30\. 9\. 2026/);
+  assert.match(article, /Srovnání provozovatelů níže jsme ověřili 30\. 10\. 2026/);
   assert.match(article, /6\s*580/);
   for (const id of ['966', '854', '979', '853', '7110']) {
     const html = [...pages.entries()].find(([path]) => path.endsWith('-' + id))[1];

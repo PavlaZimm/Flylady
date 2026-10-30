@@ -2,6 +2,7 @@
 title: "Tandemový seskok Most: cena, rezervace a co ověřit"
 description: "Plánujete tandemový seskok v Mostě? Zjistěte, co porovnat v ceně, jak ověřit termín, video a příplatky a co domluvit před cestou na letiště."
 date: "2026-09-17"
+updated: "2026-10-30"
 category: "tandemove-seskoky"
 ---
 
@@ -14,6 +15,25 @@ Provozovatel na webu [Tandemové seskoky Most](https://www.tandemove-seskoky.cz/
 Kalendář je vodítko k plánování, nikoli potvrzení volného místa. Před úhradou si nechte potvrdit vybraný termín a přesné místo srazu. Pokud kupujete poukaz přes zprostředkovatele, ověřte postup rezervace přímo pro tento poukaz.
 
 ## Cena tandemového seskoku: co patří do porovnání
+
+### Ověřený ceník pro Most k 30. říjnu 2026
+
+Web Tandemove-seskoky.cz uvádí v [ceníku podle letišť](https://www.tandemove-seskoky.cz/cenik/) pro Most **4 890 Kč za seskok** a **2 500 Kč za video a fotografie**. Místní stránka navíc uvádí palivový příplatek **400 Kč za osobu**. Součet těchto zveřejněných položek je:
+
+| Varianta | Seskok | Palivový příplatek | Záznam | Součet |
+| --- | --- | --- | --- | --- |
+| Bez záznamu | 4 890 Kč | 400 Kč | — | 5 290 Kč |
+| S videem a fotografiemi | 4 890 Kč | 400 Kč | 2 500 Kč | 7 790 Kč |
+
+Jde o součet zveřejněných položek tohoto konkrétního webu, bez případných dalších příplatků podle podmínek účasti. Konečnou částku si potvrďte před zaplacením. Reklamní cena **3 990 Kč** se podle ceníku vztahuje na jiná vyjmenovaná letiště; nepřebírejte ji jako cenu seskoku v Mostě.
+
+### Je Most také v nabídce Zážitky.cz?
+
+Ano, při kontrole 30. 10. 2026 prodejce výslovně uváděl Most v popisu [Tandemového seskoku padákem](https://www.zazitky.cz/tandemovy-seskok-padakem). Obecná cena produktu „od 3 890 Kč“ ale není potvrzenou cenou varianty pro Most. Vyberte přesné letiště a obsah balíčku; příplatky z přímého ceníku jiného prodejce k této nabídce automaticky nepřičítejte.
+
+### Sezona a rezervace
+
+Místní stránka při nové kontrole stále popisovala víkendy od května do října **2026**. Termíny pro rok 2027 tím nejsou potvrzené. U vánočního poukazu proto ověřte platnost a dostupnost další sezony; neslibujeme uskutečnění seskoku v zimě.
 
 Základní cena a konečný rozpočet nemusí být stejné. Pro každou nabídku si zapište:
 
