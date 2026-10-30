@@ -1,0 +1,91 @@
+{
+  "checked": "2026-10-30",
+  "method": "Apify web-fetch, aktuální produktové stránky a nápověda prodejce. Použita fakta z popisu a programu; hodnocení zákazníků nejsou zdrojem vlastností.",
+  "scope": "Podklady pro auditová zadání 02 a 03: kategorie simulátorů a stávající průvodce dárkem.",
+  "sources": [
+    {
+      "url": "https://www.zazitky.cz/pilotem-dopravniho-letadla-boeing-737",
+      "productId": "190",
+      "facts": [
+        "Praha-Ruzyně, Czech Aviation Training Centre.",
+        "Prodejce popisuje pohyblivou hydraulickou kabinu.",
+        "Instruktáž trvá 30 minut, u řízení se mohou vystřídat až tři účastníci.",
+        "Celoroční provoz; při účasti dětí mladších deseti let prodejce uvádí vypnutý hydraulický pohyb."
+      ],
+      "notEstablished": [
+        "Nezávislý doklad certifikace, přesné rozdělení času mezi účastníky a aktuální termíny."
+      ],
+      "runId": "MDgguwTY13s7B59ch",
+      "datasetId": "OBIuAeYbMbf9dEROF",
+      "httpStatus": 200,
+      "loadedUrl": "https://www.zazitky.cz/pilotem-dopravniho-letadla-boeing-737",
+      "loadedAt": "2026-10-30T06:21:09.602Z"
+    },
+    {
+      "url": "https://www.zazitky.cz/simulator-boeing-737-max",
+      "productId": "713",
+      "facts": [
+        "Brno, kokpit s projekcí o zorném poli 220°.",
+        "10 minut instruktáže a 30 nebo 60 minut simulovaného letu.",
+        "Jeden pilotující účastník a až tři osoby jako doprovod, celoroční provoz."
+      ],
+      "notEstablished": [
+        "Pohyblivost zařízení není v načteném popisu určena; text ji ani nepotvrzuje, ani nepopírá."
+      ],
+      "runId": "eRpq0cItejTjSeZIi",
+      "datasetId": "WgGaTbEpaD3lSqTOx",
+      "httpStatus": 200,
+      "loadedUrl": "https://www.zazitky.cz/simulator-boeing-737-max",
+      "loadedAt": "2026-10-30T06:21:19.551Z"
+    },
+    {
+      "url": "https://www.zazitky.cz/bojovy-letecky-simulator",
+      "productId": "435",
+      "facts": [
+        "Praha, statické zařízení, možnost VR i bez brýlí.",
+        "Instruktáž trvá 10–15 minut, let závisí na variantě.",
+        "Existuje varianta souboje pro dva; celoroční provoz."
+      ],
+      "notEstablished": [
+        "Volné termíny a aktuální konfigurace jednotlivých variant nejsou ověřené."
+      ],
+      "runId": "bdK3RMQFaWEVNulDn",
+      "datasetId": "KFK68DcSfMjR0AJUp",
+      "httpStatus": 200,
+      "loadedUrl": "https://www.zazitky.cz/bojovy-letecky-simulator",
+      "loadedAt": "2026-10-30T06:20:59.209Z"
+    },
+    {
+      "url": "https://www.zazitky.cz/pohyblivy-simulator-ve-vr",
+      "productId": "757",
+      "facts": [
+        "Brno, elektrická pohyblivá plošina s VR a výběrem různých letounů i vrtulníků.",
+        "10 minut instruktáže a 30 nebo 60 minut simulovaného letu.",
+        "Jeden účastník, až tři osoby jako doprovod, celoroční provoz."
+      ],
+      "notEstablished": [
+        "Volné termíny a vhodnost konkrétní varianty pro konkrétního účastníka nejsou ověřené."
+      ],
+      "runId": "Qn3zXfKkh7T0O5qws",
+      "datasetId": "1h4HZPi5owrYCsLVm",
+      "httpStatus": 200,
+      "loadedUrl": "https://www.zazitky.cz/pohyblivy-simulator-ve-vr",
+      "loadedAt": "2026-10-30T06:21:37.545Z"
+    },
+    {
+      "url": "https://www.zazitky.cz/pomoc",
+      "facts": [
+        "Nápověda obsahuje oddělené části pro doručení poukazu, rezervaci, platnost a výměnu.",
+        "Do průvodce nejsou přenášeny konkrétní dodací lhůty ani univerzální sliby výměny."
+      ],
+      "notEstablished": [
+        "Vánoční doručovací garance a dostupnost konkrétního termínu."
+      ],
+      "runId": "Ex6az1NTX4McEOwGo",
+      "datasetId": "D5usnpRfVrOvAlmTG",
+      "httpStatus": 200,
+      "loadedUrl": "https://www.zazitky.cz/pomoc",
+      "loadedAt": "2026-10-30T06:21:46.045Z"
+    }
+  ]
+}

@@ -21,6 +21,58 @@ export const CATEGORY_CONFIG: CategoryConfig[] = [
       "Je cena za osobu, nebo za celý kokpit?",
       "Kolik minut skutečně strávíte u řízení?",
       "Je možné vzít doprovod a jaké jsou podmínky pro děti?"
+    ],
+    "guide": [
+      {
+        "heading": "Jak vybrat letecký simulátor?",
+        "paragraphs": [
+          "Začněte tím, co chcete ovládat: dopravní letadlo s přístrojovou deskou, historickou stíhačku, nebo různé stroje ve virtuální realitě. Potom porovnejte pohyb zařízení, způsob zobrazení a čas skutečného pilotování. Jde o simulaci na zemi; pokud chcete do vzduchu, vybírejte zážitek [pilotem na zkoušku](/pilotem-na-zkousku).",
+          "VR a pohyblivost jsou dvě různé vlastnosti. Pevný kokpit může používat VR brýle a pohyblivý simulátor může mít projekční plátno. Samotný název Boeing nebo stíhačka proto nestačí k rozhodnutí."
+        ]
+      },
+      {
+        "heading": "Čím se liší čtyři konkrétní simulátory?",
+        "paragraphs": [
+          "Tyto čtyři nabídky ukazují rozdíly v zařízení a programu. Nejde o žebříček kvality ani porovnání celého trhu. Údaje jsme ověřili 30. října 2026 na stránkách Zážitky.cz; aktuální ceny z katalogu najdete výše."
+        ],
+        "table": {
+          "caption": "Srovnání zařízení, míst a programu čtyř leteckých simulátorů",
+          "head": ["Nabídka a místo", "Zařízení podle prodejce", "Program a účastníci", "Co rozhoduje při výběru"],
+          "rows": [
+            ["[Boeing 737 v CATC](/zazitek/certifikovany-plne-pohyblivy-simulator-boeing-737-190), Praha-Ruzyně", "Pohyblivá hydraulická kabina", "30minutová instruktáž; u řízení se mohou vystřídat až tři účastníci", "Jak si rozdělíte čas v kokpitu a co zahrnuje vybraná délka varianty"],
+            ["[Boeing 737 MAX](/zazitek/simulator-letadla-boeing-737-max-713), Brno", "Kopie kokpitu s projekcí na plátno se zorným polem 220°; pohyb zařízení stránka neurčuje", "10 minut instruktáže a 30 nebo 60 minut simulovaného letu; jeden pilotující účastník, až tři osoby jako doprovod", "Zda hledáte ovládání dopravního letadla a společnou návštěvu s doprovodem"],
+            ["[Messerschmitt Bf 109](/zazitek/bojovy-letecky-simulator-letounu-messerschmitt-bf-109-435), Praha", "Statický simulátor s možností VR brýlí i létání bez nich", "10–15 minut instruktáže; délka simulovaného letu podle varianty, v nabídce také souboj pro dva", "Zda chcete historickou stíhačku, bojovou misi nebo společný souboj"],
+            ["[Pohyblivý simulátor ve VR](/zazitek/pohyblivy-letecky-simulator-prolette-se-virtualni-realitou-757), Brno", "Pohyblivá elektrická plošina a VR brýle; výběr letounů i vrtulníků", "10 minut instruktáže a 30 nebo 60 minut simulovaného letu; jeden účastník, až tři osoby jako doprovod", "Zda dáváte přednost pohybu a virtuálnímu výhledu před kokpitem jediného typu letadla"]
+          ]
+        }
+      },
+      {
+        "heading": "Kolik času skutečně strávíte u řízení?",
+        "paragraphs": [
+          "Oddělte instruktáž, pilotování a případné střídání účastníků. Brněnský Boeing 737 MAX i pohyblivý VR simulátor uvádějí 10 minut instruktáže a samostatně 30 nebo 60 minut simulovaného letu. U jiné nabídky nemusí uvedená délka znamenat totéž.",
+          "Pokud se u řízení střídá více lidí, nepovažujte délku rezervovaného programu automaticky za čas každého účastníka. Před koupí si potvrďte rozdělení času a prostor pro doprovod."
+        ]
+      },
+      {
+        "heading": "Jak vybírat simulátor pro dva nebo pro dítě?",
+        "paragraphs": [
+          "Dva účastníci mohou znamenat střídání u řízení nebo vzájemný souboj. Doprovod je jiná role: možnost sedět v kabině a fotografovat neznamená, že další člověk smí také pilotovat. Pro společnou hru má Bf 109 samostatnou variantu souboje pro dva; u Boeingu MAX je nabídka určená jednomu pilotujícímu účastníkovi.",
+          "U dítěte zkontrolujte pravidla konkrétního zařízení, dosah na ovladače a požadovaný doprovod. Podmínky jednotlivých simulátorů se liší; u CATC prodejce například uvádí vypnutý hydraulický pohyb při účasti dětí mladších deseti let."
+        ]
+      },
+      {
+        "heading": "Hodí se simulátor jako zimní nebo vánoční dárek?",
+        "paragraphs": [
+          "U všech čtyř porovnaných nabídek prodejce uvádí celoroční provoz. Je to možnost pro člověka, který chce vyzkoušet pilotování i mimo sezonu venkovních letů. Celoroční provoz ale nezaručuje volné místo v konkrétním týdnu: ověřte dostupnost a rezervaci vybrané nabídky.",
+          "Při dárku oddělte předání poukazu od termínu zážitku. Další možnosti podle přání obdarovaného a rozpočtu shrnuje [průvodce výběrem leteckého dárku](/blog/jak-vybrat-letecky-zazitek)."
+        ]
+      }
+    ],
+    "sources": [
+      { "label": "Boeing 737 CATC — kontrola 30. 10. 2026", "url": "https://www.zazitky.cz/pilotem-dopravniho-letadla-boeing-737" },
+      { "label": "Boeing 737 MAX — kontrola 30. 10. 2026", "url": "https://www.zazitky.cz/simulator-boeing-737-max" },
+      { "label": "Messerschmitt Bf 109 — kontrola 30. 10. 2026", "url": "https://www.zazitky.cz/bojovy-letecky-simulator" },
+      { "label": "Pohyblivý simulátor ve VR — kontrola 30. 10. 2026", "url": "https://www.zazitky.cz/pohyblivy-simulator-ve-vr" }
     ]
   },
   {
