@@ -1,0 +1,77 @@
+[
+  {
+    "url": "https://www.flylady.cz/",
+    "performance": 98,
+    "accessibility": 96,
+    "bestPractices": 96,
+    "seo": 100,
+    "metrics": {
+      "FCP": 1034,
+      "FCP_rating": "good",
+      "LCP": 2163,
+      "LCP_rating": "good",
+      "TBT": 137,
+      "TBT_rating": "good",
+      "CLS": 0,
+      "CLS_rating": "good",
+      "SI": 1425,
+      "SI_rating": "good",
+      "TTI": 2175,
+      "TTI_rating": "good"
+    },
+    "device": "mobile",
+    "throttling": "simulated",
+    "lighthouseVersion": "12.8.2",
+    "timestamp": "2026-10-30T07:40:24.991Z"
+  },
+  {
+    "url": "https://www.flylady.cz/letecke-simulatory",
+    "performance": 89,
+    "accessibility": 97,
+    "bestPractices": 96,
+    "seo": 100,
+    "metrics": {
+      "FCP": 1196,
+      "FCP_rating": "good",
+      "LCP": 1975,
+      "LCP_rating": "good",
+      "TBT": 405,
+      "TBT_rating": "needs-improvement",
+      "CLS": 0,
+      "CLS_rating": "good",
+      "SI": 1943,
+      "SI_rating": "good",
+      "TTI": 2578,
+      "TTI_rating": "good"
+    },
+    "device": "mobile",
+    "throttling": "simulated",
+    "lighthouseVersion": "12.8.2",
+    "timestamp": "2026-10-30T07:40:28.219Z"
+  },
+  {
+    "url": "https://www.flylady.cz/zazitek/let-balonem-16",
+    "performance": 97,
+    "accessibility": 97,
+    "bestPractices": 96,
+    "seo": 100,
+    "metrics": {
+      "FCP": 1023,
+      "FCP_rating": "good",
+      "LCP": 2434,
+      "LCP_rating": "good",
+      "TBT": 104,
+      "TBT_rating": "good",
+      "CLS": 0,
+      "CLS_rating": "good",
+      "SI": 1249,
+      "SI_rating": "good",
+      "TTI": 2443,
+      "TTI_rating": "good"
+    },
+    "device": "mobile",
+    "throttling": "simulated",
+    "lighthouseVersion": "12.8.2",
+    "timestamp": "2026-10-30T07:40:22.537Z"
+  }
+]
