@@ -3,6 +3,20 @@ export const GA_ID = "G-ZT9JHLEMYR";
 const DISABLE_KEY = "ga-disable-G-ZT9JHLEMYR";
 export type Consent = "granted" | "denied" | null;
 
+const AFFILIATE_PLACEMENTS = new Set(["product_main", "product_variants", "product_end"]);
+
+/** Only aggregate placement information leaves the page; no partner query parameters. */
+export function affiliateClickParameters(href: string, placement?: string) {
+  try {
+    const url = new URL(href);
+    if (url.protocol !== "https:" || url.hostname !== "ehub.cz" || url.pathname !== "/system/scripts/click.php") return null;
+    return {
+      destination_host: "zazitky.cz",
+      link_position: placement && AFFILIATE_PLACEMENTS.has(placement) ? placement : "content",
+    };
+  } catch { return null; }
+}
+
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;

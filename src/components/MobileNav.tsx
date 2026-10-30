@@ -1,7 +1,5 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { MobileNavShell } from "@/components/MobileNavShell";
 
 // Nejhledanější kategorie (Marketing Miner, 09/2026) první.
 const MENU_CATEGORIES = [
@@ -14,53 +12,7 @@ const MENU_CATEGORIES = [
 ];
 
 export default function MobileNav() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
-
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
-
-  return (
-    <div className="sm:hidden">
-      {/* Hamburger button */}
-      <button
-        onClick={toggleMenu}
-        className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-900 hover:bg-slate-200 active:scale-95 transition"
-        aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
-        aria-expanded={isOpen}
-      >
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
-      {/* Mobile menu overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"
-          onClick={closeMenu}
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Mobile menu panel */}
-      <div
-        className={`fixed right-0 top-0 z-[101] h-full w-80 transform shadow-2xl transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-        style={{ backgroundColor: "#ffffff" }}
-      >
+  return <MobileNavShell>
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-200 bg-white p-4">
           <div className="flex items-center gap-2">
@@ -70,7 +22,7 @@ export default function MobileNav() {
             <span className="text-lg font-bold text-slate-900">Flylady.cz</span>
           </div>
           <button
-            onClick={closeMenu}
+            data-close-menu
             className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-900 hover:bg-slate-200 active:scale-95 transition"
             aria-label="Zavřít menu"
           >
@@ -85,8 +37,9 @@ export default function MobileNav() {
           <ul className="space-y-2">
             <li>
               <Link
+            prefetch={false}
                 href="/"
-                onClick={closeMenu}
+                data-close-menu
                 className="flex items-center gap-3 rounded-xl px-4 py-3.5 font-medium text-slate-900 bg-slate-50 hover:bg-slate-100 active:scale-[0.98] transition"
               >
                 <svg className="h-5 w-5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -97,8 +50,9 @@ export default function MobileNav() {
             </li>
             <li>
               <Link
+            prefetch={false}
                 href="/zazitky"
-                onClick={closeMenu}
+                data-close-menu
                 className="flex items-center gap-3 rounded-xl px-4 py-3.5 font-medium text-slate-900 bg-slate-50 hover:bg-slate-100 active:scale-[0.98] transition"
               >
                 <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -109,8 +63,9 @@ export default function MobileNav() {
             </li>
             <li>
               <Link
+            prefetch={false}
                 href="/blog"
-                onClick={closeMenu}
+                data-close-menu
                 className="flex items-center gap-3 rounded-xl px-4 py-3.5 font-medium text-slate-900 bg-slate-50 hover:bg-slate-100 active:scale-[0.98] transition"
               >
                 <svg className="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -132,8 +87,9 @@ export default function MobileNav() {
             {MENU_CATEGORIES.map((item) => (
               <li key={item.href}>
                 <Link
+                  prefetch={false}
                   href={item.href}
-                  onClick={closeMenu}
+                  data-close-menu
                   className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 hover:bg-slate-50 active:scale-[0.98] transition"
                 >
                   <span className={`h-2 w-2 rounded-full ${item.dot}`}></span>
@@ -150,8 +106,9 @@ export default function MobileNav() {
             {/* Průvodce výběrem */}
             <li>
               <Link
+            prefetch={false}
                 href="/blog/jak-vybrat-letecky-zazitek"
-                onClick={closeMenu}
+                data-close-menu
                 className="flex items-center gap-3 rounded-xl bg-gradient-to-r from-orange-100 to-amber-100 px-4 py-4 text-orange-800 hover:from-orange-200 hover:to-amber-200 active:scale-[0.98] transition"
               >
                 <svg className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -166,8 +123,9 @@ export default function MobileNav() {
         {/* Bottom CTA */}
         <div className="absolute bottom-0 left-0 right-0 border-t-2 border-slate-100 bg-white p-5">
           <Link
+            prefetch={false}
             href="/zazitky"
-            onClick={closeMenu}
+            data-close-menu
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-4 text-base font-bold text-white shadow-lg hover:bg-slate-800 active:scale-[0.98] transition"
           >
             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -176,7 +134,5 @@ export default function MobileNav() {
             Vybrat zážitek
           </Link>
         </div>
-      </div>
-    </div>
-  );
+  </MobileNavShell>;
 }
