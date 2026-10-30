@@ -4,7 +4,6 @@ import { Geist } from "next/font/google";
 import { OrganizationSchema, WebsiteSchema } from "@/components/StructuredData";
 import MobileNav from "@/components/MobileNav";
 import CookieConsent from "@/components/CookieConsent";
-import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -140,7 +139,7 @@ export default function RootLayout({
                 <Link href="/blog" className="transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 rounded">
                   Blog
                 </Link>
-                <Link href="/blog/jak-vybrat-letecky-zazitek" className="transition text-orange-600 hover:text-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded font-semibold">
+                <Link href="/blog/jak-vybrat-letecky-zazitek" className="transition text-orange-700 hover:text-orange-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded font-semibold">
                   Jak vybrat dárek
                 </Link>
                 <Link
@@ -198,7 +197,7 @@ export default function RootLayout({
                     <li><Link href="/blog" className="hover:text-slate-900">Blog</Link></li>
                     <li><Link href="/o-webu" className="hover:text-slate-900">O webu a affiliate spolupráci</Link></li>
                     <li><a href="https://linklady.cz/kontakt" className="hover:text-slate-900">Kontakt na provozovatelku</a></li>
-                    <li><Link href="/blog/jak-vybrat-letecky-zazitek" className="font-semibold text-orange-600 hover:text-orange-700">Jak vybrat dárek</Link></li>
+                    <li><Link href="/blog/jak-vybrat-letecky-zazitek" className="font-semibold text-orange-700 hover:text-orange-800">Jak vybrat dárek</Link></li>
                   </ul>
                 </div>
 
@@ -249,7 +248,7 @@ export default function RootLayout({
               </div>
 
               {/* Vytvořeno */}
-              <div className="mt-6 text-center text-xs text-slate-400">
+              <div className="mt-6 text-center text-xs text-slate-600">
                 <p>
                   Vytvořila s{" "}
                   <span className="inline-block animate-pulse text-red-400">&#10084;</span>
@@ -270,8 +269,6 @@ export default function RootLayout({
           </footer>
         </div>
 
-        {/* Vercel Web Analytics: bez cookies, souhlas nepotřebuje */}
-        <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
       </body>
     </html>
   );
