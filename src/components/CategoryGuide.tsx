@@ -16,7 +16,7 @@ function RichText({ text }: { text: string }) {
 
 export function CategoryGuide({ category }: { category: CategoryConfig }) {
   if (!category.guide?.length) return null;
-  return <section className="max-w-3xl space-y-8">
+  return <section id="jak-vybrat" className="max-w-3xl scroll-mt-24 space-y-8">
     {category.guide.map((section) => <div key={section.heading} className="space-y-3">
       <h2 className="text-2xl font-semibold">{section.heading}</h2>
       {section.paragraphs.map((paragraph, index) => <p key={index} className={index === 0 ? "leading-relaxed text-slate-800" : "leading-relaxed text-slate-600"}><RichText text={paragraph} /></p>)}

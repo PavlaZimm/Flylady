@@ -3,6 +3,7 @@ import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { setTimeout as delay } from 'node:timers/promises';
+import editorialProducts from '../tests/fixtures/editorial-products.json' with { type: 'json' };
 
 const items = [
   ['16', 'Let balónem', 'Letecké zážitky | Lety balónem', 3290],
@@ -14,6 +15,7 @@ const items = [
   ['979', 'Soukromý let ve vrtulníku pro dva', 'Letecké zážitky | Lety vrtulníkem', 8990],
   ['853', 'Vyhlídkový let vrtulníkem', 'Letecké zážitky | Lety vrtulníkem', 2990],
   ['7110', 'Vyzkoušejte si řízení letadla', 'Letecké zážitky | Pilotování', 1990],
+  ...editorialProducts.map(({ id, name }) => [id, name, 'Simulátory | Letecké simulátory', 1000]), // Synthetic test prices.
 ];
 const xml = '<SHOP>' + items.map(([id, name, category, price]) => `<SHOPITEM><ID>${id}</ID><PRODUCT>${name}</PRODUCT><DESCRIPTION>Izolovaná testovací nabídka</DESCRIPTION><URL>https://www.zazitky.cz/test-${id}</URL><IMGURL>/fotky/aeroklub-roudnice-ultralehky-letoun.webp</IMGURL><CATEGORYTEXT>${category}</CATEGORYTEXT><CATEGORYTEXT>Ústecký</CATEGORYTEXT>${[1, 2, 3].map(n => `<VARIANT><VARIANTID>${id}-${n}</VARIANTID><PRODUCTNAMEEXT>${name}, ${n} osoby, 1 hodina</PRODUCTNAMEEXT><PRICE_VAT>${price * n}</PRICE_VAT></VARIANT>`).join('')}</SHOPITEM>`).join('') + '</SHOP>';
 let feedReads = 0;
@@ -56,6 +58,16 @@ try {
   assert.match(product, /href="\/let-balonem"/, 'Specific primary category');
   assert.match(product, /data naposledy načtena/, 'Price uses feed timestamp');
   assert.match(pages.get('/zazitky'), /Název nebo kraj/);
+  // Validate the actual rendered links and anchor targets of both revised guides.
+  for (const path of ['/letecke-simulatory', '/blog/jak-vybrat-letecky-zazitek']) {
+    const html = pages.get(path);
+    for (const [, href] of html.matchAll(/<a[^>]+href="([^"\s]+)"/g)) {
+      const url = new URL(href.replace(/&amp;/g, '&'), origin + path);
+      if (url.origin !== origin) continue;
+      assert.ok(pages.has(url.pathname), `${path}: linked page ${href} exists`);
+      if (url.hash) assert.ok(pages.get(url.pathname).includes(`id="${url.hash.slice(1)}"`), `${path}: anchor ${href} exists`);
+    }
+  }
   assert.doesNotMatch(pages.get('/zazitky'), /Např\. balón nebo Most/);
   assert.match(pages.get('/o-webu'), /https:\/\/linklady.cz\/kontakt/);
   assert.match(product, /Nastavení cookies/);

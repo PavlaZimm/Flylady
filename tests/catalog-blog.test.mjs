@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { filterCatalog } from '../src/lib/catalog.ts';
 import { getAllPosts, getRelatedPosts } from '../src/lib/blog.ts';
 import { CATEGORY_CONFIG } from '../src/lib/categories.ts';
+import { parseFeedXml } from '../src/lib/feed-parser.ts';
+import editorialProducts from './fixtures/editorial-products.json' with { type: 'json' };
 
 const product = (id, name, price, location = '') => ({ id, name, minPriceVat: price, location: null, categories: [], variants: [{ location }] });
 const products = [product('1', 'Let balónem', 5000, 'Roudnice nad Labem'), product('2', 'Tandemový seskok', 3000, 'Most'), product('3', 'Let bez ceny', null, 'Most')];
@@ -18,18 +20,21 @@ test('price filters exclude unknown prices and sorting puts unknown prices last 
   assert.deepEqual(filterCatalog(products, '', null, 'price-desc').map(p => p.id), ['1', '2', '3']);
   assert.deepEqual(products.map(p => p.id), ['1', '2', '3']);
 });
-test('blog categories, metadata, dates and internal article/category links resolve', async () => {
+test('blog categories, metadata, dates and internal links resolve against known routes and product inventory', async () => {
   const posts = await getAllPosts();
   const categorySlugs = new Set(CATEGORY_CONFIG.map(c => c.slug));
-  const paths = new Set(['/', '/o-webu', '/zazitky', '/blog', ...[...categorySlugs].map(slug => `/${slug}`), ...posts.map(p => `/blog/${p.slug}`)]);
+  // Snapshot of the four linked catalogue names/IDs, checked on 2026-10-30.
+  // Use the real parser to detect article URLs that disagree with catalogue slugs.
+  const inventory = parseFeedXml('<SHOP>' + editorialProducts.map(p => `<SHOPITEM><ID>${p.id}</ID><PRODUCT>${p.name}</PRODUCT><URL>https://www.zazitky.cz/fixture-${p.id}</URL></SHOPITEM>`).join('') + '</SHOP>');
+  const paths = new Set(['/', '/o-webu', '/zazitky', '/blog', ...[...categorySlugs].map(slug => `/${slug}`), ...posts.map(p => `/blog/${p.slug}`), ...inventory.map(p => `/zazitek/${p.slug}`)]);
   assert.equal(new Set(posts.map(p => p.slug)).size, posts.length);
   for (const post of posts) {
     assert.ok(post.title && post.description && post.date, post.slug);
     assert.ok(!post.updated || post.updated >= post.date, post.slug);
     assert.ok(!post.category || categorySlugs.has(post.category), post.slug);
     assert.doesNotMatch(post.contentHtml, /<h1[ >]/);
-    for (const [, href] of post.contentHtml.matchAll(/href="(\/[^"#]*)"/g)) {
-      assert.ok(paths.has(href), `${post.slug}: unresolved ${href}`);
+    for (const [, href] of post.contentHtml.matchAll(/href="(\/[^"\s]*)"/g)) {
+      assert.ok(paths.has(href.split('#')[0]), `${post.slug}: unresolved ${href}`);
     }
   }
 });
